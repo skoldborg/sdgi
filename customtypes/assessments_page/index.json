@@ -1,0 +1,103 @@
+{
+  "id": "assessments_page",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "search_placeholder": {
+        "type": "Text",
+        "config": {
+          "label": "Search placeholder text"
+        }
+      },
+      "no_assessments_message": {
+        "type": "Text",
+        "config": {
+          "label": "No assessments message"
+        }
+      },
+      "create_assessment_modal": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title"
+              }
+            },
+            "description": {
+              "type": "Text",
+              "config": {
+                "label": "Description"
+              }
+            },
+            "title_field_label": {
+              "type": "Text",
+              "config": {
+                "label": "Title field label",
+                "placeholder": "Title"
+              }
+            },
+            "description_field_label": {
+              "type": "Text",
+              "config": {
+                "label": "Description field label",
+                "placeholder": "Description"
+              }
+            },
+            "description_field_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Description field placeholder"
+              }
+            },
+            "submit_button_label": {
+              "type": "Text",
+              "config": {
+                "label": "Submit button label"
+              }
+            }
+          },
+          "label": "Create assessment modal"
+        }
+      },
+      "update_assessment_modal": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title"
+              }
+            },
+            "description": {
+              "type": "Text",
+              "config": {
+                "label": "Description"
+              }
+            },
+            "submit_button_label": {
+              "type": "Text",
+              "config": {
+                "label": "Submit button label"
+              }
+            }
+          },
+          "label": "Update assessment modal"
+        }
+      }
+    }
+  },
+  "label": "Assessments page",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

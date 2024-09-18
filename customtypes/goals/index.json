@@ -1,0 +1,105 @@
+{
+  "id": "goals",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {
+            "goal": []
+          },
+          "choices": {
+            "goal": {
+              "type": "Slice",
+              "fieldset": "Goal",
+              "description": "Add new goal",
+              "icon": "mood",
+              "display": "list",
+              "non-repeat": {
+                "id": {
+                  "type": "Number",
+                  "config": {
+                    "label": "ID"
+                  }
+                },
+                "logo": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 180,
+                      "height": 180
+                    },
+                    "thumbnails": [],
+                    "label": "logo"
+                  }
+                },
+                "title": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Title"
+                  }
+                },
+                "description": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Description"
+                  }
+                },
+                "intro_title": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Intro title"
+                  }
+                },
+                "intro_body": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Intro body"
+                  }
+                },
+                "targets_preamble": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,hyperlink",
+                    "label": "Targets preamble"
+                  }
+                }
+              },
+              "repeat": {
+                "target_id": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Target ID"
+                  }
+                },
+                "target_title": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Target title"
+                  }
+                },
+                "target_description": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Target description"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "label": "Goals",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

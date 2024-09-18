@@ -1,0 +1,133 @@
+{
+  "id": "assessment_goals_page",
+  "json": {
+    "Main": {
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "single": "paragraph",
+          "label": "description",
+          "placeholder": "Perform the impact assessment by clicking on any SDG"
+        }
+      },
+      "goal_overview_labels": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "done": {
+              "type": "Text",
+              "config": {
+                "label": "Done",
+                "placeholder": "Done"
+              }
+            },
+            "edit": {
+              "type": "Text",
+              "config": {
+                "label": "Edit",
+                "placeholder": "edit"
+              }
+            }
+          },
+          "label": "Goal overview labels"
+        }
+      },
+      "save_and_close": {
+        "type": "Text",
+        "config": {
+          "label": "Save and close",
+          "placeholder": "Save & close"
+        }
+      },
+      "goal_priorities": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": "Relevant/Not Relevant/Don't know"
+              }
+            },
+            "value": {
+              "type": "Number",
+              "config": {
+                "label": "value",
+                "placeholder": "Set to 1 for \"Relevant\", 2 for \"Not relevant\", 3 for \"Don't know\""
+              }
+            }
+          },
+          "label": "Goal priorities"
+        }
+      },
+      "summary": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "summary_description": {
+              "type": "Text",
+              "config": {
+                "label": "Summary description",
+                "placeholder": "This is the assessment board. Click on each goal and complete all assessments before you can see your result."
+              }
+            },
+            "button_label": {
+              "type": "Text",
+              "config": {
+                "label": "Button label",
+                "placeholder": "See result"
+              }
+            },
+            "count_suffix": {
+              "type": "Text",
+              "config": {
+                "label": "Count suffix",
+                "placeholder": "Label for count suffix (\"goals completed\")"
+              }
+            }
+          },
+          "label": "Summary"
+        }
+      },
+      "goal_sorting_modal": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": "How to do the SDG impact assessment"
+              }
+            },
+            "sorting_instructions": {
+              "type": "StructuredText",
+              "config": {
+                "multi": "paragraph,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item,rtl",
+                "label": "Sorting instructions",
+                "placeholder": "Instuctions for sorting process"
+              }
+            },
+            "button_label": {
+              "type": "Text",
+              "config": {
+                "label": "Button label",
+                "placeholder": "Start sorting"
+              }
+            }
+          },
+          "label": "Goal sorting modal"
+        }
+      }
+    }
+  },
+  "label": "Assessment goals page",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "goal_page",
+  "json": {
+    "Main": {
+      "impact_title": {
+        "type": "Text",
+        "config": {
+          "label": "Impact title",
+          "placeholder": "How does your solution affect the SDG ##?"
+        }
+      },
+      "impact_options": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "value": {
+              "type": "Number",
+              "config": {
+                "label": "value",
+                "placeholder": "Value from 0-5"
+              }
+            },
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": "Impact label (eg \"Direct positive\")"
+              }
+            }
+          },
+          "label": "Impact options"
+        }
+      },
+      "motivation_field_title": {
+        "type": "Text",
+        "config": {
+          "label": "Motivation field title",
+          "placeholder": "Motivate why"
+        }
+      },
+      "motivation_field_placeholder": {
+        "type": "Text",
+        "config": {
+          "label": "Motivation field placeholder",
+          "placeholder": "Max 3 000 characters"
+        }
+      },
+      "save_impact_assessment_label": {
+        "type": "Text",
+        "config": {
+          "label": "Save impact assessment label",
+          "placeholder": "Save assessment"
+        }
+      }
+    }
+  },
+  "label": "Goal page",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

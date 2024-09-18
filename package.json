@@ -6,19 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "slicemachine": "start-slicemachine"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
+    "@prismicio/client": "^7.8.1",
+    "@prismicio/next": "^1.6.0",
+    "@prismicio/react": "^2.8.0",
+    "next": "14.2.11",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.11"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@slicemachine/adapter-next": "^0.3.49",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.11"
+    "eslint-config-next": "14.2.11",
+    "slice-machine-ui": "^2.7.1",
+    "typescript": "^5"
   }
 }

@@ -1,0 +1,75 @@
+{
+  "id": "header",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "show_language_select": {
+        "type": "Boolean",
+        "config": {
+          "default_value": false,
+          "label": "Show language select"
+        }
+      },
+      "log_in": {
+        "type": "Text",
+        "config": {
+          "label": "Log in",
+          "placeholder": "Log in"
+        }
+      },
+      "log_out": {
+        "type": "Text",
+        "config": {
+          "label": "Log out",
+          "placeholder": "Log out"
+        }
+      },
+      "choose_language": {
+        "type": "Text",
+        "config": {
+          "label": "Choose language",
+          "placeholder": "Choose language"
+        }
+      },
+      "new_assessment": {
+        "type": "Text",
+        "config": {
+          "label": "New assessment",
+          "placeholder": "New assessment"
+        }
+      },
+      "internal_links": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "link",
+                "placeholder": "Internal document",
+                "select": null
+              }
+            },
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": "Label for link"
+              }
+            }
+          },
+          "label": "Internal links"
+        }
+      }
+    }
+  },
+  "label": "Header",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

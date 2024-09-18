@@ -1,0 +1,91 @@
+{
+  "id": "common_translations",
+  "json": {
+    "Main": {
+      "button_labels": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "back_to_assessment_board": {
+              "type": "Text",
+              "config": {
+                "label": "Back to assessment board",
+                "placeholder": "Back to assessment board"
+              }
+            },
+            "yes__delete": {
+              "type": "Text",
+              "config": {
+                "label": "Yes, delete",
+                "placeholder": "Yes, delete"
+              }
+            },
+            "cancel": {
+              "type": "Text",
+              "config": {
+                "label": "Cancel",
+                "placeholder": "Cancel"
+              }
+            }
+          },
+          "label": "Button labels"
+        }
+      },
+      "error_messages": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "general": {
+              "type": "Text",
+              "config": {
+                "label": "General"
+              }
+            },
+            "impact_validation": {
+              "type": "Text",
+              "config": {
+                "label": "Impact validation"
+              }
+            },
+            "save_assessment": {
+              "type": "Text",
+              "config": {
+                "label": "Save assessment"
+              }
+            },
+            "choose_a_unique_title": {
+              "type": "Text",
+              "config": {
+                "label": "Choose a unique title",
+                "placeholder": "Please choose a unique title for your assessment"
+              }
+            }
+          },
+          "label": "Error messages"
+        }
+      },
+      "success_messages": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "save_assessment": {
+              "type": "Text",
+              "config": {
+                "label": "Save assessment",
+                "placeholder": "Assessment has been updated."
+              }
+            }
+          },
+          "label": "Success messages"
+        }
+      }
+    }
+  },
+  "label": "Common translations",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

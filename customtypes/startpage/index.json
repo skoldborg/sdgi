@@ -1,0 +1,41 @@
+{
+  "id": "startpage",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+          "label": "Title"
+        }
+      },
+      "hero_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {
+            "width": null,
+            "height": null
+          },
+          "thumbnails": [],
+          "label": "Hero image"
+        }
+      },
+      "button_label": {
+        "type": "Text",
+        "config": {
+          "label": "Button label"
+        }
+      }
+    }
+  },
+  "label": "Startpage",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

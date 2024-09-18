@@ -1,0 +1,313 @@
+{
+  "id": "contact",
+  "json": {
+    "Main": {
+      "heading": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1",
+          "label": "Heading",
+          "placeholder": "Heading"
+        }
+      },
+      "contact_us": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": "Title"
+              }
+            },
+            "text_body": {
+              "type": "StructuredText",
+              "config": {
+                "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                "label": "Text body",
+                "placeholder": "Text body"
+              }
+            },
+            "button_label": {
+              "type": "Text",
+              "config": {
+                "label": "Button label",
+                "placeholder": "Button label"
+              }
+            },
+            "button_link": {
+              "type": "Link",
+              "config": {
+                "label": "Button Link",
+                "placeholder": "Button link",
+                "select": null
+              }
+            }
+          },
+          "label": "Contact us"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "form_": {
+              "type": "Slice",
+              "fieldset": "Form ",
+              "description": "Form placeholders",
+              "icon": "format_align_justify",
+              "display": "list",
+              "non-repeat": {},
+              "repeat": {
+                "text_question": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Text question",
+                    "placeholder": "Text placeholder"
+                  }
+                }
+              }
+            },
+            "the_team": {
+              "type": "Slice",
+              "fieldset": "Team",
+              "description": "Some team members' testimonial",
+              "icon": "accessibility",
+              "display": "grid",
+              "non-repeat": {
+                "section_title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading2",
+                    "label": "Section Title",
+                    "placeholder": "Section title"
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "label": "Description",
+                    "placeholder": "Description"
+                  }
+                }
+              },
+              "repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 70,
+                      "height": 70
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "label": "Description",
+                    "placeholder": "Description"
+                  }
+                }
+              }
+            },
+            "cta_banner": {
+              "type": "Slice",
+              "fieldset": "CTA Banner",
+              "description": "A wide banner with text and button",
+              "icon": "short_text",
+              "display": "list",
+              "non-repeat": {
+                "banner_title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading3",
+                    "label": "Banner title",
+                    "placeholder": "Enter title here"
+                  }
+                },
+                "text": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Text",
+                    "placeholder": "Enter text here"
+                  }
+                },
+                "cta_label": {
+                  "type": "Text",
+                  "config": {
+                    "label": "CTA label",
+                    "placeholder": "Enter CTA Label here"
+                  }
+                },
+                "cta_link": {
+                  "type": "Link",
+                  "config": {
+                    "label": "CTA link",
+                    "placeholder": "Enter CTA Link here",
+                    "allowTargetBlank": true,
+                    "select": null
+                  }
+                },
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 300,
+                      "height": 300
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                }
+              },
+              "repeat": {}
+            }
+          }
+        }
+      }
+    },
+    "SEO&Social": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "Slug"
+        }
+      },
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta title",
+          "placeholder": "Meta title"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta description",
+          "placeholder": "Meta description"
+        }
+      },
+      "body1": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "open_graph": {
+              "type": "Slice",
+              "fieldset": "Open Graph",
+              "description": "Fields to customize Open Graph",
+              "icon": "thumb_up",
+              "display": "list",
+              "non-repeat": {
+                "og_title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Title",
+                    "placeholder": "Title for Open Graph"
+                  }
+                },
+                "og_description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Description",
+                    "placeholder": "Description for Open Graph"
+                  }
+                },
+                "og_image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1200,
+                      "height": 628
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                }
+              },
+              "repeat": {
+                "name": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Name"
+                  }
+                },
+                "e-mail": {
+                  "type": "Text",
+                  "config": {
+                    "label": "E-mail"
+                  }
+                },
+                "organisation": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Organisation"
+                  }
+                },
+                "question": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Question"
+                  }
+                }
+              }
+            },
+            "twitter_card": {
+              "type": "Slice",
+              "fieldset": "Twitter Card",
+              "description": "Fields to customize Twitter Card (Summary Card with Large Image)",
+              "icon": "credit_card",
+              "display": "list",
+              "non-repeat": {
+                "twitter_title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Title",
+                    "placeholder": "Title for Twitter Card"
+                  }
+                },
+                "twitter_description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Description",
+                    "placeholder": "Description for Twitter Card"
+                  }
+                },
+                "twitter_image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1024,
+                      "height": 512
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                }
+              },
+              "repeat": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "label": "Contact",
+  "repeatable": true,
+  "status": true,
+  "format": "custom"
+}

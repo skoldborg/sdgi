@@ -1,0 +1,117 @@
+{
+  "id": "result_page",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "strategy_title": {
+        "type": "Text",
+        "config": {
+          "label": "Strategy title",
+          "placeholder": "Strategic choices"
+        }
+      },
+      "strategy_description": {
+        "type": "Text",
+        "config": {
+          "label": "Strategy description",
+          "placeholder": "The result reflects your current status. Now identify and prioritize the SDGs that you can take action on. Tick one or several of the questions you want to base your strategy on:"
+        }
+      },
+      "strategy_title_print": {
+        "type": "Text",
+        "config": {
+          "label": "Strategy title print",
+          "placeholder": "Strategy title to display in printed result"
+        }
+      },
+      "strategy_questions": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "id": {
+              "type": "Text",
+              "config": {
+                "label": "ID"
+              }
+            },
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label"
+              }
+            }
+          },
+          "label": "Strategy questions"
+        }
+      },
+      "motivation_title": {
+        "type": "Text",
+        "config": {
+          "label": "Motivation title",
+          "placeholder": "Motivation title in Goal modal"
+        }
+      },
+      "motivation_placeholder": {
+        "type": "Text",
+        "config": {
+          "label": "Motivation placeholder",
+          "placeholder": "Max 4 000 characters"
+        }
+      },
+      "save_motivation_label": {
+        "type": "Text",
+        "config": {
+          "label": "Save motivation label",
+          "placeholder": "Save"
+        }
+      },
+      "goal_accordion_labels": {
+        "type": "Group",
+        "config": {
+          "repeat": false,
+          "fields": {
+            "open": {
+              "type": "Text",
+              "config": {
+                "label": "Open",
+                "placeholder": "Open targets"
+              }
+            },
+            "close": {
+              "type": "Text",
+              "config": {
+                "label": "Close",
+                "placeholder": "Close targets"
+              }
+            }
+          },
+          "label": "Goal accordion labels"
+        }
+      },
+      "print_description_title": {
+        "type": "Text",
+        "config": {
+          "label": "print_description_title",
+          "placeholder": "Description (only visible in print mode)"
+        }
+      },
+      "print_button_label": {
+        "type": "Text",
+        "config": {
+          "label": "Print button label",
+          "placeholder": "Print visualization and goals"
+        }
+      }
+    }
+  },
+  "label": "Result page",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

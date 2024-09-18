@@ -1,0 +1,49 @@
+{
+  "id": "footer",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "logo_gmv": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Logo GMV"
+        }
+      },
+      "logo_chalmers": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Logo Chalmers"
+        }
+      },
+      "logo_gu": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Logo University of Gothenburg"
+        }
+      },
+      "logo_sdsn": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Logo SDSN"
+        }
+      }
+    }
+  },
+  "label": "Footer",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}
