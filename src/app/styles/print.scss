@@ -1,0 +1,100 @@
+@media print {
+    body, .page {
+        background-color: $color-white !important;
+    }
+
+    .goal-print-box {
+        display: flex !important;
+        page-break-inside: avoid;
+    }
+
+    .page__header {
+        display: none !important;
+    }
+
+    .page__title {
+        font-size: $size-40;
+    }
+
+    .section__inner {
+        margin: 0;
+    }
+
+    .section__title {
+        font-size: $size-24;
+        text-align: left !important;
+        text-transform: initial;
+    }
+
+    .section__description,
+    .form__label {
+        font-size: $size-12!important;
+        line-height: $size-24 !important;
+    }
+
+    .avatar {
+        display: none !important;
+    }
+
+    .button {
+        display: none !important;
+    }
+
+    .section--gray-light:after {
+        background-color: $color-white;
+    }
+
+    .box {
+        width: 24px;
+        height: 24px;
+    }
+
+    .box__content {
+        font-size: $size-14;
+
+        span {
+            color: $color-white !important; 
+        }
+    }
+
+    .box--with-content {
+        box-shadow: none;
+    }
+
+    .form__input {
+        width: auto;
+    }
+
+    .form__input--strategy {
+        display: none !important;
+    }
+
+    .form__input-checkbox {
+        display: none !important;
+    }
+
+    .form input[type="checkbox"] {
+        position: absolute;
+        left: 0;
+        top: 4px;
+        visibility: visible;
+    }
+
+    .form__footer {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+}
+
+.print-only {
+    display: none;
+}
+
+.print-only-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: $size-40;
+}

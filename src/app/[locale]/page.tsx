@@ -1,25 +1,25 @@
-'use client';
-
-import { useUser } from '@auth0/nextjs-auth0/client';
+import Hero from '../components/Hero';
 import styles from './page.module.css';
+import { client } from '@/prismic-client';
 
-export default function Home() {
-  const { user, error, isLoading } = useUser();
+export default async function Home({ params }: { params: { locale: string } }) {
+  // const { user, error, isLoading } = useUser();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  const page = await client.getSingle('startpage');
 
-  if (user) {
-    return (
-      <div>
-        Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
-      </div>
-    );
-  }
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>{error.message}</div>;
 
+  // if (user) {
+  //   return (
+  //     <div>
+  //       Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
+  //     </div>
+  //   );
+  // }
   return (
-    <a href="/api/auth/login" className={styles.page}>
-      Login
-    </a>
+    <div className={styles.page}>
+      <Hero locale={params.locale} {...page} />
+    </div>
   );
 }

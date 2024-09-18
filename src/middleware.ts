@@ -14,6 +14,7 @@ const getSupportedLocales = async () => {
 const DEFAULT_LOCALE = 'en-gb';
 
 export async function middleware(req: NextRequest) {
+  const user = await getSession(req, NextResponse.next());
   const { pathname } = req.nextUrl;
 
   // Fetch supported locales from Prismic using @prismicio/client
@@ -32,9 +33,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, req.url));
   }
 
+  // If user is logged in and visits /:locale, redirect to /:locale/tool/assessments
+  if (user && pathname === `/${pathLocale}`) {
+    return NextResponse.redirect(
+      new URL(`/${pathLocale}/tool/assessments`, req.url),
+    );
+  }
+
   // Protect the tool routes with Auth0 authentication
   if (pathname.startsWith(`/${pathLocale}/tool/`)) {
-    const user = await getSession(req, NextResponse.next());
     if (!user) {
       return NextResponse.redirect(new URL(`/${pathLocale}`, req.url));
     }
