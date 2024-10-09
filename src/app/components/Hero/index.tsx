@@ -4,13 +4,14 @@ import './hero.scss';
 import { PrismicRichText } from '@prismicio/react';
 import { StartpageDocument } from '../../../../prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
-import Button from '../Button';
+
+import { Button } from '@components';
 
 interface HeroI extends StartpageDocument {
   locale: string;
 }
 
-export default async function Hero({ locale, data }: HeroI) {
+export const Hero = ({ locale, data }: HeroI) => {
   return (
     <>
       <div className={`hero`}>
@@ -33,4 +34,4 @@ export default async function Hero({ locale, data }: HeroI) {
       {/* <Footer /> */}
     </>
   );
-}
+};

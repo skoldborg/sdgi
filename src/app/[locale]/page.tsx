@@ -1,22 +1,11 @@
-import Hero from '../components/Hero';
+import { Hero } from '@components';
 import styles from './page.module.css';
-import { client } from '@/prismic-client';
+import { createClient } from '@/prismicio';
 
 export default async function Home({ params }: { params: { locale: string } }) {
-  // const { user, error, isLoading } = useUser();
-
+  const client = createClient();
   const page = await client.getSingle('startpage');
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>{error.message}</div>;
-
-  // if (user) {
-  //   return (
-  //     <div>
-  //       Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
-  //     </div>
-  //   );
-  // }
   return (
     <div className={styles.page}>
       <Hero locale={params.locale} {...page} />

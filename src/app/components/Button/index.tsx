@@ -17,7 +17,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
   const {
     label,
     color,
@@ -70,5 +70,3 @@ const Button = (props: ButtonProps) => {
     </button>
   );
 };
-
-export default Button;
