@@ -1,0 +1,9 @@
+type User {
+  _id: ID!
+  user_id: ID!
+  assessments: [Assessment]
+}
+
+type Query {
+  getUser(user_id: ID!): User
+}

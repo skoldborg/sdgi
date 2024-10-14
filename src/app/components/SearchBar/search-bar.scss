@@ -1,0 +1,48 @@
+@import '../../styles/common.scss';
+
+.search-bar {
+  max-width: 970px;
+  margin: 0 auto $size-24;
+
+  @include breakpoint($m) {
+    margin-bottom: $size-8 * 6;
+  }
+}
+
+.search-bar__form {
+  position: relative;
+}
+
+.search-bar__input {
+  border-bottom: 2px solid $color-black;
+  display: block;
+  width: 100%;
+  padding: $size-8 $size-8 $size-8 $size-32;
+  border-radius: 0;
+
+  @include breakpoint($m) {
+    font-size: $size-24;
+    padding-left: $size-8 * 6;
+  }
+}
+
+.search-bar__icon {
+  width: $size-24;
+  height: $size-24;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @include breakpoint($m) {
+    width: $size-32;
+    height: $size-32;
+  }
+}
+
+.search-bar__clear-icon {
+  width: $size-22;
+  height: $size-22;
+  left: 96%;
+  top: 55%;
+}

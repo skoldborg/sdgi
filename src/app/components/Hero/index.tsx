@@ -11,20 +11,20 @@ interface HeroI extends StartpageDocument {
   locale: string;
 }
 
-export const Hero = ({ locale, data }: HeroI) => {
+export const Hero = ({ locale, data: page }: HeroI) => {
   return (
     <>
       <div className={`hero`}>
-        {data.hero_image && (
-          <PrismicNextImage field={data.hero_image} className={`hero__image`} />
+        {page.hero_image && (
+          <PrismicNextImage field={page.hero_image} className={`hero__image`} />
         )}
         <div className={`hero__content`}>
           <div className={`hero__title`}>
-            <PrismicRichText field={data.title} />
+            <PrismicRichText field={page.title} />
           </div>
           <div className={`hero__button`}>
             <Button
-              label={data.button_label}
+              label={page.button_label}
               color={`white`}
               href={`/api/auth/login?lang=${locale}`}
             />

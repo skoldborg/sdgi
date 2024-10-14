@@ -1,0 +1,8 @@
+query GetUser($userId: ID!) {
+  getUser(user_id: $userId) {
+    user_id
+    assessments {
+      title
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { Header, LanguageSwitch } from '@components';
 import headerStyles from '../components/Header/header.module.scss';
 import { createClient } from '@/prismicio';
 import { UIContextProvider } from '../contexts/ui-context';
+import { ApolloWrapper } from '@/lib/apollo-wrapper';
 
 export const metadata: Metadata = {
   title: 'SDG Impact Assessment Tool',
@@ -24,23 +25,25 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <UserProvider>
-          <UIContextProvider>
-            <div className="page__header">
-              <Header doc={header}>
-                {header.data.choose_language && (
-                  <li className={headerStyles.navItem}>
-                    <LanguageSwitch
-                      label={header.data.choose_language as string}
-                      locales={locales}
-                    />
-                  </li>
-                )}
-              </Header>
-            </div>
-            {children}
-          </UIContextProvider>
-        </UserProvider>
+        <ApolloWrapper>
+          <UserProvider>
+            <UIContextProvider>
+              <div className="page__header">
+                <Header doc={header}>
+                  {header.data.choose_language && (
+                    <li className={headerStyles.navItem}>
+                      <LanguageSwitch
+                        label={header.data.choose_language as string}
+                        locales={locales}
+                      />
+                    </li>
+                  )}
+                </Header>
+              </div>
+              {children}
+            </UIContextProvider>
+          </UserProvider>
+        </ApolloWrapper>
       </body>
     </html>
   );
