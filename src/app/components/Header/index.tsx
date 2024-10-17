@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, LoadingIndicator, Avatar, Dropdown } from '@components';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import styles from './header.module.scss';
 import { HeaderDocument } from '../../../../prismicio-types';
@@ -13,21 +13,14 @@ interface HeaderI extends PropsWithChildren {
 }
 
 export const Header = ({ doc, children }: HeaderI) => {
-  const pathname = usePathname();
   const params = useParams();
   const { locale } = params;
   const { user } = useUser();
 
-  const {
-    headerDropdownOpen,
-    openAssessmentModal,
-    setHeaderDropdownOpen,
-    setCreateAssessmentModalOpen,
-  } = useUIContext();
+  const { headerDropdownOpen, setHeaderDropdownOpen } = useUIContext();
 
   const openHeaderDropdown = () => {
     setHeaderDropdownOpen(!headerDropdownOpen);
-    setCreateAssessmentModalOpen(false);
   };
 
   if (!doc) return <LoadingIndicator />;
@@ -58,16 +51,6 @@ export const Header = ({ doc, children }: HeaderI) => {
             })}
           {children}
 
-          {pathname == `/${locale}/tool/assessments` && (
-            <li className={styles.navItem}>
-              <Button
-                label={data.new_assessment}
-                size={`small`}
-                onClick={() => openAssessmentModal()}
-              />
-            </li>
-          )}
-
           {user && user.name && (
             <li className={styles.navItem}>
               <Avatar
@@ -81,17 +64,6 @@ export const Header = ({ doc, children }: HeaderI) => {
                   size={`small`}
                 />
               </Dropdown>
-            </li>
-          )}
-
-          {!user && (
-            <li className={styles.navItem}>
-              <Button
-                label={data.log_in}
-                href={`/api/auth/login?lang=${locale}`}
-                color={`black`}
-                size={`small`}
-              />
             </li>
           )}
         </ul>

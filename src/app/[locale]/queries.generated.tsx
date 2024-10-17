@@ -20,6 +20,15 @@ export type GetAssessmentQueryVariables = Types.Exact<{
 
 export type GetAssessmentQuery = { __typename?: 'Query', getAssessment?: { __typename?: 'Assessment', _id: string, user_id: string, title: string, description: string, url_alias: string, date?: any | null, goals?: Array<{ __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null };
 
+export type CreateAssessmentMutationVariables = Types.Exact<{
+  userId: Types.Scalars['ID']['input'];
+  title: Types.Scalars['String']['input'];
+  description: Types.Scalars['String']['input'];
+}>;
+
+
+export type CreateAssessmentMutation = { __typename?: 'Mutation', createAssessment?: { __typename?: 'Assessment', title: string } | null };
+
 export type RemoveAssessmentMutationVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
 }>;
@@ -167,6 +176,41 @@ export type GetAssessmentQueryHookResult = ReturnType<typeof useGetAssessmentQue
 export type GetAssessmentLazyQueryHookResult = ReturnType<typeof useGetAssessmentLazyQuery>;
 export type GetAssessmentSuspenseQueryHookResult = ReturnType<typeof useGetAssessmentSuspenseQuery>;
 export type GetAssessmentQueryResult = Apollo.QueryResult<GetAssessmentQuery, GetAssessmentQueryVariables>;
+export const CreateAssessmentDocument = gql`
+    mutation CreateAssessment($userId: ID!, $title: String!, $description: String!) {
+  createAssessment(user_id: $userId, title: $title, description: $description) {
+    title
+  }
+}
+    `;
+export type CreateAssessmentMutationFn = Apollo.MutationFunction<CreateAssessmentMutation, CreateAssessmentMutationVariables>;
+
+/**
+ * __useCreateAssessmentMutation__
+ *
+ * To run a mutation, you first call `useCreateAssessmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAssessmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAssessmentMutation, { data, loading, error }] = useCreateAssessmentMutation({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      title: // value for 'title'
+ *      description: // value for 'description'
+ *   },
+ * });
+ */
+export function useCreateAssessmentMutation(baseOptions?: Apollo.MutationHookOptions<CreateAssessmentMutation, CreateAssessmentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateAssessmentMutation, CreateAssessmentMutationVariables>(CreateAssessmentDocument, options);
+      }
+export type CreateAssessmentMutationHookResult = ReturnType<typeof useCreateAssessmentMutation>;
+export type CreateAssessmentMutationResult = Apollo.MutationResult<CreateAssessmentMutation>;
+export type CreateAssessmentMutationOptions = Apollo.BaseMutationOptions<CreateAssessmentMutation, CreateAssessmentMutationVariables>;
 export const RemoveAssessmentDocument = gql`
     mutation RemoveAssessment($id: ID!) {
   removeAssessment(_id: $id) {

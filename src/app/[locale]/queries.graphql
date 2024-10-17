@@ -58,6 +58,12 @@ query GetAssessment($userId: ID!, $urlAlias: String!) {
   }
 }
 
+mutation CreateAssessment($userId: ID!, $title: String!, $description: String!) {
+  createAssessment(user_id: $userId, title: $title, description: $description) {
+    title
+  }
+}
+
 mutation RemoveAssessment($id: ID!) {
   removeAssessment(_id: $id) {
     _id

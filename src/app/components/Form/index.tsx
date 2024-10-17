@@ -59,7 +59,7 @@ export const Form: FC<FormI> & FormComponent = ({
 interface TextInputI extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   modifier?: string;
-  onChange?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput = ({
@@ -84,7 +84,7 @@ const TextInput = ({
         id={id}
         name={id}
         defaultValue={defaultValue}
-        onChange={onChange}
+        onChange={onChange && onChange}
         required={required}
         placeholder={placeholder}
         disabled={disabled}
