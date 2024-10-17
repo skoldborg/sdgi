@@ -1,6 +1,0 @@
-{
-  "editor.formatOnSave": true,
-  "yaml.schemas": {
-    "https://www.graphql-code-generator.com/config.schema.json": "file:///Users/pierreskoldborg/dev/chalmers/sdg-iat-next/codegen.yaml"
-  }
-}
