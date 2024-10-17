@@ -1,3 +1,5 @@
+@import '../../../styles/common.scss';
+
 .list {
   max-width: 970px;
   margin: 0 auto;
@@ -13,6 +15,14 @@
         animation-delay: $i * 0.1s;
       }
     }
+  }
+}
+
+.item {
+  margin-bottom: $size-18;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 

@@ -33,7 +33,6 @@ export const CreateAssessmentButton = ({
   });
 
   // Use GraphQL error
-  const error = '';
 
   const { user } = useUser();
 
@@ -41,15 +40,15 @@ export const CreateAssessmentButton = ({
     {
       query: GetUserDocument,
       variables: {
-        userId: user?.user_id,
+        userId: user?.sub,
       },
-      skip: !user?.user_id,
+      skip: !user?.sub,
     },
   ];
 
-  const [updateAssessment] = useCreateAssessmentMutation({
+  const [createAssessment, { error }] = useCreateAssessmentMutation({
     variables: {
-      userId: user?.user_id,
+      userId: user?.sub,
       title: assessmentData.title,
       description: assessmentData.description,
     },
@@ -72,9 +71,9 @@ export const CreateAssessmentButton = ({
             description={content?.create?.description ?? ''}
           >
             <Form
-              onSubmit={updateAssessment}
-              error={error !== '' ? true : false}
-              message={error}
+              onSubmit={createAssessment}
+              error={error?.message && error.message !== '' ? true : false}
+              message={error?.message ?? ''}
             >
               <Form.TextInput
                 id="title"

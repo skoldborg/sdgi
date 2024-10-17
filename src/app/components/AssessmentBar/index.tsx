@@ -61,14 +61,11 @@ const AssessmentBar = ({
     },
   ];
 
-  // Use GraphQL error
-  const error = '';
-
   const [assessmentDescription, setAssessmentDescription] = useState(
     assessment.description,
   );
 
-  const [updateAssessment] = useUpdateAssessmentMutation({
+  const [updateAssessment, { error }] = useUpdateAssessmentMutation({
     variables: {
       userId: user_id,
       urlAlias: url_alias,
@@ -95,8 +92,8 @@ const AssessmentBar = ({
       >
         <Form
           onSubmit={updateAssessment}
-          error={error !== '' ? true : false}
-          message={error}
+          error={error?.message && error.message !== '' ? true : false}
+          message={error?.message ?? ''}
         >
           <Form.TextInput
             id="title"

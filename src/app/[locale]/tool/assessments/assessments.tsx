@@ -79,7 +79,7 @@ export default function Assessments({
       {visibleAssessments && visibleAssessments.length > 0 ? (
         <ul className={styles.list}>
           {visibleAssessments.map((a) => (
-            <li key={a?.title} className={styles.bar}>
+            <li key={a?.title} className={styles.item}>
               <AssessmentBar
                 content={{
                   update: page.update_assessment_modal[0],
