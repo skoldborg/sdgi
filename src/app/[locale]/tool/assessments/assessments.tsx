@@ -2,20 +2,31 @@
 
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useGetUserQuery } from '../../queries.generated';
-import { AssessmentsPageDocument } from '../../../../../prismicio-types';
-import { Assessment } from '../../../../@types/codegen/types';
+import {
+  AssessmentsPageDocument,
+  CommonTranslationsDocument,
+} from '../../../../../prismicio-types';
+import { Assessment } from '@/@types/codegen/types';
 import { useEffect, useState } from 'react';
-import SearchBar from '@/app/components/SearchBar';
+import { SearchBar } from '@/app/components';
+import AssessmentBar from '@/app/components/AssessmentBar';
 
-interface AssessmentsI extends AssessmentsPageDocument {}
+import styles from './assessments.module.scss';
 
-export default function Assessments({ data: page }: AssessmentsI) {
+interface AssessmentsI extends AssessmentsPageDocument {
+  commonTranslations: CommonTranslationsDocument;
+}
+
+export default function Assessments({
+  data: page,
+  commonTranslations,
+}: AssessmentsI) {
   const { user } = useUser();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [visibleAssessments, setVisibleAssessments] = useState<Assessment[]>();
 
-  const { data } = useGetUserQuery({
+  const { data, loading } = useGetUserQuery({
     variables: {
       userId: user?.sub,
     },
@@ -54,22 +65,39 @@ export default function Assessments({ data: page }: AssessmentsI) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
+  const hasAssessments = assessments && assessments.length > 0;
+
   return (
     <div>
-      {assessments && assessments.length > 0 && (
+      {hasAssessments && (
         <SearchBar
           placeholder={page.search_placeholder ?? ''}
           value={searchTerm}
           onChange={(input: string) => setSearchTerm(input)}
         />
       )}
-      <ul>
-        {visibleAssessments && visibleAssessments.length > 0 ? (
-          visibleAssessments.map((a) => <div key={a?.title}>{a?.title}</div>)
-        ) : (
-          <p style={{ textAlign: 'center' }}>{page.no_assessments_message}</p>
-        )}
-      </ul>
+      {visibleAssessments && visibleAssessments.length > 0 ? (
+        <ul className={styles.list}>
+          {visibleAssessments.map((a) => (
+            <li key={a?.title} className={styles.bar}>
+              <AssessmentBar
+                content={{
+                  update: page.update_assessment_modal[0],
+                  create: page.create_assessment_modal[0],
+                }}
+                assessment={a}
+                commonTranslations={commonTranslations}
+              >
+                {a?.title}
+              </AssessmentBar>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p style={{ textAlign: 'center' }}>
+          {!loading && hasAssessments && page.no_assessments_message}
+        </p>
+      )}
     </div>
   );
 }

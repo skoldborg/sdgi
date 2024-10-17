@@ -1,0 +1,147 @@
+@import '../../styles/common.scss';
+
+.assessment-bar {
+  position: relative;
+  display: block;
+  background: $color-white;
+  padding: $size-24;
+  color: $color-dark;
+  margin-bottom: $size-18;
+  text-decoration: none;
+  box-shadow: $box-shadow rgba(0, 0, 0, 0);
+  transform: translateY(0);
+  transition: all 0.2s $transition-timing;
+
+  @include breakpoint($s) {
+    padding: $size-32;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: $box-shadow rgba(0, 0, 0, 0.1);
+  }
+}
+
+.assessmentbar__trash-button,
+.assessmentbar__edit-button {
+  position: absolute;
+  bottom: $size-32;
+  width: $size-24;
+  height: $size-24;
+  transition: opacity 0.2s $transition-timing;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.assessmentbar__trash-button {
+  right: $size-32;
+  background-image: url(img/trashy.svg);
+
+  &:hover {
+    background-image: url(img/trash.svg);
+  }
+}
+
+.assessmentbar__edit-button {
+  right: 60px;
+  background-image: url(img/edit-lined.svg);
+
+  &:hover {
+    background-image: url(img/edit.svg);
+  }
+}
+
+.assessment-bar__overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  font-family: $font-family-header;
+  background: rgba($color-white, 0.9);
+  cursor: default;
+
+  &[aria-hidden='false'] {
+    display: flex;
+  }
+
+  .assessment-bar__overlay-btn-group {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-right: $size-16;
+  }
+}
+
+.assessment-bar__overlay-btn {
+  max-width: 120px;
+  padding: 6px $size-16;
+  margin: $size-4;
+  color: $color-white;
+  background-color: $color-dark;
+  margin-top: $size-50 + 5px;
+
+  &:hover {
+    background-color: lighten($color-black, 20%);
+  }
+
+  &:last-child {
+    background-color: $color-gray;
+    color: $color-black;
+
+    &:hover {
+      background-color: lighten($color-gray, 5%);
+    }
+  }
+}
+
+.assessment-bar__title,
+.assessment-bar__body {
+  margin-top: 0;
+  margin-bottom: $size-16;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.assessment-bar__title {
+  font-size: $size-18;
+  line-height: $size-28;
+  margin-bottom: $size-8;
+
+  @include breakpoint($s) {
+    font-size: $size-24;
+    line-height: $size-32;
+  }
+}
+
+.assessment-bar__body {
+  font-size: $size-16;
+  line-height: $size-24;
+  margin-right: $size-24;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.assessment-bar__goals-counter {
+  position: absolute;
+  top: $size-24;
+  right: $size-24;
+  color: $color-gray-dark;
+
+  @include breakpoint($s) {
+    top: $size-32;
+    right: $size-32;
+  }
+}

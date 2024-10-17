@@ -4,10 +4,7 @@ import './language-switch.scss';
 import { useParams, useRouter } from 'next/navigation';
 import { ChangeEvent } from 'react';
 
-// import { AppContext } from "../../context/AppContext";
-
 export const LanguageSwitch = (props: { label: string; locales: string[] }) => {
-  // const { locale, setLocale, allowedLocales } = React.useContext(AppContext);
   const params = useParams();
   const router = useRouter();
   const { locale } = params;

@@ -1,0 +1,25 @@
+.list {
+  max-width: 970px;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+
+  & > .bar {
+    opacity: 0;
+    animation: fadeIn 0.65s ease forwards;
+
+    @for $i from 1 through 100 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.1s;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+  }
+  100% {
+    opacity: 1;
+  }
+}

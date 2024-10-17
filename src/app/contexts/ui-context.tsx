@@ -1,6 +1,6 @@
 'use client';
 
-import { Assessment } from '@/@types/assessments';
+import { Assessment } from '@/@types/codegen/types';
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 export const defaultLocale = 'en-gb';

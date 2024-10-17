@@ -1,0 +1,112 @@
+@import '../../styles/common.scss';
+
+.modal-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(4px);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+
+  &--visible {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.modal-window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  max-width: 60%;
+  overflow: auto;
+  font-size: $size-16;
+  width: 100%;
+  background-color: $color-white;
+  opacity: 1;
+  z-index: $z-modal;
+
+  @include breakpoint($s) {
+    max-width: 60%;
+    min-height: 0;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  @include breakpoint($xl) {
+    max-width: 40%;
+  }
+
+  @include breakpoint($xxl) {
+    max-width: 30%;
+  }
+
+  .modal-window--small & {
+    max-width: $s;
+  }
+}
+
+.modal__close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  background-color: $color-dark;
+  color: $color-white;
+
+  & > .icon {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+  }
+}
+
+.modal__content {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: $size-40 $size-12;
+  overflow: hidden;
+
+  @include breakpoint($s) {
+    padding: $size-80 0;
+  }
+
+  @include breakpoint($xl) {
+    max-width: 500px;
+  }
+
+  &--full-width {
+    padding: 0;
+    max-width: none;
+  }
+}
+
+.modal__content-header {
+  margin-bottom: $size-40;
+  width: 100%;
+}
+
+.modal__title {
+  text-align: center;
+}
+
+.modal__content--center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

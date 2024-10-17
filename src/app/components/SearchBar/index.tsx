@@ -1,7 +1,7 @@
 import React from 'react';
 import './search-bar.scss';
 
-const SearchBar = ({
+export const SearchBar = ({
   value,
   placeholder,
   onChange,
@@ -29,5 +29,3 @@ const SearchBar = ({
     </div>
   );
 };
-
-export default SearchBar;

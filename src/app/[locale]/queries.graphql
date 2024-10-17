@@ -2,7 +2,96 @@ query GetUser($userId: ID!) {
   getUser(user_id: $userId) {
     user_id
     assessments {
+      _id
+      user_id
       title
+      description
+      url_alias
+      date
+      goals {
+        user_id
+        assessment_id
+        goal_id
+        relevance
+        impact
+        motivation
+        saved
+      }
+      strategy {
+        assessment_id
+        strategy
+        questions {
+          id
+          checked
+        }
+      }
     }
   }
 }
+
+query GetAssessment($userId: ID!, $urlAlias: String!) {
+  getAssessment(user_id: $userId, url_alias: $urlAlias) {
+    _id
+    user_id
+    title
+    description
+    url_alias
+    date
+    goals {
+      _id
+      user_id
+      assessment_id
+      goal_id
+      relevance
+      impact
+      motivation
+      saved
+    }
+    strategy {
+      assessment_id
+      strategy
+      questions {
+        id
+        checked
+      }
+    }
+  }
+}
+
+mutation RemoveAssessment($id: ID!) {
+  removeAssessment(_id: $id) {
+    _id
+    user_id
+    title
+    description
+    url_alias
+    date
+    goals {
+      _id
+      user_id
+      assessment_id
+      goal_id
+      relevance
+      impact
+      motivation
+      saved
+    }
+    strategy {
+      _id
+      assessment_id
+      questions {
+        id
+        checked
+      }
+      strategy
+    }
+  }
+}
+
+mutation UpdateAssessment($userId: ID!, $urlAlias: String!, $title: String!, $description: String!) {
+  updateAssessment(user_id: $userId, url_alias: $urlAlias, title: $title, description: $description) {
+    title
+    description
+  }
+}
+
