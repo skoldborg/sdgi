@@ -1,0 +1,115 @@
+@import "../../styles/common.scss";
+
+.section {
+	position: relative;
+	padding-bottom: $size-24;
+
+	.section__preamble > p {
+		margin-bottom: $size-64;
+	}
+
+	@include breakpoint($s) {
+		padding-bottom: $size-110;
+	}
+
+	&--white,
+	&--gray-light {
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: -$size-40;
+			left: 0;
+			right: 0;
+			height: 100%;
+			width: 8000px;
+			margin-left: -2000px;
+			margin-right: -2000px;
+			background-color: $color-white;
+			z-index: 0;
+
+			@include breakpoint($s) {
+				padding-bottom: 85px;
+				top: -85px;
+			}
+		}
+
+		& > * {
+			position: relative;
+			z-index: 1;
+		}
+	}
+
+	&--white {
+		&:after {
+			background-color: $color-white;
+		}
+	}
+
+	&--gray-light {
+		&:after {
+			background-color: $color-gray-light;
+		}
+	}
+}
+
+.section__inner {
+	max-width: 770px;
+	margin: 0 auto;
+}
+
+.section__title,
+.section__preamble > p {
+	margin: 0 0 $size-24;
+
+	a {
+		color: $color-black;
+		text-decoration: underline;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+.section__title {
+	text-transform: uppercase;
+
+	&--centered {
+		text-align: center;
+	}
+
+	&--lowercase {
+		text-transform: none;
+	}
+}
+
+.section__title {
+	margin-bottom: $size-24;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	@include breakpoint($s) {
+		margin-bottom: $size-50;
+	}
+}
+
+.section__preamble > p {
+	font-size: $size-22;
+	line-height: $size-28;
+	max-width: 680px;
+}
+
+.section__description {
+	font-size: $size-18;
+	line-height: $size-28;
+	margin: 0;
+	margin-bottom: $size-18;
+	max-width: 770px;
+
+	@include breakpoint($s) {
+		margin-bottom: $size-40;
+	}
+}

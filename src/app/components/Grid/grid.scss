@@ -1,0 +1,65 @@
+@import '../../styles/common.scss';
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -0.5em;
+
+    @supports (display: grid) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        grid-gap: 1em;
+        margin: 0;
+
+        &--cols-2 {
+            grid-template-columns: repeat(auto-fill, minmax(calc(100% - 1em), 1fr));
+
+            @include breakpoint($m) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(50% - 1em), 1fr));
+            }
+        }
+    }
+}
+
+.grid__item {
+    padding: 0 0.5em 1em;
+    width: 50%;
+    opacity: 0;
+    animation: fadeIn 0.65s ease forwards;
+
+    .grid--cols-2 & {
+        width: 100%;
+    }
+
+    @include breakpoint($s) {
+        width: 33.333%;
+
+        .grid--cols-2 & {
+            width: 50%;
+        }
+    }
+
+    @include breakpoint($m) {
+        width: 20%;
+    }
+
+    @supports (display: grid) {
+        width: 100%;
+        padding: 0;
+
+        .grid--cols-2 & {
+            width: 100%;
+        }
+    }
+
+    @for $i from 1 through 18 {
+        &:nth-child(#{$i}) {
+            animation-delay: $i * 0.05s;
+        }
+    }
+
+    @keyframes fadeIn {
+	    0% { }
+	    100% { opacity: 1; }
+    }
+}
