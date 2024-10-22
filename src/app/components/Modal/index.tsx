@@ -3,6 +3,7 @@
 import {
   FC,
   PropsWithChildren,
+  ReactNode,
   createContext,
   useContext,
   useEffect,
@@ -86,7 +87,7 @@ export interface ModalWindowProps extends PropsWithChildren {
   contentModifier?: string;
   centered?: boolean;
   title?: string;
-  description?: string;
+  description?: string | ReactNode;
 }
 
 const ModalWindow = ({

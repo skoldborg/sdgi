@@ -19,10 +19,6 @@
     background-color: lighten($color-black, 25%);
   }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
   &:before {
     content: ' ';
     display: block;

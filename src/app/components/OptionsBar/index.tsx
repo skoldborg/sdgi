@@ -16,13 +16,13 @@ export const OptionsBar = ({
   options,
   otherOption,
 }: {
-  initialState: number;
+  initialState?: number;
   onChangeHandler: (val: number) => void;
   options: Option[];
   otherOption: Option;
 }) => {
   const [currentOptionValue, setCurrentOptionValue] = useState(
-    initialState ?? undefined,
+    initialState ?? null,
   );
 
   const setOption = (val: number) => {

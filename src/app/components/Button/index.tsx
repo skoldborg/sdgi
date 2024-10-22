@@ -10,10 +10,13 @@ interface ButtonProps {
   size?: string;
   href?: string;
   link?: string;
-  onClick?: () => void;
+  onClick?:
+    | React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
+    | undefined;
   opacity?: number;
   icon?: string;
   position?: 'center';
+  className?: string;
   disabled?: boolean;
 }
 
@@ -28,6 +31,7 @@ export const Button = (props: ButtonProps) => {
     opacity,
     icon,
     position,
+    className,
     disabled,
   } = props;
   const classNames = cx(
@@ -36,6 +40,7 @@ export const Button = (props: ButtonProps) => {
     size && 'button--' + size,
     icon && 'button--with-icon',
     position && 'button--' + position,
+    className && className,
   );
 
   if (href) {
@@ -48,7 +53,12 @@ export const Button = (props: ButtonProps) => {
 
   if (link) {
     return (
-      <Link href={link ?? '#'} className={classNames} data-opacity={opacity}>
+      <Link
+        href={link ?? '#'}
+        className={classNames}
+        data-opacity={opacity}
+        onClick={onClick && onClick}
+      >
         <span className={`button__inner`}>{label}</span>
       </Link>
     );

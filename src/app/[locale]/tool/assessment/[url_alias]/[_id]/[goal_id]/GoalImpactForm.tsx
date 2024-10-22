@@ -106,7 +106,7 @@ export const GoalImpactForm = ({
           {page.impact_title ?? 'How does your case impact SDG'} {goalId}?
         </h2>
 
-        {page.impact_options && impact !== undefined && (
+        {page.impact_options && (
           <OptionsBar
             options={impactOptions.slice(0, 5)}
             otherOption={impactOptions[5]}

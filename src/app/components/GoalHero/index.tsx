@@ -14,8 +14,8 @@ export const GoalHero = ({
   title: string;
   description: string;
   goal_id: string;
-  assessmentGoalsUrl: string;
-  backBtnLabel: string;
+  assessmentGoalsUrl?: string;
+  backBtnLabel?: string;
   size?: string;
 }) => {
   const titles = title.split('--').map((item, idx) => {
@@ -36,12 +36,14 @@ export const GoalHero = ({
   return (
     <div className={classNames}>
       <div className={`goalhero__inner goalhero__inner--top`}>
-        <Button
-          link={assessmentGoalsUrl}
-          label={backBtnLabel ?? 'Back'}
-          color={`black`}
-          opacity={0.7}
-        />
+        {backBtnLabel && assessmentGoalsUrl && (
+          <Button
+            link={assessmentGoalsUrl}
+            label={backBtnLabel}
+            color={`black`}
+            opacity={0.7}
+          />
+        )}
       </div>
       <div className={`goalhero__inner`}>
         <div className={`goalhero__content`}>
