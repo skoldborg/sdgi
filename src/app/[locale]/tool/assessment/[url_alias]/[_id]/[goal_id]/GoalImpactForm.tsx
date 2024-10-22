@@ -71,7 +71,7 @@ export const GoalImpactForm = ({
     },
   ];
 
-  const [updateGoal, { data: updateGoalData, error }] = useUpdateGoalMutation({
+  const [updateGoal, { data: updateGoalData }] = useUpdateGoalMutation({
     variables: {
       id: assessmentId,
       input: {
@@ -80,15 +80,24 @@ export const GoalImpactForm = ({
         saved: true,
       },
     },
+    onError: () => {
+      setHasSubmitError(true);
+    },
     onCompleted: () => {
-      router.back();
+      setHasSubmitError(false), router.back();
     },
     awaitRefetchQueries: false,
     refetchQueries,
   });
-  const errorMsg =
+
+  const errorMsgSaveAssessment =
     commonTranslations?.data.error_messages[0]?.save_assessment ??
     'Error when saving assessment';
+  const errorMsgEmptyFields =
+    commonTranslations?.data.error_messages[0]?.impact_validation ?? '';
+
+  const [hasSubmitError, setHasSubmitError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(errorMsgSaveAssessment);
 
   return (
     <>
@@ -114,10 +123,18 @@ export const GoalImpactForm = ({
             {page.motivation_field_title ?? 'Motivate why'}
           </h2>
           <Form
-            success={!error && !!updateGoalData?.updateGoal}
-            error={!!error}
-            message={!!error ? errorMsg : ''}
-            onSubmit={updateGoal}
+            success={!hasSubmitError && !!updateGoalData?.updateGoal}
+            error={hasSubmitError}
+            message={hasSubmitError ? errorMsg : ''}
+            onSubmit={() => {
+              if (typeof impact !== 'number' || motivation === '') {
+                setErrorMsg(errorMsgEmptyFields);
+                setHasSubmitError(true);
+              } else {
+                setHasSubmitError(false);
+                updateGoal();
+              }
+            }}
             modifier={`centered`}
           >
             <Form.TextArea
