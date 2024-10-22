@@ -41,6 +41,7 @@ export const Header = ({ doc, children }: HeaderI) => {
                   className={`${styles.navItem} ${styles.hiddenS}`}
                 >
                   <Button
+                    className="h-margin-bottom-0"
                     label={internalLink.label}
                     href={`/${locale}/articles/${internalLink.link}`}
                     color={`white`}
@@ -60,6 +61,7 @@ export const Header = ({ doc, children }: HeaderI) => {
               <Dropdown show={headerDropdownOpen} key={1}>
                 <Button
                   href={`/api/auth/logout`}
+                  className="h-margin-bottom-0"
                   label={data.log_out}
                   size={`small`}
                 />
