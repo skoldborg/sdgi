@@ -13,6 +13,8 @@ export * from './LanguageSwitch';
 export * from './LinedHeader';
 export * from './LoadingIndicator';
 export * from './Modal';
+export * from './Option';
+export * from './OptionsBar';
 export * from './SearchBar';
 export * from './Section';
 export * from './TargetBar';

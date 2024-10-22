@@ -58,6 +58,19 @@ query GetAssessment($userId: ID!, $urlAlias: String!) {
   }
 }
 
+query GetAssessmentGoal($id: ID!) {
+  getAssessmentGoal(_id: $id) {
+    _id
+    user_id
+    assessment_id
+    goal_id
+    relevance
+    impact
+    motivation
+    saved
+  }
+}
+
 mutation CreateAssessment($userId: ID!, $title: String!, $description: String!) {
   createAssessment(user_id: $userId, title: $title, description: $description) {
     title

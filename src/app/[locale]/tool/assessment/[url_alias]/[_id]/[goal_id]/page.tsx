@@ -2,6 +2,7 @@ import { GoalHero, Grid, TargetBar } from '@/app/components';
 import Section from '@/app/components/Section';
 import { createClient } from '@/prismicio';
 import { PrismicRichText } from '@prismicio/react';
+import { GoalImpactForm } from './GoalImpactForm';
 
 const GoalPage = async ({
   params,
@@ -10,6 +11,7 @@ const GoalPage = async ({
 }) => {
   const client = createClient();
   const goalsDoc = await client.getSingle('goals');
+  const goalPageDoc = await client.getSingle('goal_page');
   const commonTranslations = await client.getSingle('common_translations');
 
   // Extract content for current goal
@@ -60,6 +62,12 @@ const GoalPage = async ({
 
             {targetComponents && <Grid cols={2} items={targetComponents} />}
           </div>
+
+          <GoalImpactForm
+            goalId={goal_id}
+            assessmentId={params._id}
+            {...goalPageDoc}
+          />
         </div>
       </div>
     </>

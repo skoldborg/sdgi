@@ -20,6 +20,13 @@ export type GetAssessmentQueryVariables = Types.Exact<{
 
 export type GetAssessmentQuery = { __typename?: 'Query', getAssessment?: { __typename?: 'Assessment', _id: string, user_id: string, title: string, description: string, url_alias: string, date?: any | null, goals?: Array<{ __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null };
 
+export type GetAssessmentGoalQueryVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+}>;
+
+
+export type GetAssessmentGoalQuery = { __typename?: 'Query', getAssessmentGoal?: { __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null };
+
 export type CreateAssessmentMutationVariables = Types.Exact<{
   userId: Types.Scalars['ID']['input'];
   title: Types.Scalars['String']['input'];
@@ -176,6 +183,53 @@ export type GetAssessmentQueryHookResult = ReturnType<typeof useGetAssessmentQue
 export type GetAssessmentLazyQueryHookResult = ReturnType<typeof useGetAssessmentLazyQuery>;
 export type GetAssessmentSuspenseQueryHookResult = ReturnType<typeof useGetAssessmentSuspenseQuery>;
 export type GetAssessmentQueryResult = Apollo.QueryResult<GetAssessmentQuery, GetAssessmentQueryVariables>;
+export const GetAssessmentGoalDocument = gql`
+    query GetAssessmentGoal($id: ID!) {
+  getAssessmentGoal(_id: $id) {
+    _id
+    user_id
+    assessment_id
+    goal_id
+    relevance
+    impact
+    motivation
+    saved
+  }
+}
+    `;
+
+/**
+ * __useGetAssessmentGoalQuery__
+ *
+ * To run a query within a React component, call `useGetAssessmentGoalQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAssessmentGoalQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAssessmentGoalQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAssessmentGoalQuery(baseOptions: Apollo.QueryHookOptions<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables> & ({ variables: GetAssessmentGoalQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables>(GetAssessmentGoalDocument, options);
+      }
+export function useGetAssessmentGoalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables>(GetAssessmentGoalDocument, options);
+        }
+export function useGetAssessmentGoalSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables>(GetAssessmentGoalDocument, options);
+        }
+export type GetAssessmentGoalQueryHookResult = ReturnType<typeof useGetAssessmentGoalQuery>;
+export type GetAssessmentGoalLazyQueryHookResult = ReturnType<typeof useGetAssessmentGoalLazyQuery>;
+export type GetAssessmentGoalSuspenseQueryHookResult = ReturnType<typeof useGetAssessmentGoalSuspenseQuery>;
+export type GetAssessmentGoalQueryResult = Apollo.QueryResult<GetAssessmentGoalQuery, GetAssessmentGoalQueryVariables>;
 export const CreateAssessmentDocument = gql`
     mutation CreateAssessment($userId: ID!, $title: String!, $description: String!) {
   createAssessment(user_id: $userId, title: $title, description: $description) {
