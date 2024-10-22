@@ -33,7 +33,10 @@ export const OptionsBar = ({
 
   const renderOption = (option: Option, type?: 'as-card' | 'locked') => {
     const selected =
-      currentOptionValue && currentOptionValue === option.value ? true : false;
+      typeof currentOptionValue === 'number' &&
+      currentOptionValue === option.value
+        ? true
+        : false;
 
     return (
       <div className="options-bar__option" key={option.value}>

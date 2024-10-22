@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@components": ["./src/app/components"]
+      "@components": ["./src/app/components"],
+      "@prismicio-types": ["./prismicio-types.d.ts"]
     }
   },
   "include": [

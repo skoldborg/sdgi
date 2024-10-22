@@ -66,6 +66,7 @@ const GoalPage = async ({
           <GoalImpactForm
             goalId={goal_id}
             assessmentId={params._id}
+            commonTranslations={commonTranslations}
             {...goalPageDoc}
           />
         </div>

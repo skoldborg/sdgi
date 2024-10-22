@@ -53,6 +53,14 @@ export type UpdateAssessmentMutationVariables = Types.Exact<{
 
 export type UpdateAssessmentMutation = { __typename?: 'Mutation', updateAssessment?: { __typename?: 'Assessment', title: string, description: string } | null };
 
+export type UpdateGoalMutationVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+  input: Types.GoalInput;
+}>;
+
+
+export type UpdateGoalMutation = { __typename?: 'Mutation', updateGoal?: { __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null };
+
 
 export const GetUserDocument = gql`
     query GetUser($userId: ID!) {
@@ -364,3 +372,44 @@ export function useUpdateAssessmentMutation(baseOptions?: Apollo.MutationHookOpt
 export type UpdateAssessmentMutationHookResult = ReturnType<typeof useUpdateAssessmentMutation>;
 export type UpdateAssessmentMutationResult = Apollo.MutationResult<UpdateAssessmentMutation>;
 export type UpdateAssessmentMutationOptions = Apollo.BaseMutationOptions<UpdateAssessmentMutation, UpdateAssessmentMutationVariables>;
+export const UpdateGoalDocument = gql`
+    mutation UpdateGoal($id: ID!, $input: GoalInput!) {
+  updateGoal(_id: $id, input: $input) {
+    _id
+    user_id
+    assessment_id
+    goal_id
+    relevance
+    impact
+    motivation
+    saved
+  }
+}
+    `;
+export type UpdateGoalMutationFn = Apollo.MutationFunction<UpdateGoalMutation, UpdateGoalMutationVariables>;
+
+/**
+ * __useUpdateGoalMutation__
+ *
+ * To run a mutation, you first call `useUpdateGoalMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateGoalMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateGoalMutation, { data, loading, error }] = useUpdateGoalMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateGoalMutation(baseOptions?: Apollo.MutationHookOptions<UpdateGoalMutation, UpdateGoalMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateGoalMutation, UpdateGoalMutationVariables>(UpdateGoalDocument, options);
+      }
+export type UpdateGoalMutationHookResult = ReturnType<typeof useUpdateGoalMutation>;
+export type UpdateGoalMutationResult = Apollo.MutationResult<UpdateGoalMutation>;
+export type UpdateGoalMutationOptions = Apollo.BaseMutationOptions<UpdateGoalMutation, UpdateGoalMutationVariables>;

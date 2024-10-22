@@ -114,3 +114,16 @@ mutation UpdateAssessment($userId: ID!, $urlAlias: String!, $title: String!, $de
   }
 }
 
+mutation UpdateGoal($id: ID!, $input: GoalInput!) {
+  updateGoal(_id: $id, input: $input) {
+    _id
+    user_id
+    assessment_id
+    goal_id
+    relevance
+    impact
+    motivation
+    saved
+  }
+}
+

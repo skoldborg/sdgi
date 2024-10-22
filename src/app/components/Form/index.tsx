@@ -10,6 +10,7 @@ import {
 import cx from 'classnames';
 
 import './form.scss';
+import classNames from 'classnames';
 
 interface FormI extends PropsWithChildren {
   message: string;
@@ -96,6 +97,7 @@ const TextInput = ({
 
 interface TextAreaI extends InputHTMLAttributes<HTMLTextAreaElement> {
   label: string;
+  hiddenLabel?: boolean;
   modifier?: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
@@ -103,6 +105,7 @@ interface TextAreaI extends InputHTMLAttributes<HTMLTextAreaElement> {
 const TextArea = ({
   id,
   label,
+  hiddenLabel = false,
   required,
   maxLength,
   placeholder,
@@ -112,7 +115,13 @@ const TextArea = ({
 }: TextAreaI) => {
   return (
     <div className="form__field">
-      <label htmlFor={id} className={`form__label form__label--textarea`}>
+      <label
+        htmlFor={id}
+        className={classNames(
+          `form__label form__label--textarea`,
+          hiddenLabel && 'form__label--hidden',
+        )}
+      >
         {label}
       </label>
       <textarea

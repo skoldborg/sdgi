@@ -1,20 +1,29 @@
 'use client';
 
-import { useGetAssessmentGoalQuery } from '@/app/[locale]/queries.generated';
-import { GoalPageDocument } from '../../../../../../../../prismicio-types';
-import { OptionsBar } from '@/app/components';
-import { useState } from 'react';
+import {
+  GetAssessmentGoalDocument,
+  useGetAssessmentGoalQuery,
+  useUpdateGoalMutation,
+} from '@/app/[locale]/queries.generated';
+import { Form, OptionsBar } from '@/app/components';
+import { useEffect, useState } from 'react';
+import { CommonTranslationsDocument, GoalPageDocument } from '@prismicio-types';
+import { useRouter } from 'next/navigation';
 
 interface GoalImpactFormI extends GoalPageDocument {
   assessmentId: string;
   goalId: string;
+  commonTranslations: CommonTranslationsDocument;
 }
 
 export const GoalImpactForm = ({
   data: page,
   assessmentId,
   goalId,
+  commonTranslations,
 }: GoalImpactFormI) => {
+  const router = useRouter();
+
   const { data } = useGetAssessmentGoalQuery({
     variables: {
       id: assessmentId,
@@ -22,7 +31,8 @@ export const GoalImpactForm = ({
     skip: !assessmentId,
   });
 
-  const [impact, setImpact] = useState(data?.getAssessmentGoal?.impact);
+  const [impact, setImpact] = useState<undefined | number>();
+  const [motivation, setMotivation] = useState<undefined | string>();
 
   const impactOptions = page.impact_options.reduce(
     (acc, o) => {
@@ -40,14 +50,54 @@ export const GoalImpactForm = ({
     }[],
   );
 
+  useEffect(() => {
+    if (data?.getAssessmentGoal) {
+      if (typeof data?.getAssessmentGoal?.impact === 'number') {
+        setImpact(data?.getAssessmentGoal?.impact);
+      }
+
+      if (data?.getAssessmentGoal.motivation)
+        setMotivation(data?.getAssessmentGoal.motivation);
+    }
+  }, [data?.getAssessmentGoal]);
+
+  const refetchQueries = [
+    {
+      query: GetAssessmentGoalDocument,
+      variables: {
+        id: assessmentId,
+      },
+      skip: !assessmentId,
+    },
+  ];
+
+  const [updateGoal, { data: updateGoalData, error }] = useUpdateGoalMutation({
+    variables: {
+      id: assessmentId,
+      input: {
+        impact,
+        motivation,
+        saved: true,
+      },
+    },
+    onCompleted: () => {
+      router.back();
+    },
+    awaitRefetchQueries: false,
+    refetchQueries,
+  });
+  const errorMsg =
+    commonTranslations?.data.error_messages[0]?.save_assessment ??
+    'Error when saving assessment';
+
   return (
     <>
       <div className="section">
         <h2 className="section__title section__title--centered section__title--lowercase">
-          {page.impact_title ?? 'How'} {goalId}?
+          {page.impact_title ?? 'How does your case impact SDG'} {goalId}?
         </h2>
 
-        {page.impact_options && impact && (
+        {page.impact_options && impact !== undefined && (
           <OptionsBar
             options={impactOptions.slice(0, 5)}
             otherOption={impactOptions[5]}
@@ -58,38 +108,36 @@ export const GoalImpactForm = ({
           />
         )}
       </div>
-      {/* <div className="section">
-				<div className="section__inner">
-					<h2 className="section__title section__title--centered section__title--lowercase">
-						{page.motivation_field_title ?? "Motivate why"}
-					</h2>
-					<Form
-						initialState={props.goal}
-						fields={[
-							{
-								type: "textarea",
-								value: motivation,
-								required: true,
-								id: "motivation",
-								placeholder:
-									page.motivation_field_placeholder ??
-									"Max 3 000 characters",
-								maxlength: 3000,
-							},
-						]}
-						success={!updateGoalFailed}
-						error={updateGoalFailed}
-						message={updateGoalMsg}
-						submit={{
-							label:
-								page.save_impact_assessment_label ??
-								"Save assessment",
-							handler: (e, formState) => updateGoal(e, formState),
-						}}
-						modifier={`centered`}
-					/>
-				</div>
-      </div> */}
+      <div className="section">
+        <div className="section__inner">
+          <h2 className="section__title section__title--centered section__title--lowercase">
+            {page.motivation_field_title ?? 'Motivate why'}
+          </h2>
+          <Form
+            success={!error && !!updateGoalData?.updateGoal}
+            error={!!error}
+            message={!!error ? errorMsg : ''}
+            onSubmit={updateGoal}
+            modifier={`centered`}
+          >
+            <Form.TextArea
+              id="motivation"
+              label={page.motivation_field_title ?? 'Motivate why'}
+              hiddenLabel
+              placeholder={
+                page.motivation_field_placeholder ?? 'Max 3 000 characters'
+              }
+              defaultValue={motivation}
+              onChange={(e) => setMotivation(e.target.value)}
+              maxLength={3000}
+              required
+            />
+            <Form.Submit
+              label={page.save_impact_assessment_label ?? 'Save assessment'}
+            />
+          </Form>
+        </div>
+      </div>
     </>
   );
 };
