@@ -3,10 +3,7 @@
 import { useGetAssessmentQuery } from '@/app/[locale]/queries.generated';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useParams, useRouter } from 'next/navigation';
-import {
-  AssessmentGoalsPageDocument,
-  GoalsDocument,
-} from '../../../../../../prismicio-types';
+import { AssessmentGoalsPageDocument, GoalsDocument } from '@prismicio-types';
 import { Button, Grid } from '@/app/components';
 import { PrismicRichText } from '@prismicio/react';
 import { useEffect, useState } from 'react';

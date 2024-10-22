@@ -9,7 +9,7 @@ import {
   Simplify,
   AssessmentsPageDocumentDataUpdateAssessmentModalItem,
   AssessmentsPageDocumentDataCreateAssessmentModalItem,
-} from '../../../../prismicio-types';
+} from '@prismicio-types';
 import {
   GetUserDocument,
   useRemoveAssessmentMutation,

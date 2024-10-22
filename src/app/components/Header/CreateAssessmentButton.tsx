@@ -10,7 +10,7 @@ import { useState } from 'react';
 import {
   AssessmentsPageDocumentDataCreateAssessmentModalItem,
   Simplify,
-} from '../../../../prismicio-types';
+} from '@prismicio-types';
 
 interface CreateAssessmentButtonI {
   label: string;

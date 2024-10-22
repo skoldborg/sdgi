@@ -2,7 +2,7 @@ import React from 'react';
 import './hero.scss';
 
 import { PrismicRichText } from '@prismicio/react';
-import { StartpageDocument } from '../../../../prismicio-types';
+import { StartpageDocument } from '@prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
 
 import { Button } from '@components';

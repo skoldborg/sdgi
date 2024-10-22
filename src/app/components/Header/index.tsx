@@ -4,7 +4,7 @@ import { Button, LoadingIndicator, Avatar, Dropdown } from '@components';
 import { useParams } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import styles from './header.module.scss';
-import { HeaderDocument } from '../../../../prismicio-types';
+import { HeaderDocument } from '@prismicio-types';
 import { PropsWithChildren } from 'react';
 import { useUIContext } from '@/app/contexts/ui-context';
 

@@ -5,7 +5,7 @@ import { GroupField } from '@prismicio/client';
 import {
   AssessmentGoalsPageDocumentDataGoalPrioritiesItem,
   Simplify,
-} from '../../../../prismicio-types';
+} from '@prismicio-types';
 
 const GridSorted = ({
   items,

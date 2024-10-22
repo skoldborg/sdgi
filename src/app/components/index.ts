@@ -1,7 +1,6 @@
 export * from './AssessmentBar';
 export * from './Avatar';
 export * from './Button';
-export * from './CreateAssessmentForm';
 export * from './Dropdown';
 export * from './Form';
 export * from './GoalCard';

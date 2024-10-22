@@ -5,7 +5,7 @@ import { useGetUserQuery } from '../../queries.generated';
 import {
   AssessmentsPageDocument,
   CommonTranslationsDocument,
-} from '../../../../../prismicio-types';
+} from '@prismicio-types';
 import { Assessment } from '@/@types/codegen/types';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '@/app/components';
