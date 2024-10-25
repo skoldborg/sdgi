@@ -84,7 +84,7 @@ export interface ModalWindowProps extends PropsWithChildren {
   id: string;
   size?: 'small' | 'large';
   preventClose?: boolean;
-  contentModifier?: string;
+  contentModifier?: 'full-width';
   centered?: boolean;
   title?: string;
   description?: string | ReactNode;

@@ -12,7 +12,6 @@ export default async function AssessementsPage({}: {
   const locales = api.languages.map((l) => l.id);
   const header = await client.getSingle('header');
   const page = await client.getSingle('assessments_page');
-  const commonTranslations = await client.getSingle('common_translations');
 
   return (
     <>
@@ -37,7 +36,7 @@ export default async function AssessementsPage({}: {
         </Header>
       </div>
       <div className="page__content">
-        <Assessments {...page} commonTranslations={commonTranslations} />
+        <Assessments {...page} />
       </div>
       ;
     </>

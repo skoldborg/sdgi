@@ -43,7 +43,7 @@ const GoalPage = async ({
       <GoalHero
         title={goalContent.primary.title ?? ''}
         description={goalContent.primary.description ?? ''}
-        goal_id={goal_id}
+        goal_id={Number(goal_id)}
         backBtnLabel={
           commonTranslations.data.button_labels[0]?.back_to_assessment_board ??
           'Back'
@@ -66,7 +66,6 @@ const GoalPage = async ({
           <GoalImpactForm
             goalId={goal_id}
             assessmentId={params._id}
-            commonTranslations={commonTranslations}
             {...goalPageDoc}
           />
         </div>

@@ -1,0 +1,56 @@
+@import '../../styles/common.scss';
+
+$box-shadow-box: 0px 0px 5px 0px;
+$box-shadow-box-hover: 0px 2px 4px 0px;
+$goalColors: $color-goal-1 $color-goal-2 $color-goal-3 $color-goal-4
+  $color-goal-5 $color-goal-6 $color-goal-7 $color-goal-8 $color-goal-9
+  $color-goal-10 $color-goal-11 $color-goal-12 $color-goal-13 $color-goal-14
+  $color-goal-15 $color-goal-16 $color-goal-17;
+
+.box {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border: 2px solid currentColor;
+  background-color: inherit;
+  transform: scale(1);
+  transition: transform 0.2s $transition-timing;
+
+  &--with-content {
+    box-shadow: $box-shadow-box rgba(0, 0, 0, 0.4);
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: $box-shadow-box-hover rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.box__content {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font-family-header;
+  font-weight: $font-weight-bold;
+  font-size: $size-20;
+  color: $color-white;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  pointer-events: none;
+
+  @for $i from 1 through 17 {
+    &--goal-#{$i} {
+      background-color: nth($goalColors, $i);
+    }
+  }
+
+  span {
+    margin-top: -2px;
+  }
+}

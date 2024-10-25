@@ -12,9 +12,9 @@ export const Option = ({
   size,
 }: {
   label: string;
-  value: number;
-  clickHandler: () => void;
-  selected: boolean;
+  value?: number;
+  clickHandler?: () => void;
+  selected?: boolean;
   type?: 'locked' | 'as-card';
   size?: 'small' | 'large';
 }) => {
@@ -29,7 +29,7 @@ export const Option = ({
     <button
       className={`${classNames}`}
       data-value={value}
-      onClick={clickHandler}
+      onClick={clickHandler && clickHandler}
     >
       {label}
 

@@ -1,6 +1,5 @@
 import './targetbar.scss';
 import cx from 'classnames';
-import Image from 'next/image';
 
 export const TargetBar = ({
   title,
@@ -12,19 +11,15 @@ export const TargetBar = ({
   description: string;
   imageUrl: string;
   size?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }) => {
   const classNames = cx('target-bar', size && 'target-bar--' + size);
 
   return (
     <div className={classNames}>
       <figure className={`target-bar__icon`}>
-        <Image
-          src={imageUrl}
-          alt=""
-          className={`target-bar__icon-image`}
-          width="100"
-          height="155"
-        />
+        <img src={imageUrl} alt="" className={`target-bar__icon-image`} />
       </figure>
       <div className={`target-bar__content`}>
         <h3 className={`target-bar__title`}>{title}</h3>

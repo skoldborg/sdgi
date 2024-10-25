@@ -61,6 +61,15 @@ export type UpdateGoalMutationVariables = Types.Exact<{
 
 export type UpdateGoalMutation = { __typename?: 'Mutation', updateGoal?: { __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null };
 
+export type AddOrUpdateAssessmentStrategyMutationVariables = Types.Exact<{
+  assessmentId: Types.Scalars['ID']['input'];
+  strategy: Types.Scalars['String']['input'];
+  questions?: Types.InputMaybe<Array<Types.QuestionInput> | Types.QuestionInput>;
+}>;
+
+
+export type AddOrUpdateAssessmentStrategyMutation = { __typename?: 'Mutation', addOrUpdateAssessmentStrategy?: { __typename?: 'AssessmentStrategy', _id: string, assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null };
+
 
 export const GetUserDocument = gql`
     query GetUser($userId: ID!) {
@@ -413,3 +422,48 @@ export function useUpdateGoalMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateGoalMutationHookResult = ReturnType<typeof useUpdateGoalMutation>;
 export type UpdateGoalMutationResult = Apollo.MutationResult<UpdateGoalMutation>;
 export type UpdateGoalMutationOptions = Apollo.BaseMutationOptions<UpdateGoalMutation, UpdateGoalMutationVariables>;
+export const AddOrUpdateAssessmentStrategyDocument = gql`
+    mutation AddOrUpdateAssessmentStrategy($assessmentId: ID!, $strategy: String!, $questions: [QuestionInput!]) {
+  addOrUpdateAssessmentStrategy(
+    assessment_id: $assessmentId
+    strategy: $strategy
+    questions: $questions
+  ) {
+    _id
+    assessment_id
+    questions {
+      id
+      checked
+    }
+    strategy
+  }
+}
+    `;
+export type AddOrUpdateAssessmentStrategyMutationFn = Apollo.MutationFunction<AddOrUpdateAssessmentStrategyMutation, AddOrUpdateAssessmentStrategyMutationVariables>;
+
+/**
+ * __useAddOrUpdateAssessmentStrategyMutation__
+ *
+ * To run a mutation, you first call `useAddOrUpdateAssessmentStrategyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddOrUpdateAssessmentStrategyMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addOrUpdateAssessmentStrategyMutation, { data, loading, error }] = useAddOrUpdateAssessmentStrategyMutation({
+ *   variables: {
+ *      assessmentId: // value for 'assessmentId'
+ *      strategy: // value for 'strategy'
+ *      questions: // value for 'questions'
+ *   },
+ * });
+ */
+export function useAddOrUpdateAssessmentStrategyMutation(baseOptions?: Apollo.MutationHookOptions<AddOrUpdateAssessmentStrategyMutation, AddOrUpdateAssessmentStrategyMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddOrUpdateAssessmentStrategyMutation, AddOrUpdateAssessmentStrategyMutationVariables>(AddOrUpdateAssessmentStrategyDocument, options);
+      }
+export type AddOrUpdateAssessmentStrategyMutationHookResult = ReturnType<typeof useAddOrUpdateAssessmentStrategyMutation>;
+export type AddOrUpdateAssessmentStrategyMutationResult = Apollo.MutationResult<AddOrUpdateAssessmentStrategyMutation>;
+export type AddOrUpdateAssessmentStrategyMutationOptions = Apollo.BaseMutationOptions<AddOrUpdateAssessmentStrategyMutation, AddOrUpdateAssessmentStrategyMutationVariables>;

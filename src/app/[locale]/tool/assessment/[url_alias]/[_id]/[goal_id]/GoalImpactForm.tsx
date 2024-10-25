@@ -7,22 +7,23 @@ import {
 } from '@/app/[locale]/queries.generated';
 import { Form, OptionsBar } from '@/app/components';
 import { useEffect, useState } from 'react';
-import { CommonTranslationsDocument, GoalPageDocument } from '@prismicio-types';
+import { GoalPageDocument } from '@prismicio-types';
 import { useRouter } from 'next/navigation';
+import { useContentContext } from '@/app/contexts/content-context';
 
 interface GoalImpactFormI extends GoalPageDocument {
   assessmentId: string;
   goalId: string;
-  commonTranslations: CommonTranslationsDocument;
 }
 
 export const GoalImpactForm = ({
   data: page,
   assessmentId,
   goalId,
-  commonTranslations,
 }: GoalImpactFormI) => {
   const router = useRouter();
+
+  const { commonTranslations } = useContentContext();
 
   const { data } = useGetAssessmentGoalQuery({
     variables: {

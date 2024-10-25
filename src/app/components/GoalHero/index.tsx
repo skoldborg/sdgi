@@ -13,7 +13,7 @@ export const GoalHero = ({
 }: {
   title: string;
   description: string;
-  goal_id: string;
+  goal_id: number;
   assessmentGoalsUrl?: string;
   backBtnLabel?: string;
   size?: string;

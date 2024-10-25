@@ -1,4 +1,9 @@
-import { Header, LanguageSwitch, LoadingIndicator } from '@/app/components';
+import {
+  AssessmentSummary,
+  Header,
+  LanguageSwitch,
+  LoadingIndicator,
+} from '@/app/components';
 import { createClient } from '@/prismicio';
 import headerStyles from '@/app/components/Header/header.module.scss';
 import { Goals } from './Goals';
@@ -11,9 +16,6 @@ const AssessmentGoalsPage = async () => {
   const header = await client.getSingle('header');
   const goals = await client.getSingle('goals');
   const goalsPage = await client.getSingle('assessment_goals_page');
-  // const commonTranslations = await client.getSingle('common_translations');
-
-  // if (error) return <ErrorMessage error={commonTranslations.data.error_messages[0]} />;
 
   return (
     <>
@@ -31,7 +33,10 @@ const AssessmentGoalsPage = async () => {
       </div>
       <div className="page__content">
         {goals && goalsPage ? (
-          <Goals {...goalsPage} goalsDoc={goals} />
+          <>
+            <Goals {...goalsPage} goalsDoc={goals} />
+            <AssessmentSummary doc={goalsPage.data.summary} />
+          </>
         ) : (
           <LoadingIndicator />
         )}

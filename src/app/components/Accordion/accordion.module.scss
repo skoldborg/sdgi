@@ -1,0 +1,63 @@
+@import '../../styles/common.scss';
+
+.root {
+  background-color: $color-white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  border-top: 1px solid $color-gray-light;
+  border-bottom: 1px solid $color-gray-light;
+  text-transform: uppercase;
+  font-family: $font-family-header;
+  font-weight: $font-weight-bold;
+  font-size: $size-18;
+  width: 100%;
+
+  &:after {
+    content: '';
+    transition: transform 150ms;
+    transform: rotate(0);
+    transform-origin: center;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    margin-top: -8px;
+    background-image: url(img/chevron.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    @include breakpoint($s) {
+      right: 10px;
+    }
+  }
+}
+
+.header[aria-expanded='true'] {
+  &:after {
+    transform: rotate(180deg);
+  }
+}
+
+.headerLabel {
+  font-size: $size-18;
+  font-weight: bold;
+}
+
+.content[aria-hidden='true'] {
+  height: 0;
+  overflow: hidden;
+}
+
+.inner {
+  padding: $size-30 0;
+
+  @include breakpoint($s) {
+    padding: $size-20 0;
+  }
+}

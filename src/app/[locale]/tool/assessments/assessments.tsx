@@ -2,10 +2,7 @@
 
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useGetUserQuery } from '../../queries.generated';
-import {
-  AssessmentsPageDocument,
-  CommonTranslationsDocument,
-} from '@prismicio-types';
+import { AssessmentsPageDocument } from '@prismicio-types';
 import { Assessment } from '@/@types/codegen/types';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '@/app/components';
@@ -13,14 +10,9 @@ import AssessmentBar from '@/app/components/AssessmentBar';
 
 import styles from './assessments.module.scss';
 
-interface AssessmentsI extends AssessmentsPageDocument {
-  commonTranslations: CommonTranslationsDocument;
-}
+interface AssessmentsI extends AssessmentsPageDocument {}
 
-export default function Assessments({
-  data: page,
-  commonTranslations,
-}: AssessmentsI) {
+export default function Assessments({ data: page }: AssessmentsI) {
   const { user } = useUser();
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,7 +78,6 @@ export default function Assessments({
                   create: page.create_assessment_modal[0],
                 }}
                 assessment={a}
-                commonTranslations={commonTranslations}
               >
                 {a?.title}
               </AssessmentBar>

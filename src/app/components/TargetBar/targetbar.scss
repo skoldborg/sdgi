@@ -1,80 +1,80 @@
 @import '../../styles/common';
 
 .target-bar {
-    display: flex;
-    margin-bottom: $size-16;
+  display: flex;
+  margin-bottom: $size-16;
 
-    &--small {
-        margin-bottom: $size-24;
-    }
+  &--small {
+    margin-bottom: $size-24;
+  }
 }
 
 .target-bar__title,
 .target-bar__description {
-    margin-top: 0;
-    margin-bottom: $size-12;
+  margin-top: 0;
+  margin-bottom: $size-12;
 
-    &:last-child {
-        margin-bottom: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .target-bar__title {
+  font-size: $size-18;
+  line-height: $size-24;
+
+  @include breakpoint($s) {
+    font-size: $size-24;
+    line-height: $size-28;
+  }
+
+  .target-bar--small & {
     font-size: $size-18;
     line-height: $size-24;
-    
-    @include breakpoint($s) {
-        font-size: $size-24;
-        line-height: $size-28;
-    }
-
-    .target-bar--small & {
-        font-size: $size-18;
-        line-height: $size-24;
-    }
+  }
 }
 
 .target-bar__description {
+  font-size: $size-16;
+  line-height: $size-24;
+
+  @include breakpoint($s) {
+    font-size: $size-18;
+    line-height: $size-28;
+  }
+
+  .target-bar--small & {
     font-size: $size-16;
     line-height: $size-24;
-
-    @include breakpoint($s) {
-        font-size: $size-18;
-        line-height: $size-28;
-    }
-
-    .target-bar--small & {
-        font-size: $size-16;
-        line-height: $size-24;
-    }
+  }
 }
 
 .target-bar__content {
+  padding-left: $size-16;
+
+  @include breakpoint($s) {
+    padding-left: $size-18;
+  }
+
+  .target-bar--small & {
     padding-left: $size-16;
-
-    @include breakpoint($s) {
-        padding-left: $size-18;
-    }
-
-    .target-bar--small & {
-        padding-left: $size-16;
-    }
+  }
 }
 
 .target-bar__icon {
-    flex-shrink: 0;
-    overflow: hidden;
-    width: 100px;
-    height: 119px;
-    margin: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 100px;
+  height: 119px;
+  margin: 0;
 
-    .target-bar--small & {
-        width: $size-60;
-        height: 72px;
-    }
+  .target-bar--small & {
+    width: $size-60;
+    height: 72px;
+  }
 }
 
 .target-bar__icon-image {
-    margin-top: 1px;
-    display: block;
+  margin-top: 1px;
+  display: block;
 }

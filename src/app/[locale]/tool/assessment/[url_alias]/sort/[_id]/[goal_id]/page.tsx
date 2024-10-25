@@ -15,8 +15,6 @@ const AssessmentGoalsPage = async ({
     (goal) => goal.primary.id === parseInt(params.goal_id),
   );
 
-  const commonTranslations = await client.getSingle('common_translations');
-
   return (
     <>
       {goalContent ? (
@@ -25,10 +23,9 @@ const AssessmentGoalsPage = async ({
             size="large"
             title={goalContent?.primary.title ?? ''}
             description={goalContent?.primary.description ?? ''}
-            goal_id={params.goal_id}
+            goal_id={Number(params.goal_id)}
           />
           <GoalRelevanceBar
-            commonTranslations={commonTranslations}
             goalPriorities={assessmentGoalsPage.data.goal_priorities}
           />
         </>

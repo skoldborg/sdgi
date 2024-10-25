@@ -22,7 +22,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
               />
             </li>
           )}
-          <li className={styles.navItem}>
+          <li className={headerStyles.navItem}>
             <Button
               label={header.data.log_in}
               href={`/api/auth/login?lang=${params.locale}`}

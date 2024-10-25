@@ -140,8 +140,8 @@ const TextArea = ({
 
 interface CheckboxI extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  modifier: string;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  modifier?: string;
 }
 
 const Checkbox = ({
@@ -150,7 +150,7 @@ const Checkbox = ({
   required,
   placeholder,
   disabled,
-  checked,
+  defaultChecked,
   value,
   onChange,
   modifier,
@@ -169,7 +169,7 @@ const Checkbox = ({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        checked={checked}
+        defaultChecked={defaultChecked}
         disabled={disabled}
       />
       <span className="form__input-checkbox"></span>

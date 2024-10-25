@@ -10,26 +10,23 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useParams, useRouter } from 'next/navigation';
 import {
   AssessmentGoalsPageDocumentDataGoalPrioritiesItem,
-  CommonTranslationsDocument,
   Simplify,
 } from '@prismicio-types';
 import { Button, LoadingIndicator } from '@/app/components';
 import { GroupField } from '@prismicio/client';
-import cx from 'classnames';
+import { useContentContext } from '@/app/contexts/content-context';
 
 interface GoalRelevanceBarI {
-  commonTranslations: CommonTranslationsDocument;
   goalPriorities: GroupField<
     Simplify<AssessmentGoalsPageDocumentDataGoalPrioritiesItem>
   >;
 }
 
-export const GoalRelevanceBar = ({
-  commonTranslations,
-  goalPriorities,
-}: GoalRelevanceBarI) => {
+export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
   const { user } = useUser();
   const router = useRouter();
+
+  const { commonTranslations } = useContentContext();
 
   const { locale, url_alias, _id, goal_id } = useParams<{
     locale: string;

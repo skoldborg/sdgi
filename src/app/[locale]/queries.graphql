@@ -127,3 +127,14 @@ mutation UpdateGoal($id: ID!, $input: GoalInput!) {
   }
 }
 
+mutation AddOrUpdateAssessmentStrategy($assessmentId: ID!, $strategy: String!, $questions: [QuestionInput!]) {
+  addOrUpdateAssessmentStrategy(assessment_id: $assessmentId, strategy: $strategy, questions: $questions) {
+    _id
+    assessment_id
+    questions {
+      id
+      checked
+    }
+    strategy
+  }
+}

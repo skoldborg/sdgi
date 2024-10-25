@@ -53,6 +53,10 @@
 .navItem {
   margin: 0 $size-12;
 
+  :global(.button) {
+    margin-bottom: 0;
+  }
+
   &:last-of-type {
     margin-right: 0;
   }

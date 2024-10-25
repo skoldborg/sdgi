@@ -5,7 +5,6 @@ import './assessmentbar.scss';
 import { Assessment } from '@/@types/codegen/types';
 import Link from 'next/link';
 import {
-  CommonTranslationsDocument,
   Simplify,
   AssessmentsPageDocumentDataUpdateAssessmentModalItem,
   AssessmentsPageDocumentDataCreateAssessmentModalItem,
@@ -16,9 +15,9 @@ import {
   useUpdateAssessmentMutation,
 } from '@/app/[locale]/queries.generated';
 import { Modal, useModal, Form } from '@/app/components';
+import { useContentContext } from '@/app/contexts/content-context';
 
 interface AssessmentBarI extends PropsWithChildren {
-  commonTranslations: CommonTranslationsDocument;
   assessment: Assessment;
   content: {
     update:
@@ -30,18 +29,15 @@ interface AssessmentBarI extends PropsWithChildren {
   };
 }
 
-const AssessmentBar = ({
-  assessment,
-  content,
-  commonTranslations,
-}: AssessmentBarI) => {
+const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
   const { registerModal, closeModal } = useModal();
+  const { commonTranslations } = useContentContext();
 
   const { _id, user_id, title, description, url_alias, goals } = assessment;
 
   const [overlayHidden, setOverlayHidden] = useState(true);
 
-  const labels = commonTranslations.data.button_labels[0] ?? null;
+  const labels = commonTranslations?.data.button_labels[0] ?? null;
   const url = url_alias ? `assessment/${url_alias}` : '';
 
   let savedGoals = 0;

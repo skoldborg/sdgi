@@ -5,6 +5,8 @@ import '../styles/base.scss';
 import { Modal, ModalProvider } from '@components';
 import { UIContextProvider } from '../contexts/ui-context';
 import { ApolloWrapper } from '@/lib/apollo-wrapper';
+import { ContentContextProvider } from '../contexts/content-context';
+import { createClient } from '@/prismicio';
 
 export const metadata: Metadata = {
   title: 'SDG Impact Assessment Tool',
@@ -15,18 +17,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const client = createClient();
+  const commonTranslations = await client.getSingle('common_translations');
+
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
         <ApolloWrapper>
           <UserProvider>
-            <UIContextProvider>
-              <ModalProvider>
-                <Modal />
+            <ContentContextProvider commonTranslations={commonTranslations}>
+              <UIContextProvider>
+                <ModalProvider>
+                  <Modal />
 
-                {children}
-              </ModalProvider>
-            </UIContextProvider>
+                  {children}
+                </ModalProvider>
+              </UIContextProvider>
+            </ContentContextProvider>
           </UserProvider>
         </ApolloWrapper>
 
