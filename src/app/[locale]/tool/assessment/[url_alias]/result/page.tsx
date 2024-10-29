@@ -9,7 +9,6 @@ import headerStyles from '@/app/components/Header/header.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ResultGraph } from './ResultGraph';
-import Section from '@/app/components/Section';
 import { AssessmentDetailsSection } from './AssessmentDetailsSection';
 
 const AssessmentGoalsPage = async ({

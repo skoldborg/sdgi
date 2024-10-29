@@ -7,7 +7,7 @@ import typeDefs from './schema';
 
 connectDB();
 
-const server = new ApolloServer({
+const server = new ApolloServer<object>({
   resolvers,
   typeDefs,
 });
