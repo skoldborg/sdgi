@@ -14,6 +14,7 @@ import {
 
 import classNames from 'classnames';
 import './modal.scss';
+import { useClickOutside } from '@/app/hooks/useClickOutside';
 
 type ModalNode = React.ReactNode;
 
@@ -111,6 +112,8 @@ const ModalWindow = ({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useClickOutside(windowRef, closeModal);
 
   return (
     <div

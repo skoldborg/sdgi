@@ -66,6 +66,7 @@
     opacity: 0.9;
   }
 
+  &[aria-disabled='true'],
   &[disabled] {
     cursor: default;
     pointer-events: none;

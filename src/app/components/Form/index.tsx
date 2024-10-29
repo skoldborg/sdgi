@@ -11,6 +11,7 @@ import cx from 'classnames';
 
 import './form.scss';
 import classNames from 'classnames';
+import { LoadingIndicator } from '../LoadingIndicator';
 
 interface FormI extends PropsWithChildren {
   message: string;
@@ -180,9 +181,12 @@ const Checkbox = ({
 interface SubmitI {
   label: string;
   modifier?: string;
+  loading?: boolean;
 }
 
-const Submit = ({ label, modifier }: SubmitI) => {
+const Submit = ({ label, modifier, loading }: SubmitI) => {
+  console.log('l', loading);
+
   return (
     <div
       className={cx('form__footer', modifier && `form__footer--${modifier}`)}
@@ -193,6 +197,7 @@ const Submit = ({ label, modifier }: SubmitI) => {
       >
         <span className="button__inner">{label}</span>
       </button>
+      {loading && <LoadingIndicator />}
     </div>
   );
 };

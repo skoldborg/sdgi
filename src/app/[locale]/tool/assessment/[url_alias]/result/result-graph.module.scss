@@ -13,6 +13,7 @@
   &:before,
   &:after {
     content: '';
+    pointer-events: none;
     display: block;
     position: absolute;
     top: 0;

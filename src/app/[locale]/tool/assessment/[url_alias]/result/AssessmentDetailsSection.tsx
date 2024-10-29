@@ -6,6 +6,7 @@ import {
 } from '@/app/[locale]/queries.generated';
 import { Form } from '@/app/components';
 import Section from '@/app/components/Section';
+import { useContentContext } from '@/app/contexts/content-context';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { ResultPageDocument } from '@prismicio-types';
 import { useParams } from 'next/navigation';
@@ -22,6 +23,8 @@ export const AssessmentDetailsSection = ({
   const { user } = useUser();
   const params = useParams<{ locale: string; url_alias: string }>();
 
+  const { commonTranslations } = useContentContext();
+
   const { data: assessment, loading } = useGetAssessmentQuery({
     variables: {
       userId: user?.sub,
@@ -36,11 +39,24 @@ export const AssessmentDetailsSection = ({
   const [questions, setQuestions] =
     useState<{ id: string; checked: boolean }[]>();
 
-  const [updateAssessmentStrategy, { error }] =
-    useAddOrUpdateAssessmentStrategyMutation();
+  const [
+    updateAssessmentStrategy,
+    { error, loading: updateAssessmentLoading },
+  ] = useAddOrUpdateAssessmentStrategyMutation();
 
+  const successMsg =
+    commonTranslations?.data?.success_messages[0]?.save_assessment ??
+    'Assessment has been updated';
+  const errorMsg =
+    commonTranslations?.data?.error_messages[0]?.save_assessment ??
+    "Couldn't save assessment";
+  const [assessmentStrategySubmitted, setAssessmentStrategySubmitted] =
+    useState(false);
+  const [assessmentStrategySubmitMsg, setAssessmentStrategySavedMsg] =
+    useState('');
+
+  // Build array of question checkbox data from `strategy_questions` content and saved questions
   useEffect(() => {
-    // Check for valid conditions outside the main hook logic
     if (
       !assessment?.getAssessment?.strategy?.questions ||
       !page.strategy_questions
@@ -67,8 +83,6 @@ export const AssessmentDetailsSection = ({
     );
 
     setQuestions(questionsArr);
-
-    // Add all necessary dependencies
   }, [assessment?.getAssessment?.strategy?.questions, page.strategy_questions]);
 
   if (!assessment || loading) return;
@@ -89,15 +103,23 @@ export const AssessmentDetailsSection = ({
           <p className="section__description">{page.strategy_description}</p>
 
           <Form
-            error={error?.message && error.message !== '' ? true : false}
-            success={!loading && !error}
-            message={error?.message ?? ''}
+            error={error !== undefined && error?.message !== ''}
+            success={!loading && assessmentStrategySubmitted}
+            message={assessmentStrategySubmitMsg}
             onSubmit={() => {
               updateAssessmentStrategy({
                 variables: {
                   assessmentId: assessment.getAssessment?._id,
                   strategy,
                   questions,
+                },
+                onCompleted: () => {
+                  setAssessmentStrategySubmitted(true);
+                  setAssessmentStrategySavedMsg(successMsg);
+                },
+                onError: () => {
+                  setAssessmentStrategySubmitted(true);
+                  setAssessmentStrategySavedMsg(errorMsg);
                 },
               });
             }}
@@ -142,6 +164,7 @@ export const AssessmentDetailsSection = ({
             <Form.Submit
               label={page.save_motivation_label ?? ''}
               modifier="slim"
+              loading={updateAssessmentLoading}
             />
           </Form>
 

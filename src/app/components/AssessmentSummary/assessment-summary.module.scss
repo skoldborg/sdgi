@@ -83,6 +83,7 @@
 
 .body {
   margin: 0;
+  padding-right: $size-8;
 
   @include breakpoint(0, $s) {
     flex: 100%;

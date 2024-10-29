@@ -58,6 +58,7 @@ export const Button = (props: ButtonProps) => {
         className={classNames}
         data-opacity={opacity}
         onClick={onClick && onClick}
+        aria-disabled={disabled}
       >
         <span className={`button__inner`}>{label}</span>
       </Link>

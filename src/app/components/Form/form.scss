@@ -101,16 +101,22 @@
   &--slim {
     margin-top: -$size-24;
   }
+
+  .loading-indicator {
+    margin: 0;
+  }
 }
 
 .form__submit {
   margin-left: $size-24;
+  margin-bottom: $size-16;
   z-index: $z-neutral;
 }
 
 .form__status {
   opacity: 0;
   font-weight: $font-weight-bold;
+  text-align: right;
 
   .form--success &,
   .form--error & {
