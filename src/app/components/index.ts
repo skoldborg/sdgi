@@ -4,6 +4,7 @@ export * from './AssessmentSummary';
 export * from './Avatar';
 export * from './Button';
 export * from './Dropdown';
+export * from './Footer';
 export * from './Form';
 export * from './GoalCard';
 export * from './GoalHero';

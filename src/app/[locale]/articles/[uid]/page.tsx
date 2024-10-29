@@ -1,13 +1,17 @@
-import { Button, Footer, Header, Hero, LanguageSwitch } from '@components';
+import { Footer, Header, LanguageSwitch } from '@components';
 import headerStyles from '@/app/components/Header/header.module.scss';
-import styles from './page.module.css';
 import { createClient } from '@/prismicio';
+import { PrismicRichText } from '@prismicio/react';
 
-export default async function Home({ params }: { params: { locale: string } }) {
+export default async function StandardPage({
+  params,
+}: {
+  params: { locale: string; uid: string };
+}) {
   const client = createClient();
   const api = await client.getRepository();
   const locales = api.languages.map((l) => l.id);
-  const page = await client.getSingle('startpage');
+  const page = await client.getByUID('standard_page', params.uid);
   const header = await client.getSingle('header');
   const footer = await client.getSingle('footer');
 
@@ -23,18 +27,20 @@ export default async function Home({ params }: { params: { locale: string } }) {
               />
             </li>
           )}
-          <li className={headerStyles.navItem}>
-            <Button
-              label={header.data.log_in}
-              href={`/api/auth/login?lang=${params.locale}`}
-              color={`black`}
-              size={`small`}
-            />
-          </li>
         </Header>
       </div>
-      <div className={styles.page}>
-        <Hero locale={params.locale} {...page} />
+      <div className="page page--white">
+        <div className="page__content page__content--width-8">
+          {page.data.title && (
+            <h1 className={`page__title`}>{page.data.title[0]?.text}</h1>
+          )}
+          {page?.data?.preamble && (
+            <div className={`page__preamble`}>
+              {<PrismicRichText field={page.data.preamble} />}
+            </div>
+          )}
+          {page?.data.body && <PrismicRichText field={page.data.body} />}
+        </div>
       </div>
       <Footer {...footer} />
     </>

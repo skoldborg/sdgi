@@ -12,6 +12,16 @@ interface HeaderI extends PropsWithChildren {
   doc: HeaderDocument<string>;
 }
 
+type InternalLink = {
+  label: string;
+  link: {
+    id: string;
+    lang: string;
+    slug: string;
+    uid: string;
+  };
+};
+
 export const Header = ({ doc, children }: HeaderI) => {
   const params = useParams();
   const { locale } = params;
@@ -27,14 +37,16 @@ export const Header = ({ doc, children }: HeaderI) => {
 
   const { data } = doc;
 
+  const internalLinks = data.internal_links as InternalLink[];
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
         <a href={`/${locale}`} className={styles.logo}></a>
 
         <ul className={styles.nav}>
-          {data?.internal_links &&
-            data.internal_links.map((internalLink) => {
+          {internalLinks &&
+            internalLinks.map((internalLink) => {
               return (
                 <li
                   key={internalLink.label}
@@ -42,7 +54,7 @@ export const Header = ({ doc, children }: HeaderI) => {
                 >
                   <Button
                     label={internalLink.label}
-                    href={`/${locale}/articles/${internalLink.link}`}
+                    href={`/${locale}/articles/${internalLink.link.uid}`}
                     color={`white`}
                     size={`small`}
                   />

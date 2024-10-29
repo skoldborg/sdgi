@@ -51,7 +51,6 @@ export const AssessmentSummary = ({ doc }: AssessmentSummaryI) => {
 
   const totalGoals = assessment?.getAssessment?.goals?.length;
   const resultButtonDisabled = savedGoals === totalGoals ? false : true;
-  console.log(resultButtonDisabled);
 
   return (
     <div className={styles.root}>
