@@ -19,6 +19,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@lib": ["./src/lib/*"],
       "@components": ["./src/app/components"],
       "@prismicio-types": ["./prismicio-types.d.ts"]
     }
