@@ -1,5 +1,4 @@
 'use client';
-// ^ this file needs the "use client" pragma
 
 import { HttpLink } from '@apollo/client';
 import {
@@ -8,10 +7,9 @@ import {
   InMemoryCache,
 } from '@apollo/experimental-nextjs-app-support';
 
-// have a function to create a client for you
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: 'http://localhost:3000/api/graphql',
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     fetchOptions: { cache: 'no-store' },
   });
 
