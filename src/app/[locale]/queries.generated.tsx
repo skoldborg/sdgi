@@ -10,7 +10,7 @@ export type GetAssessmentsQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetAssessmentsQuery = { __typename?: 'Query', getAssessments?: Array<{ __typename?: 'Assessment', user_id: string, title: string, description: string, url_alias: string, goals?: Array<{ __typename?: 'Goal', user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null> | null };
+export type GetAssessmentsQuery = { __typename?: 'Query', getAssessments?: Array<{ __typename?: 'Assessment', _id: string, user_id: string, title: string, description: string, url_alias: string, goals?: Array<{ __typename?: 'Goal', user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null> | null };
 
 export type GetAssessmentQueryVariables = Types.Exact<{
   userId: Types.Scalars['ID']['input'];
@@ -18,7 +18,7 @@ export type GetAssessmentQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetAssessmentQuery = { __typename?: 'Query', getAssessment?: { __typename?: 'Assessment', user_id: string, title: string, description: string, url_alias: string, goals?: Array<{ __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null };
+export type GetAssessmentQuery = { __typename?: 'Query', getAssessment?: { __typename?: 'Assessment', _id: string, user_id: string, title: string, description: string, url_alias: string, goals?: Array<{ __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null };
 
 export type GetAssessmentGoalQueryVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
@@ -74,6 +74,7 @@ export type AddOrUpdateAssessmentStrategyMutation = { __typename?: 'Mutation', a
 export const GetAssessmentsDocument = gql`
     query GetAssessments($userId: ID!) {
   getAssessments(user_id: $userId) {
+    _id
     user_id
     title
     description
@@ -134,6 +135,7 @@ export type GetAssessmentsQueryResult = Apollo.QueryResult<GetAssessmentsQuery, 
 export const GetAssessmentDocument = gql`
     query GetAssessment($userId: ID!, $urlAlias: String!) {
   getAssessment(user_id: $userId, url_alias: $urlAlias) {
+    _id
     user_id
     title
     description

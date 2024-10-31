@@ -1,5 +1,6 @@
 query GetAssessments($userId: ID!) {
   getAssessments(user_id: $userId) {
+    _id
     user_id
     title
     description
@@ -26,6 +27,7 @@ query GetAssessments($userId: ID!) {
 
 query GetAssessment($userId: ID!, $urlAlias: String!) {
   getAssessment(user_id: $userId, url_alias: $urlAlias) {
+    _id
     user_id
     title
     description
