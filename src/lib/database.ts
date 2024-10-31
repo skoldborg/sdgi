@@ -11,7 +11,7 @@ export const connectDB = async () => {
   }
   try {
     if (uri) {
-      await mongoose.connect('mongodb+srv://vercel-admin-user:ieNQzy7ADEiAoj7Q@cluster0.w4wla.mongodb.net/siat?retryWrites=true&w=majority&appName=Cluster0');
+      await mongoose.connect(uri);
       console.log('🎉 connected to database successfully');
     }
   } catch (error) {
