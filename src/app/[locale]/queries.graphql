@@ -1,29 +1,24 @@
-query GetUser($userId: ID!) {
-  getUser(user_id: $userId) {
+query GetAssessments($userId: ID!) {
+  getAssessments(user_id: $userId) {
     user_id
-    assessments {
-      _id
+    title
+    description
+    url_alias
+    goals {
       user_id
-      title
-      description
-      url_alias
-      date
-      goals {
-        user_id
-        assessment_id
-        goal_id
-        relevance
-        impact
-        motivation
-        saved
-      }
-      strategy {
-        assessment_id
-        strategy
-        questions {
-          id
-          checked
-        }
+      assessment_id
+      goal_id
+      relevance
+      impact
+      motivation
+      saved
+    }
+    strategy {
+      assessment_id
+      strategy
+      questions {
+        id
+        checked
       }
     }
   }
@@ -31,12 +26,10 @@ query GetUser($userId: ID!) {
 
 query GetAssessment($userId: ID!, $urlAlias: String!) {
   getAssessment(user_id: $userId, url_alias: $urlAlias) {
-    _id
     user_id
     title
     description
     url_alias
-    date
     goals {
       _id
       user_id

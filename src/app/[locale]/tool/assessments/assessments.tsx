@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@auth0/nextjs-auth0/client';
-import { useGetUserQuery } from '../../queries.generated';
+import { useGetAssessmentsQuery } from '../../queries.generated';
 import { AssessmentsPageDocument } from '@prismicio-types';
 import { Assessment } from '@/@types/codegen/types';
 import { useEffect, useState } from 'react';
@@ -18,14 +18,16 @@ export default function Assessments({ data: page }: AssessmentsI) {
   const [searchTerm, setSearchTerm] = useState('');
   const [visibleAssessments, setVisibleAssessments] = useState<Assessment[]>();
 
-  const { data, loading } = useGetUserQuery({
+  const { data, loading } = useGetAssessmentsQuery({
     variables: {
       userId: user?.sub,
     },
     skip: !user || !user?.sub,
   });
 
-  const assessments = data?.getUser?.assessments;
+  const [isLoading, setIsLoading] = useState(true);
+
+  const assessments = data?.getAssessments;
 
   const searchAssessments = (input: string) => {
     if (!assessments || !input) {
@@ -43,10 +45,11 @@ export default function Assessments({ data: page }: AssessmentsI) {
   };
 
   useEffect(() => {
-    if (assessments && assessments.length > 0) {
+    if (!loading && assessments && assessments.length > 0) {
       setVisibleAssessments(assessments as Assessment[]);
+      setIsLoading(false);
     }
-  }, [assessments]);
+  }, [assessments, loading]);
 
   useEffect(() => {
     if (searchTerm !== '') {
@@ -57,18 +60,18 @@ export default function Assessments({ data: page }: AssessmentsI) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  const hasAssessments = assessments && assessments.length > 0;
+  const hasAssessments = visibleAssessments && visibleAssessments.length > 0;
 
-  return (
-    <div>
-      {hasAssessments && (
+  if (isLoading) return;
+
+  if (hasAssessments) {
+    return (
+      <>
         <SearchBar
           placeholder={page.search_placeholder ?? ''}
           value={searchTerm}
           onChange={(input: string) => setSearchTerm(input)}
         />
-      )}
-      {visibleAssessments && visibleAssessments.length > 0 ? (
         <ul className={styles.list}>
           {visibleAssessments.map((a) => (
             <li key={a?.title} className={styles.item}>
@@ -84,11 +87,13 @@ export default function Assessments({ data: page }: AssessmentsI) {
             </li>
           ))}
         </ul>
-      ) : (
-        <p style={{ textAlign: 'center' }}>
-          {!loading && hasAssessments && page.no_assessments_message}
-        </p>
-      )}
-    </div>
+      </>
+    );
+  }
+
+  return (
+    <p style={{ textAlign: 'center' }}>
+      {!hasAssessments && page.no_assessments_message}
+    </p>
   );
 }

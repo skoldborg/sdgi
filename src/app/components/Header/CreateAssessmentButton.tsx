@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  GetUserDocument,
+  GetAssessmentsDocument,
   useCreateAssessmentMutation,
 } from '@/app/[locale]/queries.generated';
 import { Modal, Form, useModal, Button } from '@/app/components';
@@ -32,13 +32,11 @@ export const CreateAssessmentButton = ({
     description: '',
   });
 
-  // Use GraphQL error
-
   const { user } = useUser();
 
   const refetchQueries = [
     {
-      query: GetUserDocument,
+      query: GetAssessmentsDocument,
       variables: {
         userId: user?.sub,
       },

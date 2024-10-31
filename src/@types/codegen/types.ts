@@ -104,7 +104,7 @@ export type Query = {
   __typename?: 'Query';
   getAssessment?: Maybe<Assessment>;
   getAssessmentGoal?: Maybe<Goal>;
-  getUser?: Maybe<User>;
+  getAssessments?: Maybe<Array<Maybe<Assessment>>>;
 };
 
 
@@ -119,7 +119,7 @@ export type QueryGetAssessmentGoalArgs = {
 };
 
 
-export type QueryGetUserArgs = {
+export type QueryGetAssessmentsArgs = {
   user_id: Scalars['ID']['input'];
 };
 
@@ -132,13 +132,6 @@ export type Question = {
 export type QuestionInput = {
   checked?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type User = {
-  __typename?: 'User';
-  _id: Scalars['ID']['output'];
-  assessments?: Maybe<Array<Maybe<Assessment>>>;
-  user_id: Scalars['ID']['output'];
 };
 
 
@@ -225,7 +218,6 @@ export type ResolversTypes = {
   Question: ResolverTypeWrapper<Question>;
   QuestionInput: QuestionInput;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
-  User: ResolverTypeWrapper<User>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -243,7 +235,6 @@ export type ResolversParentTypes = {
   Question: Question;
   QuestionInput: QuestionInput;
   String: Scalars['String']['output'];
-  User: User;
 };
 
 export type AssessmentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Assessment'] = ResolversParentTypes['Assessment']> = {
@@ -293,19 +284,12 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getAssessment?: Resolver<Maybe<ResolversTypes['Assessment']>, ParentType, ContextType, RequireFields<QueryGetAssessmentArgs, 'url_alias' | 'user_id'>>;
   getAssessmentGoal?: Resolver<Maybe<ResolversTypes['Goal']>, ParentType, ContextType, RequireFields<QueryGetAssessmentGoalArgs, '_id'>>;
-  getUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryGetUserArgs, 'user_id'>>;
+  getAssessments?: Resolver<Maybe<Array<Maybe<ResolversTypes['Assessment']>>>, ParentType, ContextType, RequireFields<QueryGetAssessmentsArgs, 'user_id'>>;
 };
 
 export type QuestionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Question'] = ResolversParentTypes['Question']> = {
   checked?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  assessments?: Resolver<Maybe<Array<Maybe<ResolversTypes['Assessment']>>>, ParentType, ContextType>;
-  user_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -317,6 +301,5 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Question?: QuestionResolvers<ContextType>;
-  User?: UserResolvers<ContextType>;
 };
 

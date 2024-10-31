@@ -1,9 +1,12 @@
 import { connectDB } from '@/lib/database';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
+import { mergeTypeDefs } from '@graphql-tools/merge';
 import { NextRequest } from 'next/server';
 import resolvers from './resolvers';
-import typeDefs from './schema';
+import assessmentTypeDefs from './typeDefs/assessment.graphql';
+
+const typeDefs = mergeTypeDefs([assessmentTypeDefs]);
 
 connectDB();
 

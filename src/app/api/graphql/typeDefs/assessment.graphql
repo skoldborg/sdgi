@@ -48,6 +48,7 @@ input QuestionInput {
 
 type Query {
   getAssessment(user_id: ID!, url_alias: String!): Assessment
+  getAssessments(user_id: ID!): [Assessment]
   getAssessmentGoal(_id: ID!): Goal
 }
 

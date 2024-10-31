@@ -12,6 +12,7 @@ export * from './GoalQuickview';
 export * from './Grid';
 export * from './Header';
 export * from './Hero';
+export * from './IconSprite';
 export * from './LanguageSwitch';
 export * from './LinedHeader';
 export * from './LoadingIndicator';

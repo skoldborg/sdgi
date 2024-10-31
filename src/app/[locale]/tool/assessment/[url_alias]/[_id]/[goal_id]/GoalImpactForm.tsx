@@ -2,6 +2,7 @@
 
 import {
   GetAssessmentGoalDocument,
+  GetAssessmentsDocument,
   useGetAssessmentGoalQuery,
   useUpdateGoalMutation,
 } from '@/app/[locale]/queries.generated';
@@ -10,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { GoalPageDocument } from '@prismicio-types';
 import { useRouter } from 'next/navigation';
 import { useContentContext } from '@/app/contexts/content-context';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 interface GoalImpactFormI extends GoalPageDocument {
   assessmentId: string;
@@ -21,6 +23,7 @@ export const GoalImpactForm = ({
   assessmentId,
   goalId,
 }: GoalImpactFormI) => {
+  const user = useUser();
   const router = useRouter();
 
   const { commonTranslations } = useContentContext();
@@ -69,6 +72,13 @@ export const GoalImpactForm = ({
         id: assessmentId,
       },
       skip: !assessmentId,
+    },
+    {
+      query: GetAssessmentsDocument,
+      variables: {
+        userId: user.user?.sub,
+      },
+      skip: !user.user?.sub,
     },
   ];
 

@@ -10,7 +10,7 @@ import {
   AssessmentsPageDocumentDataCreateAssessmentModalItem,
 } from '@prismicio-types';
 import {
-  GetUserDocument,
+  GetAssessmentsDocument,
   useRemoveAssessmentMutation,
   useUpdateAssessmentMutation,
 } from '@/app/[locale]/queries.generated';
@@ -49,7 +49,7 @@ const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
 
   const refetchQueries = [
     {
-      query: GetUserDocument,
+      query: GetAssessmentsDocument,
       variables: {
         userId: user_id,
       },

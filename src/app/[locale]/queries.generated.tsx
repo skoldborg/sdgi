@@ -5,12 +5,12 @@ import * as Types from '../src/@types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type GetUserQueryVariables = Types.Exact<{
+export type GetAssessmentsQueryVariables = Types.Exact<{
   userId: Types.Scalars['ID']['input'];
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', getUser?: { __typename?: 'User', user_id: string, assessments?: Array<{ __typename?: 'Assessment', _id: string, user_id: string, title: string, description: string, url_alias: string, date?: any | null, goals?: Array<{ __typename?: 'Goal', user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null> | null } | null };
+export type GetAssessmentsQuery = { __typename?: 'Query', getAssessments?: Array<{ __typename?: 'Assessment', user_id: string, title: string, description: string, url_alias: string, goals?: Array<{ __typename?: 'Goal', user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null> | null };
 
 export type GetAssessmentQueryVariables = Types.Exact<{
   userId: Types.Scalars['ID']['input'];
@@ -18,7 +18,7 @@ export type GetAssessmentQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetAssessmentQuery = { __typename?: 'Query', getAssessment?: { __typename?: 'Assessment', _id: string, user_id: string, title: string, description: string, url_alias: string, date?: any | null, goals?: Array<{ __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null };
+export type GetAssessmentQuery = { __typename?: 'Query', getAssessment?: { __typename?: 'Assessment', user_id: string, title: string, description: string, url_alias: string, goals?: Array<{ __typename?: 'Goal', _id: string, user_id: string, assessment_id: string, goal_id: number, relevance?: number | null, impact?: number | null, motivation?: string | null, saved?: boolean | null } | null> | null, strategy?: { __typename?: 'AssessmentStrategy', assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null } | null };
 
 export type GetAssessmentGoalQueryVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
@@ -71,33 +71,28 @@ export type AddOrUpdateAssessmentStrategyMutationVariables = Types.Exact<{
 export type AddOrUpdateAssessmentStrategyMutation = { __typename?: 'Mutation', addOrUpdateAssessmentStrategy?: { __typename?: 'AssessmentStrategy', _id: string, assessment_id: string, strategy: string, questions?: Array<{ __typename?: 'Question', id?: string | null, checked?: boolean | null } | null> | null } | null };
 
 
-export const GetUserDocument = gql`
-    query GetUser($userId: ID!) {
-  getUser(user_id: $userId) {
+export const GetAssessmentsDocument = gql`
+    query GetAssessments($userId: ID!) {
+  getAssessments(user_id: $userId) {
     user_id
-    assessments {
-      _id
+    title
+    description
+    url_alias
+    goals {
       user_id
-      title
-      description
-      url_alias
-      date
-      goals {
-        user_id
-        assessment_id
-        goal_id
-        relevance
-        impact
-        motivation
-        saved
-      }
-      strategy {
-        assessment_id
-        strategy
-        questions {
-          id
-          checked
-        }
+      assessment_id
+      goal_id
+      relevance
+      impact
+      motivation
+      saved
+    }
+    strategy {
+      assessment_id
+      strategy
+      questions {
+        id
+        checked
       }
     }
   }
@@ -105,46 +100,44 @@ export const GetUserDocument = gql`
     `;
 
 /**
- * __useGetUserQuery__
+ * __useGetAssessmentsQuery__
  *
- * To run a query within a React component, call `useGetUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetAssessmentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAssessmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetUserQuery({
+ * const { data, loading, error } = useGetAssessmentsQuery({
  *   variables: {
  *      userId: // value for 'userId'
  *   },
  * });
  */
-export function useGetUserQuery(baseOptions: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables> & ({ variables: GetUserQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useGetAssessmentsQuery(baseOptions: Apollo.QueryHookOptions<GetAssessmentsQuery, GetAssessmentsQueryVariables> & ({ variables: GetAssessmentsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+        return Apollo.useQuery<GetAssessmentsQuery, GetAssessmentsQueryVariables>(GetAssessmentsDocument, options);
       }
-export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+export function useGetAssessmentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAssessmentsQuery, GetAssessmentsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+          return Apollo.useLazyQuery<GetAssessmentsQuery, GetAssessmentsQueryVariables>(GetAssessmentsDocument, options);
         }
-export function useGetUserSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+export function useGetAssessmentsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAssessmentsQuery, GetAssessmentsQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+          return Apollo.useSuspenseQuery<GetAssessmentsQuery, GetAssessmentsQueryVariables>(GetAssessmentsDocument, options);
         }
-export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
-export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
-export type GetUserSuspenseQueryHookResult = ReturnType<typeof useGetUserSuspenseQuery>;
-export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export type GetAssessmentsQueryHookResult = ReturnType<typeof useGetAssessmentsQuery>;
+export type GetAssessmentsLazyQueryHookResult = ReturnType<typeof useGetAssessmentsLazyQuery>;
+export type GetAssessmentsSuspenseQueryHookResult = ReturnType<typeof useGetAssessmentsSuspenseQuery>;
+export type GetAssessmentsQueryResult = Apollo.QueryResult<GetAssessmentsQuery, GetAssessmentsQueryVariables>;
 export const GetAssessmentDocument = gql`
     query GetAssessment($userId: ID!, $urlAlias: String!) {
   getAssessment(user_id: $userId, url_alias: $urlAlias) {
-    _id
     user_id
     title
     description
     url_alias
-    date
     goals {
       _id
       user_id

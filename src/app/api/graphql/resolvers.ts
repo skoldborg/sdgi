@@ -2,16 +2,10 @@ import { Goal, Resolvers } from '@/@types/codegen/types';
 import AssessmentModel from '@/app/models/Assessment';
 import GoalModel from '@/app/models/Goal';
 import StrategyModel from '@/app/models/Strategy';
-import UserModel from '@/app/models/User';
 import { GraphQLScalarType, Kind } from 'graphql';
 
 const resolvers: Resolvers = {
   Query: {
-    getUser: async (root, args) => {
-      const user = await UserModel.find({ user_id: args.user_id });
-
-      return user[0];
-    },
     getAssessment: async (root, args) => {
       const assessment = await AssessmentModel.findOne({
         user_id: args.user_id,
@@ -20,19 +14,16 @@ const resolvers: Resolvers = {
 
       return assessment;
     },
-    getAssessmentGoal: async (root, args) => {
-      const goal = await GoalModel.findById(args._id);
-      return goal;
-    },
-  },
-
-  User: {
-    async assessments(user) {
+    getAssessments: async (root, args) => {
       const assessments = await AssessmentModel.find({
-        user_id: user.user_id,
+        user_id: args.user_id,
       });
 
       return assessments;
+    },
+    getAssessmentGoal: async (root, args) => {
+      const goal = await GoalModel.findById(args._id);
+      return goal;
     },
   },
 
