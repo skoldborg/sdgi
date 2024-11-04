@@ -14,6 +14,13 @@ import { Option } from '../Option';
 import { Box } from './Box';
 import { GroupField } from '@prismicio/client';
 
+const getImpactOptionByImpactLevel = (
+  impactLevel: number,
+  impactOptions: GroupField<Simplify<GoalPageDocumentDataImpactOptionsItem>>,
+) => {
+  return impactOptions.find((o) => o.value === impactLevel);
+};
+
 export const BoxRow = ({
   id,
   assessmentGoals,
@@ -90,13 +97,18 @@ export const BoxRow = ({
                             resultPage.data.motivation_title ?? 'Motivation'
                           }
                         >
-                          {impactOptions && impact && (
+                          {impactOptions && (
                             <div className="section">
-                              {impact !== 0 ? (
+                              {impact && impact !== 0 ? (
                                 <Option
                                   type="locked"
                                   size="small"
-                                  label={impactOptions[impact - 1].label ?? ''}
+                                  label={
+                                    getImpactOptionByImpactLevel(
+                                      impact,
+                                      impactOptions,
+                                    )?.label ?? ''
+                                  }
                                 />
                               ) : (
                                 <Option
