@@ -15,7 +15,13 @@ const Section = ({
 
   return (
     <div className={classNames}>
-      {title && <h3 className="section__title">{title}</h3>}
+      {title && (
+        <h3
+          className={cx('section__title', print && 'section__title--lowercase')}
+        >
+          {title}
+        </h3>
+      )}
       {description && <p className="section__description">{description}</p>}
     </div>
   );

@@ -80,7 +80,6 @@ const AssessmentGoalsPage = async ({
             <GoalPrintSection
               {...goalPage}
               goalsDoc={goalsDoc}
-              strategyTitle={resultPage.data.strategy_title_print ?? ''}
               printButtonLabel={resultPage.data.print_button_label ?? 'Print'}
             />
           </>

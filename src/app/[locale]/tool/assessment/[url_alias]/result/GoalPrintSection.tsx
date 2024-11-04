@@ -10,14 +10,12 @@ import styles from './goal-print-box.module.scss';
 
 interface GoalPrintSectionI extends GoalPageDocument {
   goalsDoc: GoalsDocument;
-  strategyTitle: string;
   printButtonLabel: string;
 }
 
 export const GoalPrintSection = ({
   data: page,
   goalsDoc,
-  strategyTitle,
   printButtonLabel,
 }: GoalPrintSectionI) => {
   const { user } = useUser();
@@ -37,15 +35,6 @@ export const GoalPrintSection = ({
 
   return (
     <>
-      <div className="section print-only">
-        <h3 className="section__title section__title--lowercase">
-          {strategyTitle}
-        </h3>
-        <p className="section__description">
-          {assessment.getAssessment?.strategy?.strategy}
-        </p>
-      </div>
-
       <Button
         onClick={() => window.print()}
         position="center"
