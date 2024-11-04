@@ -8,7 +8,6 @@ export * from './Footer';
 export * from './Form';
 export * from './GoalCard';
 export * from './GoalHero';
-export * from './GoalPrintBox';
 export * from './GoalQuickview';
 export * from './Grid';
 export * from './Header';
