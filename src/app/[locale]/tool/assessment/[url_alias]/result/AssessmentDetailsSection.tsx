@@ -57,16 +57,9 @@ export const AssessmentDetailsSection = ({
 
   // Build array of question checkbox data from `strategy_questions` content and saved questions
   useEffect(() => {
-    if (
-      !assessment?.getAssessment?.strategy?.questions ||
-      !page.strategy_questions
-    ) {
-      return;
-    }
-
     const questionsArr = page.strategy_questions.reduce(
       (acc, q) => {
-        const savedQuestions = assessment.getAssessment?.strategy?.questions;
+        const savedQuestions = assessment?.getAssessment?.strategy?.questions;
         const checked =
           savedQuestions?.find((savedQ) => savedQ?.id === q.id)?.checked ??
           false;
@@ -159,6 +152,7 @@ export const AssessmentDetailsSection = ({
               placeholder={page.motivation_placeholder ?? ''}
               defaultValue={assessment?.getAssessment?.strategy?.strategy}
               onChange={(e) => setStrategy(e.target.value)}
+              modifier="strategy"
               maxLength={4000}
             />
             <Form.Submit

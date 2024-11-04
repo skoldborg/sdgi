@@ -10,6 +10,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ResultGraph } from './ResultGraph';
 import { AssessmentDetailsSection } from './AssessmentDetailsSection';
+import { GoalPrintSection } from './GoalPrintSection';
 
 const AssessmentGoalsPage = async ({
   params,
@@ -59,8 +60,8 @@ const AssessmentGoalsPage = async ({
                 <Image
                   src="/images/siat-logo.svg"
                   alt=""
-                  width="1390"
-                  height="228"
+                  width="200"
+                  height="32"
                 />
               </div>
 
@@ -75,6 +76,8 @@ const AssessmentGoalsPage = async ({
               title={resultPage.data.print_description_title ?? 'Description'}
               {...resultPage}
             />
+
+            <GoalPrintSection {...goalPage} goalsDoc={goalsDoc} />
           </>
         ) : (
           <LoadingIndicator />

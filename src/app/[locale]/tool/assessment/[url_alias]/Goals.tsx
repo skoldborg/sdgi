@@ -4,10 +4,9 @@ import { useGetAssessmentQuery } from '@/app/[locale]/queries.generated';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useParams } from 'next/navigation';
 import { AssessmentGoalsPageDocument, GoalsDocument } from '@prismicio-types';
-import { Button, Grid, Modal, useModal } from '@/app/components';
+import { Button, Grid, Modal, useModal, GoalCard } from '@/app/components';
 import { PrismicRichText } from '@prismicio/react';
 import { useEffect, useMemo, useState } from 'react';
-import GoalCard from '@/app/components/GoalCard';
 import GridSorted from '@/app/components/GridSorted';
 import Link from 'next/link';
 

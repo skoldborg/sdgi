@@ -1,0 +1,89 @@
+@import '../../styles/common';
+
+.goal-print-box{
+    display: none;
+    flex-direction: column;
+    border-bottom: 1px solid $color-gray;
+
+    &:first-child {
+        border-top: 1px solid $color-gray;
+    }
+
+    .goal-card__figure {
+        width: 100%;
+    }
+}
+
+.goal-print-box__header {
+    display: flex;
+    flex-direction: row;
+    margin-top: $size-22;
+    margin-bottom: $size-22;
+    position: relative;
+}
+
+.goal-print-box__header-content {
+    width: 55%;
+}
+
+.goal-print-box__title {
+    font-family: $font-family-header;
+    font-size: $size-26;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    margin-bottom: $size-4;
+    margin-top: -3px;
+}
+
+.goal-print-box__goal-id {
+    margin-right: $size-16;
+    width: $size-8 * 10;
+    height: $size-8 * 10;
+    -webkit-print-color-adjust:exact;
+    color-adjust: exact;
+}
+
+.goal-print-box__description {
+    font-size: $size-14;
+    font-family: $font-family-body;
+    margin: 0;
+    line-height: normal;
+}
+
+.goal-print-box__content {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: $size-16;
+    margin-top:  $size-8;
+
+    .goal-print-box__content-box:first-of-type {
+        width: 45%;
+        margin-right: $size-24;
+    }
+
+    .goal-print-box__content-box:last-of-type {
+        width: 62%;
+    }
+}
+
+.goal-print-box__content-box {
+    .option {
+        margin-top: $size-18;
+    }
+}
+
+.goal-print-box__content-box, .goal-print-box__content-box-second {
+    margin: 0;
+    padding: 0;
+}
+
+.goal-print-box__content-title {
+    font-family: $font-family-header;
+    font-size: $size-16;
+    margin-bottom: $size-12;
+}
+
+.goal-print-box__content-text {
+    font-size: $size-12;
+}

@@ -154,7 +154,6 @@ const Checkbox = ({
   defaultChecked,
   value,
   onChange,
-  modifier,
 }: CheckboxI) => {
   return (
     <div className="form__field">
@@ -162,7 +161,7 @@ const Checkbox = ({
         {label}
       </label>
       <input
-        className={`form__input form__input--${modifier}`}
+        className={`form__input form__input--checkbox`}
         type="checkbox"
         id={id}
         name={id}

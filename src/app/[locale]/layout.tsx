@@ -22,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className="page">
         <ApolloWrapper>
           <UserProvider>
             <ContentContextProvider commonTranslations={commonTranslations}>

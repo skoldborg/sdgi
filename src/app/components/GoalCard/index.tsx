@@ -4,17 +4,17 @@ import cx from 'classnames';
 import './goal-card.scss';
 import Link from 'next/link';
 
-const GoalCard = ({
+export const GoalCard = ({
   goal_id,
   title,
   href,
   saved,
   locales,
 }: {
-  title: string;
-  href: string;
+  title?: string;
+  href?: string;
   saved: boolean | null;
-  locales: {
+  locales?: {
     done: string;
     edit: string;
   };
@@ -27,9 +27,9 @@ const GoalCard = ({
   );
 
   return (
-    <Link href={href} className={classNames}>
+    <Link href={href ?? '#'} className={classNames}>
       <div className="goal-card__figure"></div>
-      <h3 className={`goal-card__title`}>{title}</h3>
+      {title && <h3 className={`goal-card__title`}>{title}</h3>}
 
       <div className="goal-card__status">
         <div className="goal-card__status-done">
@@ -48,5 +48,3 @@ const GoalCard = ({
     </Link>
   );
 };
-
-export default GoalCard;
