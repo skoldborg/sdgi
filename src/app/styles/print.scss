@@ -4,11 +4,6 @@
     background-color: $color-white !important;
   }
 
-  .goal-print-box {
-    display: flex !important;
-    page-break-inside: avoid;
-  }
-
   .page__header {
     display: none !important;
   }

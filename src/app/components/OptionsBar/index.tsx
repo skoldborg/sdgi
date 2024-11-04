@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './options-bar.scss';
 
 import { Option } from '../Option';
@@ -21,9 +21,13 @@ export const OptionsBar = ({
   options: Option[];
   otherOption: Option;
 }) => {
-  const [currentOptionValue, setCurrentOptionValue] = useState(
-    initialState ?? null,
-  );
+  const [currentOptionValue, setCurrentOptionValue] = useState<number>();
+
+  useEffect(() => {
+    if (typeof initialState === 'number') {
+      setCurrentOptionValue(initialState);
+    }
+  }, [initialState]);
 
   const setOption = (val: number) => {
     setCurrentOptionValue(val);

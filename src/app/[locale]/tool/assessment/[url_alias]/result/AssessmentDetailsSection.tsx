@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  GetAssessmentDocument,
   useAddOrUpdateAssessmentStrategyMutation,
   useGetAssessmentQuery,
 } from '@/app/[locale]/queries.generated';
@@ -10,7 +11,7 @@ import { useContentContext } from '@/app/contexts/content-context';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { ResultPageDocument } from '@prismicio-types';
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 interface AssessmentDetailsSectionI extends ResultPageDocument {
   title: string;
@@ -36,13 +37,28 @@ export const AssessmentDetailsSection = ({
   const [strategy, setStrategy] = useState(
     assessment?.getAssessment?.strategy?.strategy ?? '',
   );
-  const [questions, setQuestions] =
-    useState<{ id: string; checked: boolean }[]>();
+  const [questions, setQuestions] = useState<
+    { id: string; checked: boolean }[]
+  >([]);
+
+  const refetchQueries = [
+    {
+      query: GetAssessmentDocument,
+      variables: {
+        userId: user?.sub,
+        urlAlias: decodeURI(params.url_alias),
+      },
+      skip: !user?.sub || !params.url_alias,
+    },
+  ];
 
   const [
     updateAssessmentStrategy,
     { error, loading: updateAssessmentLoading },
-  ] = useAddOrUpdateAssessmentStrategyMutation();
+  ] = useAddOrUpdateAssessmentStrategyMutation({
+    awaitRefetchQueries: true,
+    refetchQueries,
+  });
 
   const successMsg =
     commonTranslations?.data?.success_messages[0]?.save_assessment ??
@@ -56,27 +72,33 @@ export const AssessmentDetailsSection = ({
     useState('');
 
   // Build array of question checkbox data from `strategy_questions` content and saved questions
+  const questionsArr = useMemo(() => {
+    if (!loading && assessment?.getAssessment) {
+      return page.strategy_questions.reduce(
+        (acc, q) => {
+          const savedQuestions = assessment?.getAssessment?.strategy?.questions;
+          const checked =
+            savedQuestions?.find((savedQ) => savedQ?.id === q.id)?.checked ??
+            false;
+
+          return [
+            ...acc,
+            {
+              id: q.id ?? '',
+              checked,
+            },
+          ];
+        },
+        [] as { id: string; checked: boolean }[],
+      );
+    }
+  }, [assessment?.getAssessment, page.strategy_questions, loading]);
+
   useEffect(() => {
-    const questionsArr = page.strategy_questions.reduce(
-      (acc, q) => {
-        const savedQuestions = assessment?.getAssessment?.strategy?.questions;
-        const checked =
-          savedQuestions?.find((savedQ) => savedQ?.id === q.id)?.checked ??
-          false;
-
-        return [
-          ...acc,
-          {
-            id: q.id ?? '',
-            checked,
-          },
-        ];
-      },
-      [] as { id: string; checked: boolean }[],
-    );
-
-    setQuestions(questionsArr);
-  }, [assessment?.getAssessment?.strategy?.questions, page.strategy_questions]);
+    if (questionsArr) {
+      setQuestions(questionsArr);
+    }
+  }, [questionsArr]);
 
   if (!assessment || loading) return;
 
@@ -118,7 +140,7 @@ export const AssessmentDetailsSection = ({
             }}
           >
             {page.strategy_questions &&
-              questions !== undefined &&
+              questions.length > 0 &&
               page.strategy_questions.map((q) => {
                 return (
                   <Form.Checkbox

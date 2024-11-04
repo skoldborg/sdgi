@@ -1,18 +1,24 @@
 'use client';
 
 import { useGetAssessmentQuery } from '@/app/[locale]/queries.generated';
-import { GoalCard, Option } from '@/app/components';
+import { Button, GoalCard, Option } from '@/app/components';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { GoalPageDocument, GoalsDocument } from '@prismicio-types';
 import { useParams } from 'next/navigation';
 
+import styles from './goal-print-box.module.scss';
+
 interface GoalPrintSectionI extends GoalPageDocument {
   goalsDoc: GoalsDocument;
+  strategyTitle: string;
+  printButtonLabel: string;
 }
 
 export const GoalPrintSection = ({
   data: page,
   goalsDoc,
+  strategyTitle,
+  printButtonLabel,
 }: GoalPrintSectionI) => {
   const { user } = useUser();
   const params = useParams<{ url_alias: string }>();
@@ -30,57 +36,73 @@ export const GoalPrintSection = ({
   if (!assessment || loading) return;
 
   return (
-    <div>
-      {assessment?.getAssessment?.goals?.map((g) => {
-        const title =
-          goals.find((goal) => Number(goal.primary.id) === g?.goal_id)?.primary
-            .title ?? '';
-        const description =
-          goals.find((goal) => Number(goal.primary.id) === g?.goal_id)?.primary
-            .description ?? '';
+    <>
+      <div className="section print-only">
+        <h3 className="section__title section__title--lowercase">
+          {strategyTitle}
+        </h3>
+        <p className="section__description">
+          {assessment.getAssessment?.strategy?.strategy}
+        </p>
+      </div>
 
-        const formattedTitle = title.replace(/--\s*/, '').trim();
-        let impactLabel = '';
+      <Button
+        onClick={() => window.print()}
+        position="center"
+        color="black"
+        icon={'print'}
+        label={printButtonLabel}
+      />
+      <div className="print-only">
+        {assessment?.getAssessment?.goals?.map((g) => {
+          const title =
+            goals.find((goal) => Number(goal.primary.id) === g?.goal_id)
+              ?.primary.title ?? '';
+          const description =
+            goals.find((goal) => Number(goal.primary.id) === g?.goal_id)
+              ?.primary.description ?? '';
 
-        page.impact_options.forEach((option) => {
-          if (g?.impact === option.value) {
-            impactLabel = option.label ?? '';
-          } else if (g?.impact === 0) {
-            impactLabel = page?.impact_options[5]?.label ?? '';
-          }
-        });
+          const formattedTitle = title.replace(/--\s*/, '').trim();
+          let impactLabel = '';
 
-        return (
-          <div className="goal-print-box" key={g?.goal_id}>
-            <div className="goal-print-box__header">
-              <div
-                className={`goal-print-box__goal-id goal-print-box__goal-id--${g?.goal_id}`}
-              >
-                <GoalCard goal_id={Number(g?.goal_id)} />
-              </div>
-              <div className="goal-print-box__header-content">
-                <h2 className="goal-print-box__title">{formattedTitle}</h2>
-                <p className="goal-print-box__description">{description}</p>
-              </div>
-            </div>
+          page.impact_options.forEach((option) => {
+            if (g?.impact === option.value) {
+              impactLabel = option.label ?? '';
+            } else if (g?.impact === 0) {
+              impactLabel = page?.impact_options[5]?.label ?? '';
+            }
+          });
 
-            <div className="goal-print-box__content">
-              <div className="goal-print-box__content-box">
-                <h3 className="goal-print-box__content-title">Impact</h3>
-                <Option label={impactLabel} type={`locked`} />
-              </div>
-              {g?.motivation && (
-                <div className="goal-print-box__content-box">
-                  <h3 className="goal-print-box__content-title">Motivation</h3>
-                  <p className="goal-print-box__content-text">
-                    {g?.motivation}
-                  </p>
+          return (
+            <div className={styles.root} key={g?.goal_id}>
+              <div className={styles.header}>
+                <div
+                  className={`${styles.goalId} ${styles.goalId}--${g?.goal_id}`}
+                >
+                  <GoalCard goal_id={Number(g?.goal_id)} />
                 </div>
-              )}
+                <div className={styles.headerContent}>
+                  <h2 className={styles.title}>{formattedTitle}</h2>
+                  <p className={styles.description}>{description}</p>
+                </div>
+              </div>
+
+              <div className={styles.content}>
+                <div className={styles.contentBox}>
+                  <h3 className={styles.contentTitle}>Impact</h3>
+                  <Option label={impactLabel} type={`locked`} />
+                </div>
+                {g?.motivation && (
+                  <div className={styles.contentBox}>
+                    <h3 className={styles.contentTitle}>Motivation</h3>
+                    <p className={styles.contentText}>{g?.motivation}</p>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 };

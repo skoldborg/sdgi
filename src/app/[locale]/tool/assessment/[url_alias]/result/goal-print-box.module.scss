@@ -1,0 +1,95 @@
+@import '../../../../../styles/common.scss';
+
+.root {
+  display: none;
+  flex-direction: column;
+  border-bottom: 1px solid $color-gray;
+
+  @media print {
+    display: flex !important;
+    page-break-inside: avoid;
+  }
+
+  &:first-child {
+    border-top: 1px solid $color-gray;
+  }
+
+  .goal-card__figure {
+    width: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  margin-top: $size-22;
+  margin-bottom: $size-22;
+  position: relative;
+}
+
+.header-content {
+  width: 55%;
+}
+
+.title {
+  font-family: $font-family-header;
+  font-size: $size-26;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  margin-bottom: $size-4;
+  margin-top: -3px;
+}
+
+.goalId {
+  margin-right: $size-16;
+  width: $size-8 * 10;
+  height: $size-8 * 10;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.description {
+  font-size: $size-14;
+  font-family: $font-family-body;
+  margin: 0;
+  line-height: normal;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: $size-16;
+  margin-top: $size-8;
+
+  .contentBox:first-of-type {
+    width: 45%;
+    margin-right: $size-24;
+  }
+
+  .contentBox:last-of-type {
+    width: 62%;
+  }
+}
+
+.contentBox {
+  .option {
+    margin-top: $size-18;
+  }
+}
+
+.contentBox,
+.contentBoxSecond {
+  margin: 0;
+  padding: 0;
+}
+
+.contentTitle {
+  font-family: $font-family-header;
+  font-size: $size-16;
+  margin-bottom: $size-12;
+}
+
+.contentText {
+  font-size: $size-12;
+}
