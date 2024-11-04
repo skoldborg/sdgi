@@ -8,12 +8,12 @@ export const GoalCard = ({
   goal_id,
   title,
   href,
-  saved,
+  saved = false,
   locales,
 }: {
   title?: string;
   href?: string;
-  saved: boolean | null;
+  saved?: boolean | null;
   locales?: {
     done: string;
     edit: string;
