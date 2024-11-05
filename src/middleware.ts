@@ -26,9 +26,6 @@ export async function middleware(req: NextRequest) {
       ? userLocaleByCookie
       : DEFAULT_LOCALE;
 
-  console.log('user locale', userLocaleByCookie);
-  console.log('locale', locale);
-
   // Extract the locale from the pathname
   const pathLocale = pathname.split('/')[1];
 

@@ -25,7 +25,7 @@ export default async function RootLayout({
   });
 
   return (
-    <html lang="en">
+    <html lang={params.locale ?? 'en-gb'} translate="no">
       <body suppressHydrationWarning={true} className="page">
         <ApolloWrapper>
           <UserProvider>

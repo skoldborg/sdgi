@@ -18,7 +18,6 @@ export default async function AssessementsPage({
   const page = await client.getSingle('assessments_page', {
     lang: params.locale,
   });
-  console.log('-language', locales);
 
   return (
     <>
