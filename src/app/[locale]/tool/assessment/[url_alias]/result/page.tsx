@@ -21,11 +21,21 @@ const AssessmentGoalsPage = async ({
 
   const api = await client.getRepository();
   const locales = api.languages.map((l) => l.id);
-  const header = await client.getSingle('header');
-  const resultPage = await client.getSingle('result_page');
-  const goalPage = await client.getSingle('goal_page');
-  const goalsDoc = await client.getSingle('goals');
-  const commonTranslations = await client.getSingle('common_translations');
+  const header = await client.getSingle('header', {
+    lang: params.locale,
+  });
+  const resultPage = await client.getSingle('result_page', {
+    lang: params.locale,
+  });
+  const goalPage = await client.getSingle('goal_page', {
+    lang: params.locale,
+  });
+  const goalsDoc = await client.getSingle('goals', {
+    lang: params.locale,
+  });
+  const commonTranslations = await client.getSingle('common_translations', {
+    lang: params.locale,
+  });
 
   return (
     <>

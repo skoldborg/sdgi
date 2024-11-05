@@ -8,16 +8,24 @@ type IframeEmbedField = {
   text: string;
 };
 
-export default async function ResourcesPage({}: {
+export default async function ResourcesPage({
+  params,
+}: {
   params: { locale: string; uid: string };
 }) {
   const client = createClient();
   const api = await client.getRepository();
   const locales = api.languages.map((l) => l.id);
 
-  const page = await client.getSingle('resources');
-  const header = await client.getSingle('header');
-  const footer = await client.getSingle('footer');
+  const page = await client.getSingle('resources', {
+    lang: params.locale,
+  });
+  const header = await client.getSingle('header', {
+    lang: params.locale,
+  });
+  const footer = await client.getSingle('footer', {
+    lang: params.locale,
+  });
 
   const iframeEmbed = page?.data?.iframe_embed[0] as IframeEmbedField;
 

@@ -8,14 +8,24 @@ import { createClient } from '@/prismicio';
 import headerStyles from '@/app/components/Header/header.module.scss';
 import { Goals } from './Goals';
 
-const AssessmentGoalsPage = async () => {
+const AssessmentGoalsPage = async ({
+  params,
+}: {
+  params: { locale: string; uid: string };
+}) => {
   const client = createClient();
 
   const api = await client.getRepository();
   const locales = api.languages.map((l) => l.id);
-  const header = await client.getSingle('header');
-  const goals = await client.getSingle('goals');
-  const goalsPage = await client.getSingle('assessment_goals_page');
+  const header = await client.getSingle('header', {
+    lang: params.locale,
+  });
+  const goals = await client.getSingle('goals', {
+    lang: params.locale,
+  });
+  const goalsPage = await client.getSingle('assessment_goals_page', {
+    lang: params.locale,
+  });
 
   return (
     <>

@@ -10,9 +10,15 @@ const GoalPage = async ({
   params: { locale: string; url_alias: string; _id: string; goal_id: string };
 }) => {
   const client = createClient();
-  const goalsDoc = await client.getSingle('goals');
-  const goalPageDoc = await client.getSingle('goal_page');
-  const commonTranslations = await client.getSingle('common_translations');
+  const goalsDoc = await client.getSingle('goals', {
+    lang: params.locale,
+  });
+  const goalPageDoc = await client.getSingle('goal_page', {
+    lang: params.locale,
+  });
+  const commonTranslations = await client.getSingle('common_translations', {
+    lang: params.locale,
+  });
 
   // Extract content for current goal
   const goalContent = goalsDoc.data.body.find(

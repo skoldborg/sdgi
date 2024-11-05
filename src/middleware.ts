@@ -17,6 +17,9 @@ export async function middleware(req: NextRequest) {
   const user = await getSession(req, NextResponse.next());
   const { pathname } = req.nextUrl;
 
+  const userLocaleByCookie = req.cookies.get('NEXT_LOCALE')?.value;
+  const locale = userLocaleByCookie ?? DEFAULT_LOCALE;
+
   // Fetch supported locales from Prismic using @prismicio/client
   const supportedLocales = await getSupportedLocales();
 
@@ -25,12 +28,12 @@ export async function middleware(req: NextRequest) {
 
   // Handle redirection if no locale is present in the root path
   if (pathname === '/') {
-    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, req.url));
+    return NextResponse.redirect(new URL(`/${locale}`, req.url));
   }
 
   // Validate the locale against Prismic-supported locales
   if (!supportedLocales.includes(pathLocale)) {
-    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, req.url));
+    return NextResponse.redirect(new URL(`/${locale}`, req.url));
   }
 
   // If user is logged in and visits /:locale, redirect to /:locale/tool/assessments

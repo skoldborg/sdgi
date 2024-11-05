@@ -4,14 +4,20 @@ import { Header, LanguageSwitch } from '@/app/components';
 import headerStyles from '@/app/components/Header/header.module.scss';
 import { CreateAssessmentButton } from '@/app/components/Header/CreateAssessmentButton';
 
-export default async function AssessementsPage({}: {
-  params: { slug: string };
+export default async function AssessementsPage({
+  params,
+}: {
+  params: { slug: string; locale: string };
 }) {
   const client = createClient();
   const api = await client.getRepository();
   const locales = api.languages.map((l) => l.id);
-  const header = await client.getSingle('header');
-  const page = await client.getSingle('assessments_page');
+  const header = await client.getSingle('header', {
+    lang: params.locale,
+  });
+  const page = await client.getSingle('assessments_page', {
+    lang: params.locale,
+  });
 
   return (
     <>

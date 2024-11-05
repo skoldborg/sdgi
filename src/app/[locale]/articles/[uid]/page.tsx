@@ -11,9 +11,15 @@ export default async function StandardPage({
   const client = createClient();
   const api = await client.getRepository();
   const locales = api.languages.map((l) => l.id);
-  const page = await client.getByUID('standard_page', params.uid);
-  const header = await client.getSingle('header');
-  const footer = await client.getSingle('footer');
+  const page = await client.getByUID('standard_page', params.uid, {
+    lang: params.locale,
+  });
+  const header = await client.getSingle('header', {
+    lang: params.locale,
+  });
+  const footer = await client.getSingle('footer', {
+    lang: params.locale,
+  });
 
   return (
     <>

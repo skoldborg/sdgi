@@ -9,7 +9,12 @@ export const LanguageSwitch = (props: { label: string; locales: string[] }) => {
   const router = useRouter();
   const { locale } = params;
 
+  const setCookie = (locale: string) => {
+    document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
+  };
+
   const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCookie(e.target.value);
     router.push(`/${e.target.value}`);
   };
 

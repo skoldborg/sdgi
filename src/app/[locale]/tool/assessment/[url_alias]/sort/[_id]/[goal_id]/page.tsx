@@ -9,8 +9,12 @@ const AssessmentGoalsPage = async ({
 }) => {
   const client = createClient();
 
-  const goalsDoc = await client.getSingle('goals');
-  const assessmentGoalsPage = await client.getSingle('assessment_goals_page');
+  const goalsDoc = await client.getSingle('goals', {
+    lang: params.locale,
+  });
+  const assessmentGoalsPage = await client.getSingle('assessment_goals_page', {
+    lang: params.locale,
+  });
   const goalContent = goalsDoc.data.body.find(
     (goal) => goal.primary.id === parseInt(params.goal_id),
   );

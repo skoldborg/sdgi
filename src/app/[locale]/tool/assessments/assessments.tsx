@@ -45,8 +45,10 @@ export default function Assessments({ data: page }: AssessmentsI) {
   };
 
   useEffect(() => {
-    if (!loading && assessments && assessments.length > 0) {
-      setVisibleAssessments(assessments as Assessment[]);
+    if (!loading && assessments) {
+      if (assessments.length > 0) {
+        setVisibleAssessments(assessments as Assessment[]);
+      }
       setIsLoading(false);
     }
   }, [assessments, loading]);
