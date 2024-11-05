@@ -17,11 +17,17 @@ export async function middleware(req: NextRequest) {
   const user = await getSession(req, NextResponse.next());
   const { pathname } = req.nextUrl;
 
-  const userLocaleByCookie = req.cookies.get('NEXT_LOCALE')?.value;
-  const locale = userLocaleByCookie ?? DEFAULT_LOCALE;
-
   // Fetch supported locales from Prismic using @prismicio/client
   const supportedLocales = await getSupportedLocales();
+
+  const userLocaleByCookie = req.cookies.get('NEXT_LOCALE')?.value;
+  const locale =
+    userLocaleByCookie && supportedLocales.includes(userLocaleByCookie)
+      ? userLocaleByCookie
+      : DEFAULT_LOCALE;
+
+  console.log('user locale', userLocaleByCookie);
+  console.log('locale', locale);
 
   // Extract the locale from the pathname
   const pathLocale = pathname.split('/')[1];
