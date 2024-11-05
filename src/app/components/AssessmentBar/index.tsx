@@ -14,7 +14,7 @@ import {
   useRemoveAssessmentMutation,
   useUpdateAssessmentMutation,
 } from '@/app/[locale]/queries.generated';
-import { Modal, useModal, Form } from '@/app/components';
+import { Modal, useModal, Form, LoadingIndicator } from '@/app/components';
 import { useContentContext } from '@/app/contexts/content-context';
 
 interface AssessmentBarI extends PropsWithChildren {
@@ -114,16 +114,17 @@ const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
     );
   };
 
-  const [removeAssessment] = useRemoveAssessmentMutation({
-    variables: {
-      id: _id,
-    },
-    onCompleted: () => {
-      setOverlayHidden(true);
-    },
-    awaitRefetchQueries: true,
-    refetchQueries,
-  });
+  const [removeAssessment, { loading: removeAssessmentLoading }] =
+    useRemoveAssessmentMutation({
+      variables: {
+        id: _id,
+      },
+      onCompleted: () => {
+        setOverlayHidden(true);
+      },
+      awaitRefetchQueries: true,
+      refetchQueries,
+    });
 
   return (
     <Link className={`assessment-bar`} href={url}>
@@ -152,6 +153,7 @@ const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
         onClick={(e) => e.preventDefault()}
       >
         <div className="assessment-bar__overlay-btn-group">
+          {removeAssessmentLoading && <LoadingIndicator />}
           <button
             className="assessment-bar__overlay-btn"
             onClick={() => removeAssessment()}
