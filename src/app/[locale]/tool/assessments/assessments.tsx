@@ -5,7 +5,7 @@ import { useGetAssessmentsQuery } from '../../queries.generated';
 import { AssessmentsPageDocument } from '@prismicio-types';
 import { Assessment } from '@/@types/codegen/types';
 import { useEffect, useState } from 'react';
-import { SearchBar } from '@/app/components';
+import { LoadingIndicator, SearchBar } from '@/app/components';
 import AssessmentBar from '@/app/components/AssessmentBar';
 
 import styles from './assessments.module.scss';
@@ -62,7 +62,7 @@ export default function Assessments({ data: page }: AssessmentsI) {
 
   const hasAssessments = visibleAssessments && visibleAssessments.length > 0;
 
-  if (isLoading) return;
+  if (isLoading) return <LoadingIndicator />;
 
   if (hasAssessments) {
     return (
