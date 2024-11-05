@@ -49,7 +49,7 @@ export const Goals = ({ data: page, goalsDoc }: GoalsI) => {
   // If all goals haven't been sorted, navigate to sorting
   useEffect(() => {
     const navigateToGoalSortingTimer = setTimeout(() => {
-      if (!sortedGoalsCount || (sortedGoalsCount < 17 && sortModalLink)) {
+      if (sortedGoalsCount && sortedGoalsCount < 17 && sortModalLink) {
         registerModal(
           <Modal.Window
             id="goal-sorting-modal"
