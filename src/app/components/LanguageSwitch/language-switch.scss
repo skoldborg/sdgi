@@ -1,40 +1,41 @@
-@import "../../styles/common.scss";
+@import '../../styles/common.scss';
 
 .language-switch {
-	position: relative;
-	padding: $size-8 $size-14;
+  position: relative;
+  padding: $size-8 0 $size-8 $size-14;
 }
 
-label[for="language-switch-select"] {
-	clip: rect(0 0 0 0);
-	clip: rect(0, 0, 0, 0);
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	height: 1px;
+label[for='language-switch-select'] {
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
 }
 
 .language-switch__select {
-	font-family: $font-family-header;
-	font-size: $size-14;
-	appearance: none;
+  font-family: $font-family-header;
+  font-size: $size-14;
+  width: 40px;
+  appearance: none;
 }
 
 .language-switch__arrow {
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	right: -4px;
-	transform: translateY(-50%);
-	width: 18px;
-	height: 18px;
-	pointer-events: none;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
 
-	* {
-		fill: $color-black;
-		width: 100%;
-		height: 100%;
-	}
+  * {
+    fill: $color-black;
+    width: 100%;
+    height: 100%;
+  }
 }
