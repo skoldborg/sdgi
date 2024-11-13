@@ -94,6 +94,11 @@
 .modal__content-inner {
   max-width: 80%;
   margin: 0 auto;
+  margin-bottom: $size-80; // Empty space needed for mobile scroll
+
+  @include breakpoint($s) {
+    margin-bottom: 0;
+  }
 }
 
 .modal__content-header {
