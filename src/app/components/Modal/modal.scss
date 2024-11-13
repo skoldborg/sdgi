@@ -28,12 +28,9 @@
   flex-direction: column;
   margin: auto;
   width: 100%;
-  max-width: 60%;
   overflow: auto;
   font-size: $size-16;
-  width: 100%;
   background-color: $color-white;
-  opacity: 1;
   z-index: $z-modal;
 
   @include breakpoint($s) {
@@ -77,10 +74,8 @@
 }
 
 .modal__content {
-  max-width: 80%;
-  margin: 0 auto;
   padding: $size-40 $size-12;
-  overflow: hidden;
+  overflow: auto;
 
   @include breakpoint($s) {
     padding: $size-80 0;
@@ -94,6 +89,11 @@
     padding: 0;
     max-width: none;
   }
+}
+
+.modal__content-inner {
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .modal__content-header {

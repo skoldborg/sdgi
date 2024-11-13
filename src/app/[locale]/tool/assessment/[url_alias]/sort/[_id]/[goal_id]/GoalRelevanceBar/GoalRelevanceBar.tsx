@@ -76,13 +76,14 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
     },
   ];
 
-  const [updateGoal, { error }] = useUpdateGoalMutation({
-    onCompleted: () => {
-      navigateToNextGoal();
-    },
-    awaitRefetchQueries: true,
-    refetchQueries,
-  });
+  const [updateGoal, { error, loading: updateGoalLoading }] =
+    useUpdateGoalMutation({
+      onCompleted: () => {
+        navigateToNextGoal();
+      },
+      awaitRefetchQueries: true,
+      refetchQueries,
+    });
 
   const handleClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -103,7 +104,7 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
   return (
     <div className={styles.bar}>
       <div className={styles.content}>
-        {loading && <LoadingIndicator />}
+        {loading || (updateGoalLoading && <LoadingIndicator />)}
 
         <div className={styles.controls}>
           {goalPriorities && (

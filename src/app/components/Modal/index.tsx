@@ -136,14 +136,16 @@ const ModalWindow = ({
           centered && 'modal__content--center',
         )}
       >
-        {title && description && (
-          <div className="modal__content-header">
-            <h2 className="modal__title">{title}</h2>
-            {description && <div className="rte">{description}</div>}
-          </div>
-        )}
+        <div className="modal__content-inner">
+          {title && description && (
+            <div className="modal__content-header">
+              <h2 className="modal__title">{title}</h2>
+              {description && <div className="rte">{description}</div>}
+            </div>
+          )}
 
-        {children}
+          {children}
+        </div>
       </div>
     </div>
   );

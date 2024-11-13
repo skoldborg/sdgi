@@ -184,6 +184,8 @@ interface SubmitI {
 }
 
 const Submit = ({ label, modifier, loading }: SubmitI) => {
+  console.log('loading', loading);
+
   return (
     <div
       className={cx('form__footer', modifier && `form__footer--${modifier}`)}
