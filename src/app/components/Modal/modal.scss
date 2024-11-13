@@ -81,10 +81,6 @@
     padding: $size-80 0;
   }
 
-  @include breakpoint($xl) {
-    max-width: 500px;
-  }
-
   &--full-width {
     padding: 0;
     max-width: none;
@@ -98,6 +94,10 @@
 
   @include breakpoint($s) {
     margin-bottom: 0;
+  }
+
+  @include breakpoint($xl) {
+    max-width: 500px;
   }
 }
 

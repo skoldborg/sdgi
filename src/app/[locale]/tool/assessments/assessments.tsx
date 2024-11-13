@@ -48,6 +48,8 @@ export default function Assessments({ data: page }: AssessmentsI) {
     if (!loading && assessments) {
       if (assessments.length > 0) {
         setVisibleAssessments(assessments as Assessment[]);
+      } else {
+        setVisibleAssessments([]);
       }
       setIsLoading(false);
     }

@@ -104,7 +104,9 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
   return (
     <div className={styles.bar}>
       <div className={styles.content}>
-        {loading || (updateGoalLoading && <LoadingIndicator />)}
+        <div className={styles.loadingIndicator}>
+          {loading || (updateGoalLoading && <LoadingIndicator />)}
+        </div>
 
         <div className={styles.controls}>
           {goalPriorities && (
@@ -135,7 +137,7 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
                   handleClick(e, 3)
                 }
                 disabled={loading}
-                className={styles.button}
+                className={`${styles.button} ${styles.lastButton}`}
               />
             </>
           )}
