@@ -68,6 +68,7 @@ export const CreateAssessmentButton = ({
             id="edit-assessment-modal"
             title={content?.create?.title ?? ''}
             description={content?.create?.description ?? ''}
+            size="small"
           >
             <Form
               onSubmit={createAssessment}

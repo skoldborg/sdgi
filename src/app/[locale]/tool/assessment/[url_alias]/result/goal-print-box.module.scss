@@ -14,7 +14,7 @@
     border-top: 1px solid $color-gray;
   }
 
-  .goal-card__figure {
+  :global(.goal-card__figure) {
     width: 100%;
   }
 }

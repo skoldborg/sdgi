@@ -50,11 +50,13 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
     if (modals.length > 0) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'auto';
+      document.body.style.overflowX = 'hidden';
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'auto';
+      document.body.style.overflowX = 'hidden';
     };
   }, [modals, visibleModalIds]);
 
@@ -94,7 +96,7 @@ export interface ModalWindowProps extends PropsWithChildren {
 const ModalWindow = ({
   children,
   id,
-  size = 'small',
+  size = 'large',
   preventClose = false,
   contentModifier,
   centered = false,

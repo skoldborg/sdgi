@@ -34,23 +34,33 @@
   z-index: $z-modal;
 
   @include breakpoint($s) {
-    max-width: 60%;
+    max-width: 90%;
     min-height: 0;
     display: inline-block;
     vertical-align: middle;
     text-align: left;
   }
 
-  @include breakpoint($xl) {
-    max-width: 40%;
+  @include breakpoint($m) {
+    max-width: 80%;
   }
 
-  @include breakpoint($xxl) {
-    max-width: 30%;
+  @include breakpoint($l) {
+    max-width: 60%;
   }
 
-  .modal-window--small & {
-    max-width: $s;
+  &--small {
+    @include breakpoint($s) {
+      max-width: 60%;
+    }
+
+    @include breakpoint($xl) {
+      max-width: 40%;
+    }
+
+    @include breakpoint($xxl) {
+      max-width: 30%;
+    }
   }
 }
 
@@ -80,11 +90,6 @@
   @include breakpoint($s) {
     padding: $size-80 0;
   }
-
-  &--full-width {
-    padding: 0;
-    max-width: none;
-  }
 }
 
 .modal__content-inner {
@@ -98,6 +103,14 @@
 
   @include breakpoint($xl) {
     max-width: 500px;
+  }
+}
+
+.modal__content--full-width {
+  padding: 0;
+
+  & > .modal__content-inner {
+    max-width: none;
   }
 }
 

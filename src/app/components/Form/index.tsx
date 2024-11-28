@@ -83,7 +83,6 @@ const TextInput = ({
       <input
         className={cx('form__input', modifier && `form__input--${modifier}`)}
         type={type}
-        pattern="[a-zA-Z0-9åäöÅÄÖ]*"
         id={id}
         name={id}
         defaultValue={defaultValue}
@@ -184,8 +183,6 @@ interface SubmitI {
 }
 
 const Submit = ({ label, modifier, loading }: SubmitI) => {
-  console.log('loading', loading);
-
   return (
     <div
       className={cx('form__footer', modifier && `form__footer--${modifier}`)}

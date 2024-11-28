@@ -185,10 +185,10 @@ export const AssessmentDetailsSection = ({
           </Form>
 
           {/* Only for print below */}
-          {strategy && (
+          {assessment?.getAssessment?.strategy?.strategy && (
             <Section
               title={page.strategy_title_print ?? ''}
-              description={strategy}
+              description={assessment?.getAssessment?.strategy?.strategy ?? ''}
               print={true}
             />
           )}

@@ -1,6 +1,14 @@
 @media print {
+  html {
+    width: 100%;
+    zoom: 1;
+  }
+
   body,
   .page {
+    zoom: 1 !important;
+    transform: scale(1);
+    width: 100% !important;
     background-color: $color-white !important;
   }
 
@@ -22,6 +30,13 @@
     text-transform: initial;
   }
 
+  .section--white,
+  .section--gray-light {
+    &:after {
+      display: none !important;
+    }
+  }
+
   .section__description,
   .form__label {
     font-size: $size-12 !important;
@@ -41,12 +56,12 @@
   }
 
   .box {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
   }
 
   .box__content {
-    font-size: $size-14;
+    font-size: $size-14 !important;
 
     span {
       color: $color-white !important;
