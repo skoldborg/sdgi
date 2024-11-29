@@ -27,26 +27,20 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 100%;
   overflow: auto;
   font-size: $size-16;
   background-color: $color-white;
   z-index: $z-modal;
 
   @include breakpoint($s) {
-    max-width: 90%;
     min-height: 0;
     display: inline-block;
     vertical-align: middle;
     text-align: left;
   }
 
-  @include breakpoint($m) {
-    max-width: 80%;
-  }
-
-  @include breakpoint($l) {
-    max-width: 60%;
+  @include breakpoint($xl) {
+    max-width: $s;
   }
 
   &--small {
