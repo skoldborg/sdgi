@@ -55,8 +55,8 @@ export const Header = ({ doc, children }: HeaderI) => {
                   <Button
                     label={internalLink.label}
                     href={`/${locale}/articles/${internalLink.link.uid}`}
-                    color={`white`}
-                    size={`small`}
+                    color="white"
+                    size="small"
                   />
                 </li>
               );
@@ -73,7 +73,7 @@ export const Header = ({ doc, children }: HeaderI) => {
                 <Button
                   href={`/api/auth/logout`}
                   label={data.log_out}
-                  size={`small`}
+                  size="small"
                 />
               </Dropdown>
             </li>

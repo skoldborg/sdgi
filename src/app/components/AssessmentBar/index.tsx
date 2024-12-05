@@ -1,7 +1,6 @@
 'use client';
 
 import { ChangeEvent, PropsWithChildren, useState } from 'react';
-import './assessmentbar.scss';
 import { Assessment } from '@/@types/codegen/types';
 import Link from 'next/link';
 import {
@@ -16,6 +15,7 @@ import {
 } from '@/app/[locale]/queries.generated';
 import { Modal, useModal, Form, LoadingIndicator } from '@/app/components';
 import { useContentContext } from '@/app/contexts/content-context';
+import classNames from 'classnames';
 
 interface AssessmentBarI extends PropsWithChildren {
   assessment: Assessment;
@@ -127,41 +127,51 @@ const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
     });
 
   return (
-    <Link className={`assessment-bar`} href={url}>
-      <h3 className={`assessment-bar__title`}>{title}</h3>
-      <p className={`assessment-bar__body`}>{description}</p>
+    <Link
+      className="relative block bg-white p-6 text-dark hover:shadow transition-all duration-200 ease-in-expo hover:translate-y-[-1px] md:p-8"
+      href={url}
+    >
+      <h3 className="text-lg leading-7 md:text-2xl md:leading-8 mt-0 mb-4">
+        {title}
+      </h3>
+      <p className="mr-16 mb-2 overflow-hidden line-clamp-2">{description}</p>
 
-      <div className={`assessment-bar__goals-counter`}>
+      <div className="absolute top-6 right-6 text-gray-dark md:top-8 md:right-8">
         <span>{savedGoals}</span>/<span>17</span>
       </div>
 
       <button
         onClick={(e) => openAssessmentUpdateModal(e)}
-        className="assessmentbar__edit-button"
+        className="bg-[url('/icons/edit-lined.svg')] hover:bg-[url('/icons/edit.svg')] absolute bottom-8 right-[60px] w-6 h-6 transition-opacity bg-center bg-no-repeat"
       />
       <button
         onClick={(e) => {
           e.preventDefault();
           setOverlayHidden(false);
         }}
-        className="assessmentbar__trash-button"
+        className="bg-[url('/icons/trashy.svg')] hover:bg-[url('/icons/trash.svg')] absolute bottom-8 right-8 w-6 h-6 transition-opacity bg-center bg-no-repeat"
       />
 
       <div
-        className={`assessment-bar__overlay`}
+        className={classNames(
+          'absolute top-0 left-0 w-full h-full content-center flex-col pb-4 font-header bg-white/90 justify-end items-end',
+          overlayHidden ? 'hidden' : 'flex',
+        )}
         aria-hidden={overlayHidden}
         onClick={(e) => e.preventDefault()}
       >
-        <div className="assessment-bar__overlay-btn-group">
-          {removeAssessmentLoading && <LoadingIndicator />}
+        <div className="flex justify-end items-end mr-4">
+          {removeAssessmentLoading && (
+            <LoadingIndicator additionalClasses="h-10 m-0 flex content-center items-center mr-4" />
+          )}
           <button
-            className="assessment-bar__overlay-btn"
+            className="max-w-30 py-[6px] px-4 m-1 text-white bg-dark hover:bg-[#333]"
             onClick={() => removeAssessment()}
           >
             {labels?.yes__delete ?? 'Yes, delete'}
           </button>
           <button
-            className="assessment-bar__overlay-btn"
+            className="max-w-30 py-[6px] px-4 m-1 text-black bg-gray hover:bg-[#e5e5e5]"
             onClick={() => setOverlayHidden(true)}
           >
             {labels?.cancel ?? 'Cancel'}

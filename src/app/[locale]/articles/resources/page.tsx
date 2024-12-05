@@ -46,7 +46,9 @@ export default async function ResourcesPage({
       <div className="page page--white">
         <div className="page__content page__content--width-8">
           {page.data.title && (
-            <h1 className={`page__title`}>{page.data.title[0]?.text}</h1>
+            <h1 className="text-2xl md:text-[40px]">
+              {page.data.title[0]?.text}
+            </h1>
           )}
           {page?.data?.preamble && (
             <div className={`page__preamble`}>

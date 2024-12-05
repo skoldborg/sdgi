@@ -1,5 +1,3 @@
-import './avatar.scss';
-
 export const Avatar = ({
   initials,
   onClick,
@@ -8,8 +6,11 @@ export const Avatar = ({
   onClick: () => void;
 }) => {
   return (
-    <div className={`avatar`} onClick={onClick}>
-      <span className={`avatar__initials`}>{initials}</span>
-    </div>
+    <button
+      className="bg-gray text-black w-10 h-10 rounded-full flex justify-center items-center hover:bg-[#e4e4e4]"
+      onClick={onClick}
+    >
+      <span className="font-bold pointer-events-none">{initials}</span>
+    </button>
   );
 };

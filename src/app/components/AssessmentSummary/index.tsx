@@ -11,8 +11,6 @@ import { useParams } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useGetAssessmentQuery } from '@/app/[locale]/queries.generated';
 
-import styles from './assessment-summary.module.scss';
-
 interface AssessmentSummaryI {
   doc: GroupField<Simplify<AssessmentGoalsPageDocumentDataSummaryItem>>;
 }
@@ -53,22 +51,24 @@ export const AssessmentSummary = ({ doc }: AssessmentSummaryI) => {
   const resultButtonDisabled = savedGoals === totalGoals ? false : true;
 
   return (
-    <div className={styles.root}>
-      <div className={styles.content}>
-        <div className={styles.inner}>
-          <div className={styles.text}>
-            <div className={styles.summary}>
+    <div className="w-full bg-white fixed bottom-0 left-0 right-0 z-10 shadow-[0_3px_12px_2px_rgba(0,0,0,0.1)] ease-in-expo">
+      <div className="max-w-6xl mx-auto px-3 md:px-6">
+        <div className="bg-white flex items-center text-sm leading-1 py-3 md:text-lg md:py-6 xl:py-8">
+          <div className="max-md:flex max-md:flex-wrap max-md:pr-4">
+            <div className="mb-1 md:mb-2 font-bold">
               <span>{savedGoals}</span>/
               <span>
                 {totalGoals} {doc[0]?.count_suffix}
               </span>
             </div>
             {doc[0]?.summary_description && (
-              <p className={styles.body}>{doc[0].summary_description}</p>
+              <p className="m-0 pr-8 max-md:basis-full max-md:text-xs">
+                {doc[0].summary_description}
+              </p>
             )}
           </div>
 
-          <div className={styles.buttonMobile}>
+          <div className="self-center md:hidden">
             <Button
               link={ctaHref}
               label={ctaLabel}
@@ -78,7 +78,7 @@ export const AssessmentSummary = ({ doc }: AssessmentSummaryI) => {
             />
           </div>
 
-          <div className={styles.button}>
+          <div className="hidden md:block">
             <Button
               link={ctaHref}
               label={ctaLabel}

@@ -64,6 +64,7 @@ const AssessmentGoalsPage = async ({
                     commonTranslations.data.button_labels[0]
                       ?.back_to_assessment_board ?? 'Back to assessment board'
                   }
+                  className="mb-6 print:hidden"
                 />
               </Link>
               <div className="print-only print-only-logo">

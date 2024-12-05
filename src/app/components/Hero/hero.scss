@@ -44,6 +44,7 @@
   line-height: 1;
   text-transform: uppercase;
   color: $color-white;
+  margin-bottom: $size-24;
 
   @include breakpoint($s) {
     font-size: $size-56;

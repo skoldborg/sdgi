@@ -40,7 +40,7 @@ export const GoalHero = ({
           <Button
             link={assessmentGoalsUrl}
             label={backBtnLabel}
-            color={`black`}
+            color="black"
             opacity={0.7}
           />
         )}

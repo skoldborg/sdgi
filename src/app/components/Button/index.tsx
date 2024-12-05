@@ -1,13 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-import './button.scss';
 import Link from 'next/link';
 import { KeyTextField } from '@prismicio/client';
 
 interface ButtonProps {
   label: KeyTextField;
-  color?: string;
-  size?: string;
+  color?: 'black' | 'white' | 'gray';
+  size?: 'base' | 'small';
   href?: string;
   link?: string;
   onClick?:
@@ -15,7 +14,7 @@ interface ButtonProps {
     | undefined;
   opacity?: number;
   icon?: string;
-  position?: 'center';
+  center?: boolean;
   className?: string;
   disabled?: boolean;
 }
@@ -23,23 +22,40 @@ interface ButtonProps {
 export const Button = (props: ButtonProps) => {
   const {
     label,
-    color,
-    size,
+    color = 'black',
+    size = 'base',
     href,
     link,
     onClick,
     opacity,
     icon,
-    position,
+    center = false,
     className,
     disabled,
   } = props;
+
+  const baseStyles =
+    'relative text-center hover:bg-[#404040] font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 disabled:pointer-events-none disabled:bg-gray disabled:cursor-default z-10';
+
+  const sizes = {
+    base: 'text-lg py-4 px-6',
+    small: 'text-xs py-2 px-3 md:text-sm',
+  };
+
+  const colors = {
+    black: 'bg-black text-white [&>.icon]:fill-white',
+    white: 'text-black bg-white hover:bg-gray-light',
+    gray: 'text-black bg-gray hover:bg-[#e4e4e4]',
+  };
+
   const classNames = cx(
-    'button',
-    color && 'button--' + color,
-    size && 'button--' + size,
-    icon && 'button--with-icon',
-    position && 'button--' + position,
+    baseStyles,
+    sizes[size],
+    colors[color],
+    center ? 'block mx-auto' : 'inline-block',
+    icon &&
+      'tracking-normal text-center pl-16 [&>.icon]:w-7 [&>.icon]:h-7 [&>.icon]:absolute [&>.icon]:left-[22px] [&>.icon]:top-4',
+
     className && className,
   );
 

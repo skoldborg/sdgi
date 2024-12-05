@@ -37,10 +37,11 @@ export const GoalPrintSection = ({
     <>
       <Button
         onClick={() => window.print()}
-        position="center"
+        center
         color="black"
         icon={'print'}
         label={printButtonLabel}
+        className="print:hidden"
       />
       <div className="print-only">
         {assessment?.getAssessment?.goals?.map((g) => {
@@ -63,28 +64,34 @@ export const GoalPrintSection = ({
           });
 
           return (
-            <div className={styles.root} key={g?.goal_id}>
-              <div className={styles.header}>
+            <div
+              data-component="goal-print-section"
+              className="flex flex-col border-b first:border-t border-solid border-gray print:break-inside-avoid"
+              key={g?.goal_id}
+            >
+              <div className="relative flex mt-6 mb-6">
                 <div
                   className={`${styles.goalId} ${styles.goalId}--${g?.goal_id}`}
                 >
                   <GoalCard goal_id={Number(g?.goal_id)} />
                 </div>
-                <div className={styles.headerContent}>
-                  <h2 className={styles.title}>{formattedTitle}</h2>
-                  <p className={styles.description}>{description}</p>
+                <div className="w-[55%]">
+                  <h2 className="font-header text-2xl flex mb-1 -mt-1">
+                    {formattedTitle}
+                  </h2>
+                  <p className="text-sm m-0">{description}</p>
                 </div>
               </div>
 
-              <div className={styles.content}>
-                <div className={styles.contentBox}>
-                  <h3 className={styles.contentTitle}>Impact</h3>
+              <div className="flex pb-4 mt-2">
+                <div className="w-[25%] mr-6">
+                  <h3 className="font-header text-base mb-3">Impact</h3>
                   <Option label={impactLabel} type={`locked`} />
                 </div>
                 {g?.motivation && (
-                  <div className={styles.contentBox}>
-                    <h3 className={styles.contentTitle}>Motivation</h3>
-                    <p className={styles.contentText}>{g?.motivation}</p>
+                  <div className="w-[75%]">
+                    <h3 className="font-header text-base mb-3">Motivation</h3>
+                    <p className="text-xs leading-5">{g?.motivation}</p>
                   </div>
                 )}
               </div>

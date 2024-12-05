@@ -2,7 +2,6 @@ import cx from 'classnames';
 import { Goal } from '@/@types/codegen/types';
 import { Modal, useModal, GoalHero, GoalQuickview } from '@components';
 
-import './box-row.scss';
 import {
   GoalPageDocumentDataImpactOptionsItem,
   GoalsDocument,
@@ -11,7 +10,7 @@ import {
 } from '@prismicio-types';
 import { useContentContext } from '@/app/contexts/content-context';
 import { Option } from '../Option';
-import { Box } from './Box';
+import { Box, EmptyBox } from './Box';
 import { GroupField } from '@prismicio/client';
 
 const getImpactOptionByImpactLevel = (
@@ -21,6 +20,8 @@ const getImpactOptionByImpactLevel = (
   return impactOptions.find((o) => o.value === impactLevel);
 };
 
+export type BoxRowColor = 'gray' | 'gray-light' | 'green' | 'red';
+
 export const BoxRow = ({
   id,
   assessmentGoals,
@@ -28,8 +29,8 @@ export const BoxRow = ({
   resultPage,
   impactOptions,
   label,
-  color,
-  type,
+  color = 'gray',
+  standalone = false,
 }: {
   id: number;
   assessmentGoals: Goal[];
@@ -37,13 +38,14 @@ export const BoxRow = ({
   resultPage: ResultPageDocument;
   impactOptions: GroupField<Simplify<GoalPageDocumentDataImpactOptionsItem>>;
   label: string;
-  color?: string;
-  type?: 'standalone';
+  color?: BoxRowColor;
+  standalone?: boolean;
 }) => {
   const classNames = cx(
+    'clear-both',
     'box-row',
-    color && 'box-row--' + color,
-    type && 'box-row--' + type,
+    `group box-color-${color}`,
+    standalone && 'ml-[150px] print:ml-[100px]',
   );
 
   const { registerModal } = useModal();
@@ -51,7 +53,12 @@ export const BoxRow = ({
 
   return (
     <div className={classNames}>
-      <div className="box-row__label">
+      <div
+        className={cx(
+          'float-left flex h-[50px] items-center text-base font-bold text-dark w-[150px] text-right print:h-[30px] print:text-xs print:w-[100px]',
+          standalone && 'float-none mt-6 ml-1',
+        )}
+      >
         <span>{label}</span>
       </div>
 
@@ -128,7 +135,7 @@ export const BoxRow = ({
             />
           );
         } else {
-          return <Box key={i} />;
+          return <EmptyBox key={i} />;
         }
       })}
     </div>

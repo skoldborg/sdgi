@@ -5,21 +5,14 @@ import { LoadingIndicator } from '@/app/components';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useParams } from 'next/navigation';
 
-import styles from './result-graph.module.scss';
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
 import {
   GoalPageDocument,
   GoalsDocument,
   ResultPageDocument,
 } from '@prismicio-types';
-import { BoxRow } from '@/app/components/BoxRow';
+import { BoxRow, BoxRowColor } from '@/app/components/BoxRow';
 import { Goal } from '@/@types/codegen/types';
+import classNames from 'classnames';
 
 const impactColors = [
   {
@@ -61,64 +54,6 @@ export const ResultGraph = ({
   const { user } = useUser();
   const params = useParams<{ locale: string; url_alias: string }>();
 
-  const scrollerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  const [scrollFadeModifiers, setScrollFadeModifiers] = useState({
-    left: '',
-    right: '',
-  });
-  const [itemsWidth, setItemsWidth] = useState<number | null>(null);
-
-  const getItemsWidth = useCallback(() => {
-    const rows = scrollerRef.current?.children ?? null;
-
-    if (rows && rows.length > 0) {
-      const rowItems = rows[0].children;
-      let width = 0;
-
-      for (let i = 0; i < rowItems.length; i++) {
-        const item = rowItems[i] as HTMLElement;
-        const itemStyles = window.getComputedStyle(rowItems[i]);
-
-        let itemWidth = item.offsetWidth;
-        itemWidth += parseFloat(itemStyles.marginLeft);
-        itemWidth += parseFloat(itemStyles.marginRight);
-
-        width += itemWidth;
-      }
-
-      setItemsWidth(width);
-    }
-  }, []);
-
-  const setScrollFade = () => {
-    const scrollerEl = scrollerRef.current;
-    const scrollFadeModifiers = { left: '', right: '' };
-
-    if (scrollerEl) {
-      if (scrollerEl.scrollLeft > 0) {
-        scrollFadeModifiers.left = 'result-grap--scroll-fade-left';
-      }
-
-      const rightOverflow = itemsWidth
-        ? itemsWidth - scrollerEl.offsetWidth - scrollerEl.scrollLeft
-        : 0;
-
-      if (
-        itemsWidth &&
-        itemsWidth > scrollerEl.offsetWidth &&
-        !!rightOverflow
-      ) {
-        scrollFadeModifiers.right = 'result-grap--scroll-fade-right';
-      }
-
-      setScrollFadeModifiers(scrollFadeModifiers);
-    }
-  };
-
-  useEffect(() => {
-    getItemsWidth();
-  }, [getItemsWidth]);
-
   const { data: assessment, loading } = useGetAssessmentQuery({
     variables: {
       userId: user?.sub,
@@ -152,19 +87,13 @@ export const ResultGraph = ({
 
   return (
     <>
-      <h2 className="page__title page__title--lowercase">
+      <h2 className={classNames('text-2xl md:text-[40px] mb-8')}>
         {assessment.getAssessment?.title}
       </h2>
 
-      <div
-        className={`${styles.root} ${scrollFadeModifiers.left} ${scrollFadeModifiers.right}`}
-      >
-        <div className={styles.inner}>
-          <div
-            ref={scrollerRef}
-            className={styles.scrollable}
-            onScroll={setScrollFade}
-          >
+      <div className="mt-0 mb-12 print:mb-0">
+        <div className="relative overflow-hidden whitespace-nowrap">
+          <div className="float-left overflow-y-hidden overflow-x-auto w-full py-6">
             {impactLevels &&
               assessment?.getAssessment?.goals &&
               impactLevels.map((level, i) => {
@@ -175,8 +104,8 @@ export const ResultGraph = ({
                     key={i}
                     id={value}
                     label={label}
-                    color={color}
-                    type={value == 0 ? 'standalone' : undefined}
+                    color={color as BoxRowColor}
+                    standalone={value == 0 ? true : false}
                     assessmentGoals={assessment.getAssessment?.goals as Goal[]}
                     impactOptions={page.impact_options}
                     goalsDoc={goalsDoc}

@@ -9,6 +9,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { useEffect, useMemo, useState } from 'react';
 import GridSorted from '@/app/components/GridSorted';
 import Link from 'next/link';
+import classNames from 'classnames';
 
 interface GoalsI extends AssessmentGoalsPageDocument {
   goalsDoc: GoalsDocument<string>;
@@ -130,10 +131,12 @@ export const Goals = ({ data: page, goalsDoc }: GoalsI) => {
   return (
     <>
       <Link href={`/${locale}/tool/assessments`}>
-        <Button size="small" label={page.save_and_close} />
+        <Button size="small" label={page.save_and_close} className="mb-6" />
       </Link>
 
-      <h2 className={`page__title`}>{assessment?.getAssessment?.title}</h2>
+      <h2 className={classNames('text-2xl md:text-[40px]', `page__title`)}>
+        {assessment?.getAssessment?.title}
+      </h2>
 
       <div className="page__preamble">
         {<PrismicRichText field={page.description} />}

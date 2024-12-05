@@ -118,7 +118,7 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
                     handleClick(e, 1)
                   }
                   disabled={loading}
-                  className={styles.button}
+                  className="min-w-[260px] mb-6"
                 />
                 <Button
                   label={goalPriorities[1]?.label ?? ''}
@@ -126,7 +126,7 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
                     handleClick(e, 2)
                   }
                   disabled={loading}
-                  className={styles.button}
+                  className="min-w-[260px] mb-6"
                 />
               </div>
 
@@ -137,7 +137,7 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
                   handleClick(e, 3)
                 }
                 disabled={loading}
-                className={`${styles.button} ${styles.lastButton}`}
+                className="min-w-[260px] mb-0"
               />
             </>
           )}

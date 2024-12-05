@@ -1,22 +1,22 @@
-$site-width: 1140px;
+$site-width: 1140px; // 6xl
 $site-width-8: 770px;
 
 // Sizes
 $size-4: 4px;
 $size-8: 8px;
-$size-12: 12px;
-$size-14: 14px;
-$size-16: 16px;
-$size-18: 18px;
-$size-20: 20px;
-$size-21: 21px;
+$size-12: 12px; // text-xs
+$size-14: 14px; // text-sm
+$size-16: 16px; // text-base
+$size-18: 18px; // text-lg
+$size-20: 20px; // text-xl
+$size-21: 21px; //
 $size-22: 22px;
-$size-24: 24px;
+$size-24: 24px; // text-2xl
 $size-26: 26px;
 $size-28: 28px;
-$size-30: 30px;
+$size-30: 30px; // text-3xl
 $size-32: 32px;
-$size-36: 36px;
+$size-36: 36px; // text-4xl
 $size-40: 40px;
 $size-50: 50px;
 $size-56: 56px;
@@ -36,15 +36,22 @@ $z-modal: 100;
 $xs-minor: 414px;
 $xs: 468px;
 $s-minor: 640px;
-$s: 767px;
-$m: 968px;
-$l: 1240px;
+$s: 767px; // md
+$m: 968px; // lg
+$l: 1240px; // xl
 $xl: 1300px;
 $xxl: 1920px;
 
 // Font families
-$font-family-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  Helvetica, Arial, sans-serif;
+$font-family-body:
+  'Helvetica Neue',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif;
 $font-family-header: 'Open Sans Condensed', sans-serif;
 
 // Font weights
