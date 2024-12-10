@@ -1,5 +1,4 @@
 import React from 'react';
-import './search-bar.scss';
 
 export const SearchBar = ({
   value,
@@ -11,15 +10,15 @@ export const SearchBar = ({
   onChange: (input: string) => void;
 }) => {
   return (
-    <div className={`search-bar`}>
+    <div className="max-w-screen-lg mx-auto mb-6 lg:mb-12">
       <div className={`search-bar__inner`}>
-        <form className={`search-bar__form`}>
-          <svg className="icon search-bar__icon">
+        <form className="relative">
+          <svg className="icon w-6 h-6 absolute left-0 top-1/2 -translate-y-1/2 lg:w-8 lg:h-8">
             <use xlinkHref="#icon-magnifier" />
           </svg>
           <input
             type={`search`}
-            className={`search-bar__input`}
+            className="border-b-black border-solid border-b-2 w-full block py-2 pr-2 lg:text-2xl lg:pl-12"
             placeholder={placeholder}
             defaultValue={value}
             onChange={(e) => onChange(e.target.value.toLowerCase())}

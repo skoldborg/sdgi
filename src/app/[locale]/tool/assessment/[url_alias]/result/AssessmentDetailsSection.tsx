@@ -6,7 +6,6 @@ import {
   useGetAssessmentQuery,
 } from '@/app/[locale]/queries.generated';
 import { Form } from '@/app/components';
-import Section from '@/app/components/Section';
 import { useContentContext } from '@/app/contexts/content-context';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { ResultPageDocument } from '@prismicio-types';
@@ -104,18 +103,21 @@ export const AssessmentDetailsSection = ({
 
   return (
     <>
-      <Section
-        title={title}
-        description={assessment.getAssessment?.description ?? ''}
-        print={true}
-      />
+      <div className="print-only pb-6 md:pb-[110px]">
+        <h3 className="text-2xl mb-6">{title}</h3>
+        <p className="text-xs mb-4 md:mb-10 max-w-screen-md">
+          {assessment.getAssessment?.description ?? ''}
+        </p>
+      </div>
 
-      <div className="section">
-        <div className="section__inner">
-          <h2 className="section__title section__title--centered section__title--lowercase">
+      <div className="relative pb-6 md:pb-[110px]">
+        <div className="max-w-screen-md mx-auto">
+          <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-10">
             {page.strategy_title}
           </h2>
-          <p className="section__description">{page.strategy_description}</p>
+          <p className="text-base md:text-lg mb-8 md:mb-10 max-w-screen-md">
+            {page.strategy_description}
+          </p>
 
           <Form
             error={error !== undefined && error?.message !== ''}
@@ -169,28 +171,30 @@ export const AssessmentDetailsSection = ({
               })}
             <Form.TextArea
               id="strategy"
-              label=""
+              label="Describe your strategy"
               hiddenLabel
               placeholder={page.motivation_placeholder ?? ''}
               defaultValue={assessment?.getAssessment?.strategy?.strategy}
               onChange={(e) => setStrategy(e.target.value)}
-              modifier="strategy"
               maxLength={4000}
             />
             <Form.Submit
               label={page.save_motivation_label ?? ''}
-              modifier="slim"
+              variant="slim"
               loading={updateAssessmentLoading}
             />
           </Form>
 
           {/* Only for print below */}
           {assessment?.getAssessment?.strategy?.strategy && (
-            <Section
-              title={page.strategy_title_print ?? ''}
-              description={assessment?.getAssessment?.strategy?.strategy ?? ''}
-              print={true}
-            />
+            <div className="print-only pb-6 md:pb-[110px]">
+              <h3 className="text-2xl mb-6">
+                {page.strategy_title_print ?? ''}
+              </h3>
+              <p className="text-xs mb-4 md:mb-10 max-w-screen-md">
+                {assessment?.getAssessment?.strategy?.strategy ?? ''}
+              </p>
+            </div>
           )}
         </div>
       </div>

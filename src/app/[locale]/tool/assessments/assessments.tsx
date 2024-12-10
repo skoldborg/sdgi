@@ -8,8 +8,6 @@ import { useEffect, useState } from 'react';
 import { LoadingIndicator, SearchBar } from '@/app/components';
 import AssessmentBar from '@/app/components/AssessmentBar';
 
-import styles from './assessments.module.scss';
-
 interface AssessmentsI extends AssessmentsPageDocument {}
 
 export default function Assessments({ data: page }: AssessmentsI) {
@@ -64,21 +62,30 @@ export default function Assessments({ data: page }: AssessmentsI) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  const hasAssessments = visibleAssessments && visibleAssessments.length > 0;
+  const hasVisibleAssessments =
+    visibleAssessments && visibleAssessments.length > 0;
 
   if (isLoading) return <LoadingIndicator />;
 
-  if (hasAssessments) {
-    return (
-      <>
+  return (
+    <>
+      {assessments && assessments.length > 0 && (
         <SearchBar
           placeholder={page.search_placeholder ?? ''}
           value={searchTerm}
           onChange={(input: string) => setSearchTerm(input)}
         />
-        <ul className={styles.list}>
-          {visibleAssessments.map((a) => (
-            <li key={a?.title} className={styles.item}>
+      )}
+      {hasVisibleAssessments ? (
+        <ul className="max-w-screen-lg mx-auto p-0">
+          {visibleAssessments.map((a, i) => (
+            <li
+              key={a?.title}
+              className={`mb-5 last-child:mb-0 opacity-0 animate-[fadeIn_0.65s_ease_forwards]`}
+              style={{
+                animationDelay: `${i * 0.1}s`,
+              }}
+            >
               <AssessmentBar
                 content={{
                   update: page.update_assessment_modal[0],
@@ -91,13 +98,11 @@ export default function Assessments({ data: page }: AssessmentsI) {
             </li>
           ))}
         </ul>
-      </>
-    );
-  }
-
-  return (
-    <p style={{ textAlign: 'center' }}>
-      {!hasAssessments && page.no_assessments_message}
-    </p>
+      ) : (
+        <p style={{ textAlign: 'center' }}>
+          {assessments?.length === 0 && page.no_assessments_message}
+        </p>
+      )}
+    </>
   );
 }

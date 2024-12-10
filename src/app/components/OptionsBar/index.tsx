@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import './options-bar.scss';
 
 import { Option } from '../Option';
 
@@ -43,7 +42,7 @@ export const OptionsBar = ({
         : false;
 
     return (
-      <div className="options-bar__option" key={option.value}>
+      <div className="m-1" key={option.value}>
         <Option
           selected={selected}
           clickHandler={() => setOption(option.value)}
@@ -55,13 +54,13 @@ export const OptionsBar = ({
   };
 
   return (
-    <div className={`options-bar`}>
-      <div className="options-bar__options">
+    <div data-component="options-bar">
+      <div className="flex justify-center flex-wrap md:flex-nowrap">
         {options.map((option) => renderOption(option, 'as-card'))}
       </div>
 
       {otherOption && (
-        <div className="options-bar__other-option">
+        <div className="flex justify-center mt-6 md:mt-10">
           {renderOption(otherOption)}
         </div>
       )}

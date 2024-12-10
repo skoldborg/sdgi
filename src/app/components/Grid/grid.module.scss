@@ -1,0 +1,60 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-gap: 1em;
+  margin: 0;
+}
+
+.cols {
+  grid-template-columns: repeat(auto-fill, minmax(calc(100% - 1em), 1fr));
+
+  @media screen and (min-width: 986px) {
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - 1em), 1fr));
+  }
+}
+
+.item {
+  padding: 0 0.5em 1em;
+  width: 50%;
+  opacity: 0;
+  animation: fadeIn 0.65s ease forwards;
+
+  :global(.grid--cols-2) & {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 767px) {
+    width: 33.333%;
+
+    :global(.grid--cols-2) & {
+      width: 50%;
+    }
+  }
+
+  @media screen and (min-width: 986px) {
+    width: 20%;
+  }
+
+  @supports (display: grid) {
+    width: 100%;
+    padding: 0;
+
+    :global(.grid--cols-2) & {
+      width: 100%;
+    }
+  }
+
+  @for $i from 1 through 18 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.05s;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}

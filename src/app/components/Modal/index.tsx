@@ -13,7 +13,6 @@ import {
 } from 'react';
 
 import classNames from 'classnames';
-import './modal.scss';
 import { useClickOutside } from '@/app/hooks/useClickOutside';
 
 type ModalNode = React.ReactNode;
@@ -87,7 +86,7 @@ export interface ModalWindowProps extends PropsWithChildren {
   id: string;
   size?: 'small' | 'large';
   preventClose?: boolean;
-  contentModifier?: 'full-width';
+  fullWidth?: boolean;
   centered?: boolean;
   title?: string;
   description?: string | ReactNode;
@@ -98,7 +97,7 @@ const ModalWindow = ({
   id,
   size = 'large',
   preventClose = false,
-  contentModifier,
+  fullWidth = false,
   centered = false,
   title,
   description,
@@ -122,26 +121,38 @@ const ModalWindow = ({
       id={id}
       role="dialog"
       ref={windowRef}
-      className={classNames('modal-window', `modal-window--${size}`)}
+      className={classNames(
+        'overflow-auto relative flex flex-col w-full mx-auto bg-white z-50',
+        'md:min-h-0 md:inline-block md:align-middle md:text-left',
+        size === 'small' ? 'md:max-w-[60%] xl:max-w-[40%]' : 'lg:max-w-3xl',
+      )}
     >
       {!preventClose && (
-        <button className="modal__close-btn" onClick={() => closeModal()}>
-          <svg className="icon">
+        <button
+          className="flex justify-center items-center absolute top-2 right-2 w-10 h-10 bg-dark text-white"
+          onClick={() => closeModal()}
+        >
+          <svg className="icon w-7 h-7 fill-white">
             <use xlinkHref="#icon-close" />
           </svg>
         </button>
       )}
       <div
         className={classNames(
-          'modal__content',
-          contentModifier && 'modal__content--' + contentModifier,
-          centered && 'modal__content--center',
+          'overflow-auto',
+          fullWidth ? 'p-0' : 'py-10 px-3 md:py-20',
+          centered && 'flex items-center flex-col',
         )}
       >
-        <div className="modal__content-inner">
+        <div
+          className={classNames(
+            'mx-auto mb-20 md:mb-0',
+            !fullWidth && 'max-w-[80%] xl:max-w-[500px]',
+          )}
+        >
           {title && description && (
-            <div className="modal__content-header">
-              <h2 className="modal__title">{title}</h2>
+            <div className="mb-10 w-full">
+              <h2 className="text-2xl md:text-4xl mb-6 text-center">{title}</h2>
               {description && <div className="rte">{description}</div>}
             </div>
           )}
@@ -160,8 +171,10 @@ const Modal: FC & ModalComponent = () => {
   return (
     <div
       className={classNames(
-        'modal-overlay',
-        hasModals && 'modal-overlay--visible',
+        'fixed w-screen h-screen top-0 left-0',
+        'flex flex-col items-center justify-center',
+        'bg-black/15 backdrop-blur-sm z-50',
+        hasModals ? 'visible opacity-100' : 'invisible opacity-0',
       )}
     >
       {hasModals ? modals[0] : null}

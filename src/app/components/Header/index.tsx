@@ -3,10 +3,10 @@
 import { Button, LoadingIndicator, Avatar, Dropdown } from '@components';
 import { useParams } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import styles from './header.module.scss';
 import { HeaderDocument } from '@prismicio-types';
 import { PropsWithChildren } from 'react';
 import { useUIContext } from '@/app/contexts/ui-context';
+import cx from 'classnames';
 
 interface HeaderI extends PropsWithChildren {
   doc: HeaderDocument<string>;
@@ -40,17 +40,23 @@ export const Header = ({ doc, children }: HeaderI) => {
   const internalLinks = data.internal_links as InternalLink[];
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        <a href={`/${locale}`} className={styles.logo}></a>
+    <header className="relative w-full flex bg-white border-b border-solid border-gray-light">
+      <div className="relative flex h-full w-full max-w-6xl mx-auto justify-center items-center py-7 px-3 lg:px-6">
+        <a
+          href={`/${locale}`}
+          className={cx(
+            'flex justify-start items-center w-[164px] h-10 text-black font-header',
+            "bg-contain bg-no-repeat bg-center bg-[url('/images/siat-logo.svg')] max-w-[150px] md:max-w-none",
+          )}
+        ></a>
 
-        <ul className={styles.nav}>
+        <ul className="flex justify-end items-center my-2 ml-auto">
           {internalLinks &&
             internalLinks.map((internalLink) => {
               return (
                 <li
                   key={internalLink.label}
-                  className={`${styles.navItem} ${styles.hiddenS}`}
+                  className="hidden md:inline-block mx-3 last-of-type:mr-0"
                 >
                   <Button
                     label={internalLink.label}
@@ -64,7 +70,7 @@ export const Header = ({ doc, children }: HeaderI) => {
           {children}
 
           {user && user.name && (
-            <li className={styles.navItem}>
+            <li className="mx-3 last-of-type:mr-0">
               <Avatar
                 initials={user?.name.substring(0, 1).toUpperCase()}
                 onClick={() => openHeaderDropdown()}

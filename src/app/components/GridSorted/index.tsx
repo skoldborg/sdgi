@@ -1,5 +1,4 @@
 import React from 'react';
-import './grid-sorted.scss';
 import { LinedHeader, Grid } from '@components';
 import { GroupField } from '@prismicio/client';
 import {
@@ -30,12 +29,12 @@ const GridSorted = ({
   );
 
   return (
-    <div className="grid-sorted">
+    <div>
       {goalPriorities.map((relevance, i) => {
         const { label, value } = relevance;
 
         return (
-          <div key={i} className="grid-sorted__row">
+          <div key={i} className="mb-20">
             {sortedGoalCards &&
               value &&
               sortedGoalCards[value - 1]?.goalCards && (

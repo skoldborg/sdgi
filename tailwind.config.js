@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     screens: {
       sm: '480px',
+      'md-minor': '640px',
       md: '768px',
       lg: '976px',
       xl: '1440px',
@@ -52,6 +53,13 @@ module.exports = {
       wider: '.05em',
       widest: '.08em',
     },
+    backgroundSize: {
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+      '50%': '50%',
+      24: '2rem',
+    },
     safelist: [
       {
         pattern: /bg-goal-.+/,
@@ -72,6 +80,10 @@ module.exports = {
           '0%': { transform: 'scale(1)' },
           '70%': { transform: 'scale(1.1)' },
           '100%': { transform: 'scale(1)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
     },

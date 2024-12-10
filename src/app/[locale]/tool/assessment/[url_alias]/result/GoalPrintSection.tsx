@@ -70,9 +70,7 @@ export const GoalPrintSection = ({
               key={g?.goal_id}
             >
               <div className="relative flex mt-6 mb-6">
-                <div
-                  className={`${styles.goalId} ${styles.goalId}--${g?.goal_id}`}
-                >
+                <div className="mr-4 w-20 h-20 print-color-adjust">
                   <GoalCard goal_id={Number(g?.goal_id)} />
                 </div>
                 <div className="w-[55%]">
@@ -86,7 +84,7 @@ export const GoalPrintSection = ({
               <div className="flex pb-4 mt-2">
                 <div className="w-[25%] mr-6">
                   <h3 className="font-header text-base mb-3">Impact</h3>
-                  <Option label={impactLabel} type={`locked`} />
+                  <Option label={impactLabel} type="locked" />
                 </div>
                 {g?.motivation && (
                   <div className="w-[75%]">

@@ -1,29 +1,10 @@
 import React, { MouseEvent } from 'react';
 import cx from 'classnames';
 import { Goal } from '@/@types/codegen/types';
+import { goalBgs } from '../GoalHero';
 
 const baseStyles =
   'relative inline-block w-11 h-11 mx-1 bg-inherit print:w-6 print:h-6';
-
-const goalBgs = [
-  'bg-goal-1',
-  'bg-goal-2',
-  'bg-goal-3',
-  'bg-goal-4',
-  'bg-goal-5',
-  'bg-goal-6',
-  'bg-goal-7',
-  'bg-goal-8',
-  'bg-goal-9',
-  'bg-goal-10',
-  'bg-goal-11',
-  'bg-goal-12',
-  'bg-goal-13',
-  'bg-goal-14',
-  'bg-goal-15',
-  'bg-goal-16',
-  'bg-goal-17',
-];
 
 export const EmptyBox = () => {
   return (

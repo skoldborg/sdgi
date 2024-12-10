@@ -15,6 +15,7 @@ import {
 } from '@/app/[locale]/queries.generated';
 import { Modal, useModal, Form, LoadingIndicator } from '@/app/components';
 import { useContentContext } from '@/app/contexts/content-context';
+import cx from 'classnames';
 import classNames from 'classnames';
 
 interface AssessmentBarI extends PropsWithChildren {
@@ -27,9 +28,10 @@ interface AssessmentBarI extends PropsWithChildren {
       | Simplify<AssessmentsPageDocumentDataCreateAssessmentModalItem>
       | undefined;
   };
+  classNames?: string;
 }
 
-const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
+const AssessmentBar = ({ assessment, content, classNames }: AssessmentBarI) => {
   const { registerModal, closeModal } = useModal();
   const { commonTranslations } = useContentContext();
 
@@ -128,7 +130,11 @@ const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
 
   return (
     <Link
-      className="relative block bg-white p-6 text-dark hover:shadow transition-all duration-200 ease-in-expo hover:translate-y-[-1px] md:p-8"
+      className={cx(
+        'relative block bg-white p-6 md:p-8 text-dark',
+        'hover:shadow transition-all duration-200 ease-in-expo hover:translate-y-[-1px]',
+        classNames,
+      )}
       href={url}
     >
       <h3 className="text-lg leading-7 md:text-2xl md:leading-8 mt-0 mb-4">
@@ -153,7 +159,7 @@ const AssessmentBar = ({ assessment, content }: AssessmentBarI) => {
       />
 
       <div
-        className={classNames(
+        className={cx(
           'absolute top-0 left-0 w-full h-full content-center flex-col pb-4 font-header bg-white/90 justify-end items-end',
           overlayHidden ? 'hidden' : 'flex',
         )}

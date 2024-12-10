@@ -1,20 +1,22 @@
 import React from 'react';
-import './loading-indicator.scss';
 import classNames from 'classnames';
 
 export const LoadingIndicator = ({
+  centered = true,
   additionalClasses,
 }: {
+  centered?: boolean;
   additionalClasses?: string;
 }) => (
   <div
     className={classNames(
-      'loading-indicator',
+      'mt-25 w-16 text-center',
+      centered && 'mx-auto',
       additionalClasses && additionalClasses,
     )}
   >
-    <div className="loading-indicator__circle loading-indicator__circle--1"></div>
-    <div className="loading-indicator__circle loading-indicator__circle--2"></div>
-    <div className="loading-indicator__circle loading-indicator__circle--3"></div>
+    <div className="loading-indicator-circle loading-indicator-circle--1"></div>
+    <div className="loading-indicator-circle loading-indicator-circle--2"></div>
+    <div className="loading-indicator-circle loading-indicator-circle--3"></div>
   </div>
 );

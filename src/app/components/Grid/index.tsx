@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import './grid.scss';
+import styles from './grid.module.scss';
 
 export const Grid = ({
   items,
@@ -10,13 +10,13 @@ export const Grid = ({
 }) => {
   const gridItems = items?.map((item, idx) => {
     return (
-      <div className={`grid__item`} key={idx}>
+      <div className={styles.item} key={idx}>
         {item}
       </div>
     );
   });
 
   return (
-    <div className={cx(`grid`, cols && `grid--cols-${cols}`)}>{gridItems}</div>
+    <div className={cx(styles.root, cols && styles.cols)}>{gridItems}</div>
   );
 };

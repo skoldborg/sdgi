@@ -21,15 +21,17 @@ export const Option = ({
 }) => {
   const classNames = cx(
     'group',
-    'relative flex justify-center items-center py-4 px-7 bg-white',
+    'relative flex justify-center items-center bg-white',
     'font-header font-bold uppercase md:text-[22px]',
-    'border border-solid border-black/20 rounded-sm overflow-hidden',
+    'border print:border-2 print:border-black/100 border-solid rounded overflow-hidden',
     'transition-all duration-200 ease-in-expo',
     'hover:shadow-[0_3px_12px_2px_rgba(0,0,0,0.1)] hover:cursor-pointer',
-    type !== 'locked' && 'focus:border-none',
+    type !== 'locked'
+      ? 'border-black/20 focus:border-none'
+      : 'border-black/100 border-4 hover:border-4 hover:shadow-none hover:cursor-default pointer-events-none',
 
     type === 'as-card' && `w-[105px] h-[165px] md:w-[165px] md:h-[225px]`,
-    size === 'small' && 'text-base py-2 px-5',
+    size === 'small' ? 'py-2 px-5 md:text-base' : 'py-4 px-7',
     selected && 'border-none',
     size && 'option--' + size,
     additionalClasses,
@@ -37,6 +39,7 @@ export const Option = ({
 
   return (
     <button
+      data-component="option"
       className={`${classNames}`}
       data-value={value}
       onClick={clickHandler && clickHandler}

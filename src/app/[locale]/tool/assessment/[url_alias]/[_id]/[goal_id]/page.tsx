@@ -1,5 +1,4 @@
 import { GoalHero, Grid, TargetBar } from '@/app/components';
-import Section from '@/app/components/Section';
 import { createClient } from '@/prismicio';
 import { PrismicRichText } from '@prismicio/react';
 import { GoalImpactForm } from './GoalImpactForm';
@@ -58,7 +57,12 @@ const GoalPage = async ({
       />
       <div className="page__content">
         <div className="goal">
-          <Section title={intro_title ?? ''} description={intro_body ?? ''} />
+          <div className="pb-6 md:pb-[110px]">
+            <h3 className="text-3xl mb-6">{intro_title}</h3>
+            <p className="text-base md:text-lg mb-10 max-w-screen-md">
+              {intro_body}
+            </p>
+          </div>
 
           <div className="section section--white">
             <h2 className={`section__title`}>Targets</h2>

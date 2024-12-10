@@ -1,5 +1,4 @@
 import { Footer, Header, LanguageSwitch } from '@components';
-import headerStyles from '@/app/components/Header/header.module.scss';
 import { createClient } from '@/prismicio';
 import { PrismicRichText } from '@prismicio/react';
 
@@ -26,7 +25,7 @@ export default async function StandardPage({
       <div className="page__header">
         <Header doc={header}>
           {header.data.choose_language && (
-            <li className={headerStyles.navItem}>
+            <li className="mx-3 last-of-type:mr-0">
               <LanguageSwitch
                 label={header.data.choose_language as string}
                 locales={locales}

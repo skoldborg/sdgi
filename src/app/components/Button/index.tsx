@@ -2,10 +2,11 @@ import React from 'react';
 import cx from 'classnames';
 import Link from 'next/link';
 import { KeyTextField } from '@prismicio/client';
+import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   label: KeyTextField;
-  color?: 'black' | 'white' | 'gray';
+  color?: 'black' | 'white' | 'gray' | 'ghost';
   size?: 'base' | 'small';
   href?: string;
   link?: string;
@@ -17,6 +18,7 @@ interface ButtonProps {
   center?: boolean;
   className?: string;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -32,10 +34,14 @@ export const Button = (props: ButtonProps) => {
     center = false,
     className,
     disabled,
+    type,
   } = props;
 
   const baseStyles =
     'relative text-center hover:bg-[#404040] font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 disabled:pointer-events-none disabled:bg-gray disabled:cursor-default z-10';
+
+  // const slimStyles =
+  //   'p-0 bg-white/0 underline text-black text-body font-normal normal-case';
 
   const sizes = {
     base: 'text-lg py-4 px-6',
@@ -46,16 +52,16 @@ export const Button = (props: ButtonProps) => {
     black: 'bg-black text-white [&>.icon]:fill-white',
     white: 'text-black bg-white hover:bg-gray-light',
     gray: 'text-black bg-gray hover:bg-[#e4e4e4]',
+    ghost: 'text-black bg-white/0 hover:bg-white/0',
   };
 
-  const classNames = cx(
+  const classNames = twMerge(
     baseStyles,
     sizes[size],
     colors[color],
     center ? 'block mx-auto' : 'inline-block',
     icon &&
       'tracking-normal text-center pl-16 [&>.icon]:w-7 [&>.icon]:h-7 [&>.icon]:absolute [&>.icon]:left-[22px] [&>.icon]:top-4',
-
     className && className,
   );
 
@@ -83,10 +89,11 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <button
-      className={classNames}
+      className={cx(classNames)}
       onClick={onClick}
       data-opacity={opacity && opacity}
       disabled={disabled}
+      type={type}
     >
       {icon && (
         <svg className="icon">

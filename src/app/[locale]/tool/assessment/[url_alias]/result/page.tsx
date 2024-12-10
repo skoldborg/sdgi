@@ -5,7 +5,6 @@ import {
   LoadingIndicator,
 } from '@/app/components';
 import { createClient } from '@/prismicio';
-import headerStyles from '@/app/components/Header/header.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ResultGraph } from './ResultGraph';
@@ -42,7 +41,7 @@ const AssessmentGoalsPage = async ({
       <div className="page__header">
         <Header doc={header}>
           {header.data.choose_language && (
-            <li className={headerStyles.navItem}>
+            <li className="mx-3 last-of-type:mr-0">
               <LanguageSwitch
                 label={header.data.choose_language as string}
                 locales={locales}

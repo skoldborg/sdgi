@@ -61,7 +61,7 @@ export const CreateAssessmentButton = ({
     <Button
       label={label}
       size={`small`}
-      className="h-margin-bottom-0"
+      className="mb-0"
       onClick={() =>
         registerModal(
           <Modal.Window

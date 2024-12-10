@@ -76,7 +76,7 @@ export const BoxRow = ({
                 const impact = assessmentGoals[goal_id - 1].impact;
 
                 registerModal(
-                  <Modal.Window id="goal-modal" contentModifier="full-width">
+                  <Modal.Window id="goal-modal" fullWidth>
                     <>
                       <GoalHero
                         size="small"
@@ -105,7 +105,7 @@ export const BoxRow = ({
                           }
                         >
                           {impactOptions && (
-                            <div className="section">
+                            <div className="pb-12">
                               {impact && impact !== 0 ? (
                                 <Option
                                   type="locked"

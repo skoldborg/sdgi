@@ -146,7 +146,6 @@ export const GoalImpactForm = ({
                 updateGoal();
               }
             }}
-            modifier={`centered`}
           >
             <Form.TextArea
               id="motivation"

@@ -1,7 +1,6 @@
 import { createClient } from '@/prismicio';
 import Assessments from './assessments';
 import { Header, LanguageSwitch } from '@/app/components';
-import headerStyles from '@/app/components/Header/header.module.scss';
 import { CreateAssessmentButton } from '@/app/components/Header/CreateAssessmentButton';
 
 export default async function AssessementsPage({
@@ -24,14 +23,14 @@ export default async function AssessementsPage({
       <div className="page__header">
         <Header doc={header}>
           {header.data.choose_language && (
-            <li className={headerStyles.navItem}>
+            <li className="mx-3 last-of-type:mr-0">
               <LanguageSwitch
                 label={header.data.choose_language as string}
                 locales={locales}
               />
             </li>
           )}
-          <li className={headerStyles.navItem}>
+          <li className="mx-3 last-of-type:mr-0">
             <CreateAssessmentButton
               label={header.data.new_assessment ?? ''}
               content={{

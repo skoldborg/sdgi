@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import './goal-quickview.scss';
 
 import { TargetBar, Accordion } from '..';
 import { Goal } from '@/@types/codegen/types';
@@ -35,14 +34,14 @@ export const GoalQuickview = ({
         imageUrl={imageUrl}
         imageWidth={60}
         imageHeight={90}
-        size={`small`}
+        size="small"
       />
     );
   });
 
   return (
-    <div className="goal-quickview">
-      <div className="section">
+    <div className="p-6 text-black md:py-10 md:px-8">
+      <div className="pb-12">
         <Accordion
           openLabel={accordionOpenLabel}
           closeLabel={accordionCloseLabel}
@@ -54,11 +53,9 @@ export const GoalQuickview = ({
 
       {children}
 
-      <div className="section">
-        <h2 className="section__title section__title--lowercase">
-          {motivationTitle}
-        </h2>
-        <p className="section__description">{motivation}</p>
+      <div className="pb-12">
+        <h2 className="text-lg mb-6 md:text-2xl">{motivationTitle}</h2>
+        <p className="text-base leading-7">{motivation}</p>
       </div>
     </div>
   );

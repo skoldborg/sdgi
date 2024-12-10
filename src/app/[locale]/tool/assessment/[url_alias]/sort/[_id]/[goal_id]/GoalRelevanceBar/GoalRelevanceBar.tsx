@@ -5,7 +5,6 @@ import {
   useGetAssessmentQuery,
   useUpdateGoalMutation,
 } from '@/app/[locale]/queries.generated';
-import styles from './goal-revelance-bar.module.scss';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useParams, useRouter } from 'next/navigation';
 import {
@@ -102,23 +101,24 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
   };
 
   return (
-    <div className={styles.bar}>
-      <div className={styles.content}>
-        <div className={styles.loadingIndicator}>
-          {loading || (updateGoalLoading && <LoadingIndicator />)}
-        </div>
+    <div className="w-full bg-white fixed bottom-0 left-0 right-0 z-10 shadow-[0_-8px_10px_0_rgba(0,0,0,0.1)] transition-all duration-200 ease-in-expo">
+      <div className="max-w-6xl mx-auto px-3 mb:px-6">
+        {loading ||
+          (updateGoalLoading && (
+            <LoadingIndicator additionalClasses="absolute top-3 left-[50%] -translate-x-[50%] m-0" />
+          ))}
 
-        <div className={styles.controls}>
+        <div className="flex justify-center flex-col items-center py-12">
           {goalPriorities && (
             <>
-              <div className={styles.group}>
+              <div className="flex justify-center items-center flex-col gap-6 md:flex-row">
                 <Button
                   label={goalPriorities[0]?.label ?? ''}
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                     handleClick(e, 1)
                   }
                   disabled={loading}
-                  className="min-w-[260px] mb-6"
+                  className="min-w-[260px] md:mb-6"
                 />
                 <Button
                   label={goalPriorities[1]?.label ?? ''}
@@ -143,7 +143,9 @@ export const GoalRelevanceBar = ({ goalPriorities }: GoalRelevanceBarI) => {
           )}
 
           {error && (
-            <div className={styles.status}>{errorMsgs?.save_assessment}</div>
+            <div className="font-bold text-red">
+              {errorMsgs?.save_assessment}
+            </div>
           )}
         </div>
       </div>
