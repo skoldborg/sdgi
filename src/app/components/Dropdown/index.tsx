@@ -67,7 +67,7 @@ export const Dropdown = (props: DropdownI) => {
       data-component="dropdown"
       ref={dropdown}
       className={cx(
-        'absolute top-[75px] lg:top-[85px] right-0 py-8 px-10 bg-white z-10',
+        'absolute top-[75px] lg:top-[65px] -right-6 py-8 px-10 bg-white z-10',
         'shadow-[0_2px_7px_0_rgba(0,0,0,0.2)]',
         open ? 'block' : 'hidden',
       )}

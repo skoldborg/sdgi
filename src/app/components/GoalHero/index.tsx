@@ -66,8 +66,7 @@ export const GoalHero = ({
           <Button
             link={assessmentGoalsUrl}
             label={backBtnLabel}
-            color="black"
-            opacity={0.7}
+            color="black-70"
           />
         )}
       </div>

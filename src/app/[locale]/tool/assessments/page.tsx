@@ -20,7 +20,7 @@ export default async function AssessementsPage({
 
   return (
     <>
-      <div className="page__header">
+      <div className="page-header">
         <Header doc={header}>
           {header.data.choose_language && (
             <li className="mx-3 last-of-type:mr-0">
@@ -40,10 +40,9 @@ export default async function AssessementsPage({
           </li>
         </Header>
       </div>
-      <div className="page__content">
+      <div className="bg-gray-light min-h-screen pb-16 pt-4 md:pt-16 px-3 md:px-6">
         <Assessments {...page} />
       </div>
-      ;
     </>
   );
 }

@@ -112,8 +112,8 @@ export const GoalImpactForm = ({
 
   return (
     <>
-      <div className="section">
-        <h2 className="section__title section__title--centered section__title--lowercase">
+      <div className="mb-6 md:mb-24">
+        <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12">
           {page.impact_title ?? 'How does your case impact SDG'} {goalId}?
         </h2>
 
@@ -128,9 +128,9 @@ export const GoalImpactForm = ({
           />
         )}
       </div>
-      <div className="section">
-        <div className="section__inner">
-          <h2 className="section__title section__title--centered section__title--lowercase">
+      <div className="mb-6 md:mb-24">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12">
             {page.motivation_field_title ?? 'Motivate why'}
           </h2>
           <Form

@@ -78,7 +78,7 @@ export const AssessmentSummary = ({ doc }: AssessmentSummaryI) => {
             />
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:block ml-auto">
             <Button
               link={ctaHref}
               label={ctaLabel}

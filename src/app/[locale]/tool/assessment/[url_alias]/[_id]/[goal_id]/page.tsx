@@ -55,29 +55,33 @@ const GoalPage = async ({
         }
         assessmentGoalsUrl={`/${params.locale}/tool/assessment/${params.url_alias}`}
       />
-      <div className="page__content">
-        <div className="goal">
-          <div className="pb-6 md:pb-[110px]">
-            <h3 className="text-3xl mb-6">{intro_title}</h3>
+      <div className="goal">
+        <div className="bg-gray-light pt-4 md:pt-16">
+          <div className="max-w-6xl mx-auto pb-6 md:pb-17 px-3 md:px-6">
+            <h3 className="text-3xl mb-6 uppercase">{intro_title}</h3>
             <p className="text-base md:text-lg mb-10 max-w-screen-md">
               {intro_body}
             </p>
           </div>
+        </div>
 
-          <div className="section section--white">
-            <h2 className={`section__title`}>Targets</h2>
-            <div className="section__preamble">
-              {targets_preamble && <PrismicRichText field={targets_preamble} />}
-            </div>
-
-            {targetComponents && <Grid cols={2} items={targetComponents} />}
+        <div className="max-w-6xl mx-auto pt-6 md:pt-20 pb-6 md:pb-27 px-3 md:px-6 bg-white">
+          <h2 className="text-4xl mb-6 uppercase">Targets</h2>
+          <div className="text-xl mb-6 md:mb-16">
+            {targets_preamble && <PrismicRichText field={targets_preamble} />}
           </div>
 
-          <GoalImpactForm
-            goalId={goal_id}
-            assessmentId={params._id}
-            {...goalPageDoc}
-          />
+          {targetComponents && <Grid cols={2} items={targetComponents} />}
+        </div>
+
+        <div className="bg-gray-light pt-4 md:pt-16">
+          <div className="max-w-6xl mx-auto pb-6 md:pb-27 px-3 md:px-6">
+            <GoalImpactForm
+              goalId={goal_id}
+              assessmentId={params._id}
+              {...goalPageDoc}
+            />
+          </div>
         </div>
       </div>
     </>

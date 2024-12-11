@@ -18,7 +18,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
   return (
     <>
-      <div className="page__header">
+      <div className="page-header">
         <Header doc={header}>
           {header.data.choose_language && (
             <li className="mx-3 last-of-type:mr-0">

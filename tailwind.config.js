@@ -7,9 +7,10 @@ module.exports = {
       'md-minor': '640px',
       md: '768px',
       lg: '976px',
-      xl: '1440px',
+      xl: '1280px',
       print: { raw: 'print' },
     },
+
     colors: {
       white: '#fff',
       black: '#000',
@@ -66,6 +67,9 @@ module.exports = {
       },
     ],
     extend: {
+      maxWidth: {
+        '6xl': '71.25em',
+      },
       boxShadow: {
         DEFAULT: '0px 2px 10px 0px rgba(0, 0, 0, 0.1)',
       },

@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   label: KeyTextField;
-  color?: 'black' | 'white' | 'gray' | 'ghost';
+  color?: 'black' | 'black-70' | 'white' | 'gray' | 'ghost';
   size?: 'base' | 'small';
   href?: string;
   link?: string;
@@ -38,7 +38,7 @@ export const Button = (props: ButtonProps) => {
   } = props;
 
   const baseStyles =
-    'relative text-center hover:bg-[#404040] font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 disabled:pointer-events-none disabled:bg-gray disabled:cursor-default z-10';
+    'relative text-center font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 disabled:pointer-events-none disabled:bg-gray disabled:cursor-default z-10';
 
   // const slimStyles =
   //   'p-0 bg-white/0 underline text-black text-body font-normal normal-case';
@@ -49,7 +49,8 @@ export const Button = (props: ButtonProps) => {
   };
 
   const colors = {
-    black: 'bg-black text-white [&>.icon]:fill-white',
+    black: 'bg-black text-white hover:bg-[#404040] [&>.icon]:fill-white',
+    'black-70': 'bg-black/70 hover:bg-black text-white [&>.icon]:fill-white',
     white: 'text-black bg-white hover:bg-gray-light',
     gray: 'text-black bg-gray hover:bg-[#e4e4e4]',
     ghost: 'text-black bg-white/0 hover:bg-white/0',

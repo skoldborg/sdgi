@@ -22,7 +22,6 @@ body {
   font-size: 16px;
   line-height: 24px;
   font-family: $font-family-body;
-  background-color: $color-gray-light;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -115,26 +114,6 @@ input::-moz-focus-inner,
 button::-moz-focus-inner {
   border: 0;
   padding: 0;
-}
-
-.page {
-  position: relative;
-  background: $color-gray-light;
-  overflow-x: hidden;
-
-  &--white {
-    background: $color-white;
-  }
-}
-
-.page__header {
-  display: flex;
-  width: 100%;
-  height: $size-60;
-
-  @include breakpoint($s) {
-    height: $size-80;
-  }
 }
 
 .page__content {

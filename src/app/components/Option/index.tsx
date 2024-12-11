@@ -65,7 +65,7 @@ export const Option = ({
           type === 'locked' && 'hidden',
           type === 'as-card'
             ? '-top-[60px] -right-[60px] w-[120px] h-[120px]'
-            : '-top-8 -right-8 w-14 h-14',
+            : '-top-6 -right-8 w-14 h-14',
         )}
       >
         <svg
@@ -73,7 +73,7 @@ export const Option = ({
             'absolute fill-white -rotate-45',
             type === 'as-card'
               ? 'bottom-[10px] right-[45px] w-[30px] h-[30px]'
-              : 'bottom-1 right-5 w-[22px] h-[22px]',
+              : 'bottom-0 right-5 w-[22px] h-[22px]',
           )}
         >
           <use xlinkHref="#icon-check" />

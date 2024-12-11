@@ -28,7 +28,7 @@ const AssessmentGoalsPage = async ({
 
   return (
     <>
-      <div className="page__header">
+      <div className="page-header">
         <Header doc={header}>
           {header.data.choose_language && (
             <li className="mx-3 last-of-type:mr-0">
@@ -40,15 +40,17 @@ const AssessmentGoalsPage = async ({
           )}
         </Header>
       </div>
-      <div className="page__content">
-        {goals && goalsPage ? (
-          <>
-            <Goals {...goalsPage} goalsDoc={goals} />
-            <AssessmentSummary doc={goalsPage.data.summary} />
-          </>
-        ) : (
-          <LoadingIndicator />
-        )}
+      <div className="bg-gray-light">
+        <div className="page-content">
+          {goals && goalsPage ? (
+            <>
+              <Goals {...goalsPage} goalsDoc={goals} />
+              <AssessmentSummary doc={goalsPage.data.summary} />
+            </>
+          ) : (
+            <LoadingIndicator />
+          )}
+        </div>
       </div>
     </>
   );

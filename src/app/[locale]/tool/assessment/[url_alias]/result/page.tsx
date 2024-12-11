@@ -38,7 +38,7 @@ const AssessmentGoalsPage = async ({
 
   return (
     <>
-      <div className="page__header">
+      <div className="page-header">
         <Header doc={header}>
           {header.data.choose_language && (
             <li className="mx-3 last-of-type:mr-0">
@@ -50,52 +50,60 @@ const AssessmentGoalsPage = async ({
           )}
         </Header>
       </div>
-      <div className="page__content">
-        {resultPage && commonTranslations ? (
-          <>
-            <div className="section section--white">
-              <Link
-                href={`/${params.locale}/tool/assessment/${params.url_alias}`}
-              >
-                <Button
-                  size="small"
-                  label={
-                    commonTranslations.data.button_labels[0]
-                      ?.back_to_assessment_board ?? 'Back to assessment board'
-                  }
-                  className="mb-6 print:hidden"
-                />
-              </Link>
-              <div className="print-only print-only-logo">
-                <Image
-                  src="/images/siat-logo.svg"
-                  alt=""
-                  width="200"
-                  height="32"
+      <div>
+        <div className="pt-4 md:pt-16">
+          {resultPage && commonTranslations ? (
+            <>
+              <div className="max-w-6xl mx-auto pb-6 md:pb-17 px-3 md:px-6">
+                <Link
+                  href={`/${params.locale}/tool/assessment/${params.url_alias}`}
+                >
+                  <Button
+                    size="small"
+                    label={
+                      commonTranslations.data.button_labels[0]
+                        ?.back_to_assessment_board ?? 'Back to assessment board'
+                    }
+                    className="mb-6 print:hidden"
+                  />
+                </Link>
+                <div className="print-only print-only-logo">
+                  <Image
+                    src="/images/siat-logo.svg"
+                    alt=""
+                    width="200"
+                    height="32"
+                  />
+                </div>
+
+                <ResultGraph
+                  {...goalPage}
+                  goalsDoc={goalsDoc}
+                  resultPage={resultPage}
                 />
               </div>
 
-              <ResultGraph
-                {...goalPage}
-                goalsDoc={goalsDoc}
-                resultPage={resultPage}
-              />
-            </div>
+              <div className="bg-gray-light print:bg-white pb-16 pt-4 md:pt-16 px-3 md:px-6">
+                <AssessmentDetailsSection
+                  title={
+                    resultPage.data.print_description_title ?? 'Description'
+                  }
+                  {...resultPage}
+                />
 
-            <AssessmentDetailsSection
-              title={resultPage.data.print_description_title ?? 'Description'}
-              {...resultPage}
-            />
-
-            <GoalPrintSection
-              {...goalPage}
-              goalsDoc={goalsDoc}
-              printButtonLabel={resultPage.data.print_button_label ?? 'Print'}
-            />
-          </>
-        ) : (
-          <LoadingIndicator />
-        )}
+                <GoalPrintSection
+                  {...goalPage}
+                  goalsDoc={goalsDoc}
+                  printButtonLabel={
+                    resultPage.data.print_button_label ?? 'Print'
+                  }
+                />
+              </div>
+            </>
+          ) : (
+            <LoadingIndicator />
+          )}
+        </div>
       </div>
     </>
   );
