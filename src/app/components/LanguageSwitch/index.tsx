@@ -27,7 +27,7 @@ export const LanguageSwitch = (props: { label: string; locales: string[] }) => {
         value={locale}
         onChange={handleOnChange}
         id="language-switch-select"
-        className="font-header text-sm w-10 appearance-none"
+        className="font-header text-sm w-10 appearance-none bg-white/0"
       >
         {props.locales.map((l) => {
           const label = l.split('-')[0].toUpperCase();
