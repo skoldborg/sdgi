@@ -179,6 +179,16 @@ input::placeholder {
   display: none;
 }
 
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+button {
+  line-height: normal;
+}
+
 @media print {
   .print-only {
     display: block !important;

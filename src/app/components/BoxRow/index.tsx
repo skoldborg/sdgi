@@ -43,6 +43,7 @@ export const BoxRow = ({
 }) => {
   const classNames = cx(
     'clear-both',
+    'clearfix',
     'box-row',
     `group box-color-${color}`,
     standalone && 'ml-[150px] print:ml-[100px]',

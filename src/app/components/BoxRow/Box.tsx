@@ -31,7 +31,7 @@ export const Box = ({
   const { goal_id } = goal ? goal : {};
 
   const boxStyles =
-    'scale-100 origin-center transition-all duration-150 ease-in-expo hover:scale-110 shadow-[0_0_5px_0_rgba(0,0,0,0.4)] hover:shadow-[0_2px_4px_0_rgba(0,0,0,0.4)]';
+    'inline-block align-top scale-100 origin-center transition-all duration-150 ease-in-expo hover:scale-110 shadow-[0_0_5px_0_rgba(0,0,0,0.4)] hover:shadow-[0_2px_4px_0_rgba(0,0,0,0.4)]';
   const classNames = cx(baseStyles, boxStyles);
 
   return (
