@@ -16,7 +16,6 @@ import {
 import { Modal, useModal, Form, LoadingIndicator } from '@/app/components';
 import { useContentContext } from '@/app/contexts/content-context';
 import cx from 'classnames';
-import classNames from 'classnames';
 
 interface AssessmentBarI extends PropsWithChildren {
   assessment: Assessment;
