@@ -38,7 +38,7 @@ export const Button = (props: ButtonProps) => {
   } = props;
 
   const baseStyles =
-    'relative text-center font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 disabled:pointer-events-none disabled:bg-gray disabled:cursor-default z-10';
+    'relative text-center font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 z-10';
 
   const sizes = {
     base: 'text-lg py-4 px-6',
@@ -55,12 +55,14 @@ export const Button = (props: ButtonProps) => {
 
   const classNames = twMerge(
     'print:hidden',
+    'disabled:pointer-events-none disabled:bg-gray disabled:cursor-default',
     baseStyles,
     sizes[size],
     colors[color],
     center ? 'block mx-auto' : 'inline-block',
     icon &&
       'tracking-normal text-center pl-16 [&>.icon]:w-7 [&>.icon]:h-7 [&>.icon]:absolute [&>.icon]:left-[22px] [&>.icon]:top-4',
+    disabled && 'pointer-events-none bg-gray cursor-default',
     className && className,
   );
 

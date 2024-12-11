@@ -46,7 +46,7 @@ export const Box = ({
           'print:text-sm print:shadow-none',
         )}
       >
-        <span className="origin-center print:text-white">
+        <span className="origin-center -mt-px print:text-white">
           {goal_id && goal_id}
         </span>
       </div>
