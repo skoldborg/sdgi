@@ -66,7 +66,7 @@ export const Goals = ({ data: page, goalsDoc }: GoalsI) => {
             }
             preventClose
           >
-            <div className="flex flex-justify-center">
+            <div className="flex justify-center items-center">
               <Button
                 link={sortModalLink}
                 onClick={() => closeModal()}
