@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import styles from './goal-card.module.scss';
+import styles from './goal-card.module.css';
 import Link from 'next/link';
 
 export const GoalCard = ({

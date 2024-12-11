@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans Condensed', Arial, 'sans-serif';
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
 .ally-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -96,6 +115,32 @@ input::placeholder {
   }
 }
 
+/* RTE embed using Prismic embed (eg youtube) */
+.embed {
+  position: relative;
+  width: 100%;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-bottom: 56.25%;
+  }
+
+  div,
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Iframe embed using custom field in Prismic */
+.iframe-embed {
+  width: 100%;
+}
+
 .loading-indicator-circle {
   width: 16px;
   height: 16px;
@@ -137,5 +182,24 @@ input::placeholder {
 @media print {
   .print-only {
     display: block !important;
+  }
+
+  html {
+    width: 100%;
+    zoom: 1;
+  }
+
+  body,
+  .page {
+    zoom: 1 !important;
+    transform: scale(1);
+    width: 100% !important;
+    background-color: #fff !important;
+  }
+
+  .print-only-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 40px;
   }
 }

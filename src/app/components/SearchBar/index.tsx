@@ -18,7 +18,7 @@ export const SearchBar = ({
           </svg>
           <input
             type={`search`}
-            className="border-b-black border-solid border-b-2 w-full block py-2 pr-2 lg:text-2xl pl-8 lg:pl-12 placeholder-gray-dark"
+            className="bg-gray-light border-b-black border-solid border-b-2 w-full block py-2 pr-2 lg:text-2xl pl-8 lg:pl-12 placeholder-gray-dark"
             placeholder={placeholder}
             defaultValue={value}
             onChange={(e) => onChange(e.target.value.toLowerCase())}

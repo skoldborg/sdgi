@@ -6,8 +6,6 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { GoalPageDocument, GoalsDocument } from '@prismicio-types';
 import { useParams } from 'next/navigation';
 
-import styles from './goal-print-box.module.scss';
-
 interface GoalPrintSectionI extends GoalPageDocument {
   goalsDoc: GoalsDocument;
   printButtonLabel: string;

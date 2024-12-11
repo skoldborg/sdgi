@@ -40,9 +40,6 @@ export const Button = (props: ButtonProps) => {
   const baseStyles =
     'relative text-center font-header font-bold tracking-widest whitespace-nowrap uppercase leading-6 mb-0 disabled:pointer-events-none disabled:bg-gray disabled:cursor-default z-10';
 
-  // const slimStyles =
-  //   'p-0 bg-white/0 underline text-black text-body font-normal normal-case';
-
   const sizes = {
     base: 'text-lg py-4 px-6',
     small: 'text-xs py-2 px-3 md:text-sm',
@@ -57,6 +54,7 @@ export const Button = (props: ButtonProps) => {
   };
 
   const classNames = twMerge(
+    'print:hidden',
     baseStyles,
     sizes[size],
     colors[color],

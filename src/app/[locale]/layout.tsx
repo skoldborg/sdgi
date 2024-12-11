@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import '@fontsource/open-sans-condensed/700.css';
-import '../styles/base.scss';
 import '../styles/global.css';
 import { IconSprite, Modal, ModalProvider } from '@components';
 import { UIContextProvider } from '../contexts/ui-context';

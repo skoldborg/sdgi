@@ -1,0 +1,29 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-gap: 1em;
+  margin: 0;
+}
+
+.cols {
+  grid-template-columns: repeat(auto-fill, minmax(calc(100% - 1em), 1fr));
+
+  @media screen and (min-width: 986px) {
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - 1em), 1fr));
+  }
+}
+
+.item {
+  width: 100%;
+  padding: 0;
+  opacity: 0;
+  animation: fadeIn 0.65s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+  }
+  100% {
+    opacity: 1;
+  }
+}

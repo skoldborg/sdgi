@@ -134,11 +134,11 @@ export const Goals = ({ data: page, goalsDoc }: GoalsI) => {
         <Button size="small" label={page.save_and_close} className="mb-6" />
       </Link>
 
-      <h2 className={classNames('text-2xl md:text-[40px]', `page__title`)}>
+      <h2 className={classNames('text-2xl md:text-[40px] mb-8')}>
         {assessment?.getAssessment?.title}
       </h2>
 
-      <div className="page__preamble">
+      <div className="text-xl max-w-screen-md mb-8">
         {<PrismicRichText field={page.description} />}
       </div>
 
