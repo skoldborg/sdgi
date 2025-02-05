@@ -3,6 +3,7 @@ import AssessmentModel from '@/app/models/Assessment';
 import GoalModel from '@/app/models/Goal';
 import StrategyModel from '@/app/models/Strategy';
 import { GraphQLScalarType, Kind } from 'graphql';
+import slugify from 'slugify';
 
 const resolvers: Resolvers = {
   Query: {
@@ -49,7 +50,11 @@ const resolvers: Resolvers = {
     createAssessment: async (root, args) => {
       const { user_id, title, description } = args;
       const goalsLength = 17;
-      const url_alias = title.replace(/ /g, '-').toLowerCase();
+      const url_alias = slugify(title, {
+        lower: true,
+        strict: true,
+        replacement: '-',
+      });
 
       const assessment = new AssessmentModel({
         user_id: user_id,

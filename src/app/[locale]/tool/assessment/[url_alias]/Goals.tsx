@@ -27,7 +27,7 @@ export const Goals = ({ data: page, goalsDoc }: GoalsI) => {
   const { data: assessment, loading } = useGetAssessmentQuery({
     variables: {
       userId: user?.sub,
-      urlAlias: decodeURI(url_alias),
+      urlAlias: url_alias,
     },
     skip: !user?.sub || !url_alias,
   });

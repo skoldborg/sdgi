@@ -39,7 +39,8 @@ const AssessmentBar = ({ assessment, content, classNames }: AssessmentBarI) => {
   const [overlayHidden, setOverlayHidden] = useState(true);
 
   const labels = commonTranslations?.data.button_labels[0] ?? null;
-  const url = url_alias ? `assessment/${encodeURI(url_alias)}` : '';
+
+  const url = url_alias ? `assessment/${url_alias}` : '';
 
   let savedGoals = 0;
   if (goals?.length) {
