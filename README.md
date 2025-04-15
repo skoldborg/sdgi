@@ -18,6 +18,8 @@ pnpm dev
 bun dev
 ```
 
+Development server expects a local MongoDB at: mongodb://localhost:27017/siat
+
 ## Authentication
 
 Authentication is built on Auth0 and more or less follows the strategies detailed [here](https://developer.auth0.com/resources/guides/web-app/nextjs/basic-authentication)
