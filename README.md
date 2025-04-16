@@ -2,30 +2,26 @@
 
 Website source code for the SDG Impact Assessment Tool.
 
-[About the project](https://sdgimpactassessmenttool.org/en-gb/articles/about)
+[Production website](https://sdgimpactassessmenttool.org/)
 
-## Getting Started
+## Install
 
-First, run the development server:
+```bash
+npm install
+```
+
+Create a `.env.local` file based on `.env.example`. Access tokens and secrets will be provided by a developer.
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Development server expects a local MongoDB at: mongodb://localhost:27017/siat
 
+App will be available at [http://localhost:3000](http://localhost:3000).
+
 ## Authentication
 
-Authentication is built on Auth0 and more or less follows the strategies detailed [here](https://developer.auth0.com/resources/guides/web-app/nextjs/basic-authentication)
-
-
-
-
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Authentication is built on Auth0 and follows the strategies detailed [here](https://developer.auth0.com/resources/guides/web-app/nextjs/basic-authentication)
